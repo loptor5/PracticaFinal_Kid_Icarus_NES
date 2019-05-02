@@ -6,7 +6,7 @@ var game = function(){
       this.add('2d, platformerControls');
     }
   });
-  
+
   Q.scene("Level11", function(stage) {
     Q.stageTMX("Level11.tmx", stage);
     const player = stage.insert(new Q.Player());
@@ -17,7 +17,9 @@ var game = function(){
 
  
 
-  Q.loadTMX("Level11.tmx , Level1.png ", function() {
+  Q.load("Level11.tmx , Level1.png ", function() {
+    Q.sheet("tiles","tiles.png", { tilew: 32, tileh: 32 });
+    Q.compileSheets("sprites.png","sprites.json");
     Q.stageScene("Level11");
   });
 };
