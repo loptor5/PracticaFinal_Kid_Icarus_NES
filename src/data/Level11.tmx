@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="left-up" width="16" height="206" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="270">
- <tileset firstgid="1" source="../Level1.tsx"/>
+ <tileset firstgid="1" source="../images/Level1.tsx"/>
  <layer id="9" name="Fondo" width="16" height="206" locked="1">
   <data encoding="csv">
 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
