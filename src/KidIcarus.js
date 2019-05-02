@@ -68,9 +68,11 @@ var game = function(){
 
   Q.scene("Level11", function(stage) {
     Q.stageTMX("Level11.tmx", stage);
-    const player = stage.insert(new Q.Player());
+    const player = stage.insert(new Q.Pit());
 
     stage.add("viewport").follow(player);
+    stage.viewport.offsetX = -130;
+    stage.viewport.offsetY = 160;
   });
   
 
