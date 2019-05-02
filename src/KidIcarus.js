@@ -1,5 +1,10 @@
 var game = function(){
-  var Q= window.Q= Quintus().include("Sprites, Scenes,Input, UI, Touch, TMX, Anim, 2D").setup({ width:320, height:480, audioSupported: ['ogg', 'mp3'], }).controls().touch()
+  var Q= window.Q= Quintus()
+    .include("Sprites, Scenes,Input, UI, Touch, TMX, Anim, 2D")
+      .setup({maximize: true})
+      .controls()
+      .touch();
+
   Q.Sprite.extend("Player",{
     init: function(p) {
       this._super(p, { sheet: "player", x: 42, y: 2768 });
@@ -17,9 +22,7 @@ var game = function(){
 
  
 
-  Q.load("Level11.tmx , Level1.png ", function() {
-    Q.sheet("tiles","tiles.png", { tilew: 32, tileh: 32 });
-    Q.compileSheets("sprites.png","sprites.json");
+  Q.loadTMX("Level11.tmx , Level1.png ", function() {
     Q.stageScene("Level11");
   });
 };
