@@ -6,7 +6,6 @@ var game = function(){
       .touch();
 
 
-      /*
   Q.Sprite.extend("Pit",{
     init: function(p) {
       this._super(p, {
@@ -24,7 +23,6 @@ var game = function(){
     this.on("bump.left, bump.right, bum.top", this, "killed");
     this.on("dying", this, "die");
     },
-    /*
     killed: function(collision){
       if(collision.obj.isA("Goomba")||collision.obj.isA("Bloopa")){
         this.p.alive=false;
@@ -55,9 +53,8 @@ var game = function(){
       }
     }
   });
-    */
   //----------------------------------------------------------------------//
-  /*
+  
   Q.animations("pit_anim",{
     stand_right: {frames:[0], flip:false, loop:true, rate: 1/5},
     stand_left: {frames:[0], flip: "x", loop:true, rate: 1/5},
@@ -67,18 +64,19 @@ var game = function(){
     jump_left: {frames: [4], flip: "x", loop: true, rate: 1/5},
     death: {frames:[12], flip:false, rate:2, loop:false, trigger: "dying"}
   });
-  */
+  
 
   Q.scene("Level11", function(stage) {
     Q.stageTMX("Level11.tmx", stage);
-    //const player = stage.insert(new Q.Pit());
+    const player = stage.insert(new Q.Pit());
+    
   });
   
 
  
 
   Q.loadTMX("Level11.tmx , Level1.png ", function() {
-    //Q.compileSheets("Pit.png", "pit.json");
+    Q.compileSheets("Pit.png", "pit.json");
     Q.stageScene("Level11");
   });
 };
