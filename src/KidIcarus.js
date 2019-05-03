@@ -60,7 +60,7 @@ var game = function(){
 
  
 
-  Q.loadTMX("Level101.tmx , Level1.png ", function() {
+  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json", function() {
     Q.compileSheets("Pit.png", "Pit.json");
     Q.stageScene("Level101");
   });
