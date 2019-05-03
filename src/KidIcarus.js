@@ -57,7 +57,7 @@ var game = function(){
  
 
   Q.loadTMX("Level101.tmx , Level1.png ", function() {
-    Q.compileSheets("Pit.png", "pit.json");
+    //Q.compileSheets("Pit.png", "pit.json");
     Q.stageScene("Level101");
   });
 };
