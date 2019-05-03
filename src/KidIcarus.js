@@ -19,10 +19,10 @@ var game = function(){
         alive:true
       });*/
 
-    this.add("2d, platformerControls, animation");
-    this.on("bump.left, bump.right, bum.top", function(collision){});
-    this.on("bump.left, bump.right, bum.top", this, "killed");
-    this.on("dying", this, "die");
+      this.add("2d, platformerControls, animation");
+      this.on("bump.left, bump.right, bum.top", function(collision){});
+      this.on("bump.left, bump.right, bum.top", this, "killed");
+      this.on("dying", this, "die");
     },
     killed: function(collision){
     },
@@ -33,6 +33,7 @@ var game = function(){
 
     step: function(dt){
       if(this.p.alive){
+
         if(this.p.vx === 0) this.play("stand_right");
         if(this.p.vx >0) this.play("walk_right");
         if(this.p.vx <0) this.play("walk_left");
