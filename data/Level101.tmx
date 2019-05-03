@@ -3303,7 +3303,7 @@
    <tile gid="5"/>
   </data>
  </layer>
- <layer id="1" name="collision" width="16" height="206">
+ <layer id="1" name="Collision" width="16" height="206">
   <properties>
    <property name="collision" type="bool" value="true"/>
   </properties>
