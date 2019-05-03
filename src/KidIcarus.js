@@ -10,7 +10,7 @@ var game = function(){
     init: function(p) {
       this._super(p, {
         sprite: "pit_anim",
-        sheet: "Pit",
+        sheet: "pit",
         gravity: 0.65,
         x: 40,
         y: 2768,
@@ -24,7 +24,7 @@ var game = function(){
     step: function(dt){
       if(this.p.alive){
         if(this.p.y<0 || this.p.y>3300){
-          this.p.sheet= "Pit";
+          this.p.sheet= "pit";
           this.p.frame=1,
           this.p.x=40;
           this.p.y=2768;
