@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="16" height="206" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="4">
- <tileset firstgid="1" version="1.2" tiledversion="1.2.3" name="Level1" tilewidth="16" tileheight="16" tilecount="25" columns="5">
+ <tileset firstgid="1" name="Level1" tilewidth="16" tileheight="16">
  <image source="Level1.png" width="80" height="80"/>
 </tileset>
- <tileset firstgid="26" tiledversion="1.2.3" name="Pit" tilewidth="16" tileheight="24" tilecount="10" columns="10">
- <image source="Pit.png" trans="ffffff" width="160" height="24"/>
+ <tileset firstgid="26" name="Pit" tilewidth="16" tileheight="24" >
+ <image source="Pit.png" width="160" height="24"/>
 </tileset>
  <layer id="3" name="background" width="16" height="206">
   <data>
