@@ -77,6 +77,6 @@ var game = function(){
 
   Q.loadTMX("Level10.tmx , Level1.png ", function() {
     Q.compileSheets("Pit.png", "pit.json");
-    Q.stageScene("Level11");
+    Q.stageScene("Level10");
   });
 };
