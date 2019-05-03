@@ -10,7 +10,7 @@ var game = function(){
     init: function(p) {
       this._super(p, {
         sprite: "pit_anim",
-        sheet: {"sx":16,"sy":0,"tileW":16,"tileH":24,"frames":3},
+        sheet: "Pit",
         gravity: 0.65,
         x: 40,
         y: 2768,
@@ -24,7 +24,7 @@ var game = function(){
     step: function(dt){
       if(this.p.alive){
         if(this.p.y<0 || this.p.y>3300){
-          this.p.sheet= {"sx":16,"sy":0,"tileW":16,"tileH":24,"frames":3};
+          this.p.sheet= "Pit";
           this.p.frame=1,
           this.p.x=40;
           this.p.y=2768;
@@ -61,7 +61,7 @@ var game = function(){
  
 
   Q.loadTMX("Level101.tmx , Level1.png ", function() {
-    //Q.compileSheets("Pit.png", "pit.json");
+    Q.compileSheets("Pit.png", "Pit.json");
     Q.stageScene("Level101");
   });
 };
