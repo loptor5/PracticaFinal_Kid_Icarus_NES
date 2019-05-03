@@ -13,6 +13,8 @@ var game = function(){
         sheet: "Pit",
         gravity: 0.65,
         frame: 1,
+        x: 32,
+        y: 2768,
         alive:true
       });
 
