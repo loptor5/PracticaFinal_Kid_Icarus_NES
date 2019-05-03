@@ -33,11 +33,6 @@ var game = function(){
 
     step: function(dt){
       if(this.p.alive){
-        if(this.p.y >= 206){
-          this.p.sheet = "Pit";
-          this.p.frame = 0;
-        }
-
         if(this.p.vx === 0) this.play("stand_right");
         if(this.p.vx >0) this.play("walk_right");
         if(this.p.vx <0) this.play("walk_left");
