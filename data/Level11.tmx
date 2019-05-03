@@ -7,7 +7,7 @@
 <imagelayer name="background" width="60" height="18">
   <image source="../images/bg.png"/>
 </imagelayer>
-<layer id="1" name="Base" width="16" height="206">
+<layer id="1" name="collision" width="16" height="206">
   <properties>
    <property name="collision" value="true"/>
   </properties>
