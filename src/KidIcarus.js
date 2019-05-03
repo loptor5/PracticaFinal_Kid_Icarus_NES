@@ -9,7 +9,7 @@ var game = function(){
   Q.Sprite.extend("Pit",{
     init: function(p) {
       p.sheet = "Pit";
-      p.frame= 10;
+      p.frame= 1;
       this._super(p);
       /*this._super(p, {
         sprite: "pit_anim",
