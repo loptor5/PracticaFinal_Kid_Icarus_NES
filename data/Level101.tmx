@@ -3,7 +3,7 @@
 <tileset firstgid="1" version="1.2" tiledversion="1.2.3" name="Level1" tilewidth="16" tileheight="16" tilecount="25" columns="5">
    <image source="Level1.png" width="80" height="80"/>
 </tileset>
-<tileset firstgid="26" version="1.2" tiledversion="1.2.3" name="Pit" tilewidth="16" tileheight="24" tilecount="10" columns="10">
+<tileset version="1.2" tiledversion="1.2.3" name="Pit" tilewidth="16" tileheight="24" tilecount="10" columns="10" x="32" y="2768" width="16" height="24">
    <image source="Pit.png" trans="000000" width="160" height="24"/>
 </tileset>
  <layer id="3" name="background" width="16" height="206">
