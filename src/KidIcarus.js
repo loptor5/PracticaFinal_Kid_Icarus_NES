@@ -5,7 +5,7 @@ var game = function(){
       .controls()
       .touch();
 
-
+/*
   Q.Sprite.extend("Pit",{
     init: function(p) {
       p.sheet = "Pit";
@@ -17,7 +17,7 @@ var game = function(){
         gravity: 0.65,
         frame: 1,
         alive:true
-      });*/
+      });
 
       this.add("2d, platformerControls, animation");
       this.on("bump.left, bump.right, bum.top", function(collision){});
@@ -43,13 +43,13 @@ var game = function(){
     jump_right: {frames: [6,7], flip: false, loop: true, rate: 1/5},
     jump_left: {frames: [6,7], flip: "x", loop: true, rate: 1/5},
     death: {frames:[0], flip:false, rate:2, loop:false, trigger: "dying"}
-  });
+  });*/
   
 
   Q.scene("Level101", function(stage) {
     Q.stageTMX("Level101.tmx", stage);
-    const player = stage.insert(new Q.Pit());
-    stage.add("viewport").follow(player);
+    //const player = stage.insert(new Q.Pit());
+    //stage.add("viewport").follow(player);
     
   });
   
