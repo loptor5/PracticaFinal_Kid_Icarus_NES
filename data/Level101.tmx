@@ -3307,7 +3307,7 @@
   </data>
  </layer>
  <objectgroup id="2" name="Pit" locked="1">
-  <object id="1" gid="27" x="32" y="2768" width="16" height="24">
+  <object id="1" x="32" y="2768" width="16" height="24">
    <properties>
     <property name="Class" value="Pit"/>
    </properties>
