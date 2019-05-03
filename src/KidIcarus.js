@@ -12,7 +12,7 @@ var game = function(){
         sprite: "pit_anim",
         sheet: "pit",
         gravity: 0.65,
-        x: 40,
+        x: 50,
         y: 2768,
         frame: 1,
         alive:true
@@ -26,7 +26,7 @@ var game = function(){
         if(this.p.y<0 || this.p.y>3300){
           this.p.sheet= "pit";
           this.p.frame=1,
-          this.p.x=40;
+          this.p.x=50;
           this.p.y=2768;
         }
         if(this.p.vx === 0) this.play("stand_right");
