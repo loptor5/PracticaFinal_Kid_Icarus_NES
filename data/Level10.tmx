@@ -3302,7 +3302,7 @@
    <tile gid="10"/>
   </data>
  </layer>
- <objectgroup draworder="index" id="2" name="Pit" locked="1">
+ <objectgroup id="2" name="Pit" locked="1">
   <object id="1" gid="27" x="32" y="2768" width="16" height="24">
    <properties>
     <property name="Class" value="Pit"/>
