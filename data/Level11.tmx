@@ -4,7 +4,7 @@
  <tileset firstgid="1" name="Level1" tilewidth="16" tileheight="16">
    <image source="Level1.png" width="80" height="80"/>
 </tileset>
-<layer id="1" name="collision" width="16" height="206">
+ <layer id="1" name="collision" width="16" height="206">
   <properties>
    <property name="collision" value="true"/>
   </properties>
