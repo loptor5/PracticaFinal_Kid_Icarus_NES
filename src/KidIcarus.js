@@ -66,8 +66,8 @@ var game = function(){
   });
   
 */
-  Q.scene("Level10", function(stage) {
-    Q.stageTMX("Level10.tmx", stage);
+  Q.scene("Level101", function(stage) {
+    Q.stageTMX("Level101.tmx", stage);
     const player = stage.insert(new Q.Pit());
     
   });
@@ -75,8 +75,8 @@ var game = function(){
 
  
 
-  Q.loadTMX("Level10.tmx , Level1.png ", function() {
+  Q.loadTMX("Level101.tmx , Level1.png ", function() {
     Q.compileSheets("Pit.png", "pit.json");
-    Q.stageScene("Level10");
+    Q.stageScene("Level101");
   });
 };
