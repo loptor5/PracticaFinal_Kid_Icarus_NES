@@ -5,7 +5,7 @@ var game = function(){
       .controls()
       .touch();
 
-
+/*
   Q.Sprite.extend("Pit",{
     init: function(p) {
       this._super(p, {
@@ -65,7 +65,7 @@ var game = function(){
     death: {frames:[12], flip:false, rate:2, loop:false, trigger: "dying"}
   });
   
-
+*/
   Q.scene("Level10", function(stage) {
     Q.stageTMX("Level11.tmx", stage);
     const player = stage.insert(new Q.Pit());
