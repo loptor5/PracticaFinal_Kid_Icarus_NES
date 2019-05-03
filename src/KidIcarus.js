@@ -8,16 +8,13 @@ var game = function(){
 
   Q.Sprite.extend("Pit",{
     init: function(p) {
-      p.sheet = "Pit";
-      p.frame= 1;
-      this._super(p);
-      /*this._super(p, {
+      this._super(p, {
         sprite: "pit_anim",
         sheet: "Pit",
         gravity: 0.65,
         frame: 1,
         alive:true
-      });*/
+      });
 
       this.add("2d, platformerControls, animation");
       this.on("bump.left, bump.right, bum.top", function(collision){});
