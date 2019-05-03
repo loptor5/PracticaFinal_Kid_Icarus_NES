@@ -68,7 +68,7 @@ var game = function(){
 */
   Q.scene("Level101", function(stage) {
     Q.stageTMX("Level101.tmx", stage);
-    const player = stage.insert(new Q.Pit());
+    //const player = stage.insert(new Q.Pit());
     
   });
   
