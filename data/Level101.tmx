@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.3" orientation="orthogonal" width="16" height="206" tilewidth="16" tileheight="16">
- <tileset firstgid="1" name="Level1" tilewidth="16" tileheight="16">
+ <tileset firstgid="0" name="Level1" tilewidth="16" tileheight="16">
  <image source="Level1.png" width="80" height="80"/>
 </tileset>
  <layer id="2" name="background" width="16" height="206">
