@@ -5,6 +5,8 @@ var game = function(){
       .controls()
       .touch();
 
+
+      /*
   Q.Sprite.extend("Pit",{
     init: function(p) {
       this._super(p, {
@@ -30,7 +32,7 @@ var game = function(){
         this.p.vy= -150;
         this.play("death");
       }
-    },*/
+    },
 
     die: function() { 
       this.destroy(); 
@@ -53,9 +55,9 @@ var game = function(){
       }
     }
   });
-
+    */
   //----------------------------------------------------------------------//
-
+  /*
   Q.animations("pit_anim",{
     stand_right: {frames:[0], flip:false, loop:true, rate: 1/5},
     stand_left: {frames:[0], flip: "x", loop:true, rate: 1/5},
@@ -65,21 +67,18 @@ var game = function(){
     jump_left: {frames: [4], flip: "x", loop: true, rate: 1/5},
     death: {frames:[12], flip:false, rate:2, loop:false, trigger: "dying"}
   });
+  */
 
   Q.scene("Level11", function(stage) {
     Q.stageTMX("Level11.tmx", stage);
-    const player = stage.insert(new Q.Pit());
-
-    stage.add("viewport").follow(player);
-    stage.viewport.offsetX = -130;
-    stage.viewport.offsetY = 160;
+    //const player = stage.insert(new Q.Pit());
   });
   
 
  
 
-  Q.loadTMX("Level11.tmx , Level1.png, pit.json, Pit.png ", function() {
-    Q.compileSheets("Pit.png", "pit.json");
+  Q.loadTMX("Level11.tmx , Level1.png ", function() {
+    //Q.compileSheets("Pit.png", "pit.json");
     Q.stageScene("Level11");
   });
 };
