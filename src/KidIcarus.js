@@ -66,7 +66,7 @@ var game = function(){
   });
   
 
-  Q.scene("Level11", function(stage) {
+  Q.scene("Level10", function(stage) {
     Q.stageTMX("Level11.tmx", stage);
     const player = stage.insert(new Q.Pit());
     
@@ -75,7 +75,7 @@ var game = function(){
 
  
 
-  Q.loadTMX("Level11.tmx , Level1.png ", function() {
+  Q.loadTMX("Level10.tmx , Level1.png ", function() {
     Q.compileSheets("Pit.png", "pit.json");
     Q.stageScene("Level11");
   });
