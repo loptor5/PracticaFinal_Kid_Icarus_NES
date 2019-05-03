@@ -12,7 +12,7 @@ var game = function(){
         sprite: "pit_anim",
         sheet: "pit",
         gravity: 0.65,
-        x: 50,
+        x: 100,
         y: 2768,
         frame: 1,
         alive:true
