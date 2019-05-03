@@ -8,13 +8,16 @@ var game = function(){
 
   Q.Sprite.extend("Pit",{
     init: function(p) {
-      this._super(p, {
+      p.sheet = "Pit";
+      properties.frame= 10;
+      this._super(p);
+      /*this._super(p, {
         sprite: "pit_anim",
         sheet: "Pit",
         gravity: 0.65,
         frame: 1,
         alive:true
-      });
+      });*/
 
     this.add("2d, platformerControls, animation");
     this.on("bump.left, bump.right, bum.top", function(collision){});
@@ -30,11 +33,9 @@ var game = function(){
 
     step: function(dt){
       if(this.p.alive){
-        if(this.p.y >= 700){
+        if(this.p.y >= 206){
           this.p.sheet = "Pit";
           this.p.frame = 0;
-          this.p.x = 150;
-          this.p.y = 380;
         }
 
         if(this.p.vx === 0) this.play("stand_right");
