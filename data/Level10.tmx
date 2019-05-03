@@ -2,7 +2,7 @@
 <map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="16" height="206" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="2">
  <tileset firstgid="1" source="Level1.tsx"/>
  <tileset firstgid="26" source="Pit.tsx"/>
- <layer id="3" name="background" width="16" height="206" visible="0">
+ <layer id="3" name="background" width="16" height="206">
   <data>
    <tile gid="10"/>
    <tile gid="10"/>
@@ -3302,7 +3302,7 @@
    <tile gid="10"/>
   </data>
  </layer>
- <objectgroup id="2" name="Pit" visible="0" locked="1">
+ <objectgroup draworder="index" id="2" name="Pit" locked="1">
   <object id="1" gid="27" x="32" y="2768" width="16" height="24">
    <properties>
     <property name="Class" value="Pit"/>
