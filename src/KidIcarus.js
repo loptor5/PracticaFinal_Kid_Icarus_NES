@@ -10,7 +10,6 @@ var game = function(){
     init: function(p) {
       this._super(p, {
         sprite: "pit_anim",
-        sheet: "Pit",
         gravity: 0.65,
         frame: 1,
         x: 36,
@@ -32,7 +31,6 @@ var game = function(){
 
     step: function(dt){
       if(this.p.alive){
-
         if(this.p.vx === 0) this.play("stand_right");
         if(this.p.vx >0) this.play("walk_right");
         if(this.p.vx <0) this.play("walk_left");
