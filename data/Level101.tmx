@@ -3306,13 +3306,6 @@
    <tile gid="10"/>
   </data>
  </layer>
- <objectgroup id="2" name="Pit">
-  <object id="1" gid="27" x="32" y="2768" width="16" height="24">
-   <properties name="Class" value="Pit">
-    <property name="Class" value="Pit"/>
-   </properties>
-  </object>
- </objectgroup>
  <layer id="1" name="Collision" width="16" height="206">
   <properties>
    <property name="collision" type="bool" value="true"/>
