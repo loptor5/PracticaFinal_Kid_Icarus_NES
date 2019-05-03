@@ -12,9 +12,7 @@ var game = function(){
         sprite: "pit_anim",
         sheet: "Pit",
         gravity: 0.65,
-        frame: 0,
-        x: 36,
-        y:2764,
+        frame: 1,
         alive:true
       });
 
@@ -24,12 +22,6 @@ var game = function(){
     this.on("dying", this, "die");
     },
     killed: function(collision){
-      if(collision.obj.isA("Goomba")||collision.obj.isA("Bloopa")){
-        this.p.alive=false;
-        this.p.vx=0;
-        this.p.vy= -150;
-        this.play("death");
-      }
     },
 
     die: function() { 
@@ -56,13 +48,13 @@ var game = function(){
   //----------------------------------------------------------------------//
   
   Q.animations("pit_anim",{
-    stand_right: {frames:[0], flip:false, loop:true, rate: 1/5},
-    stand_left: {frames:[0], flip: "x", loop:true, rate: 1/5},
+    stand_right: {frames:[1], flip:false, loop:true, rate: 1/5},
+    stand_left: {frames:[1], flip: "x", loop:true, rate: 1/5},
     walk_right: {frames: [1,2,3], rate: 1/15, flip:false, loop:true},
     walk_left: {frames: [1,2,3], rate: 1/15, flip: "x", loop:true},
-    jump_right: {frames: [4], flip: false, loop: true, rate: 1/5},
-    jump_left: {frames: [4], flip: "x", loop: true, rate: 1/5},
-    death: {frames:[12], flip:false, rate:2, loop:false, trigger: "dying"}
+    jump_right: {frames: [6,7], flip: false, loop: true, rate: 1/5},
+    jump_left: {frames: [6,7], flip: "x", loop: true, rate: 1/5},
+    death: {frames:[0], flip:false, rate:2, loop:false, trigger: "dying"}
   });
   
 
