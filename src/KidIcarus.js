@@ -5,26 +5,30 @@ var game = function(){
       .controls()
       .touch();
 
-/*
+
   Q.Sprite.extend("Pit",{
     init: function(p) {
-      p.sheet = "Pit";
-      p.frame= 51;
-      this._super(p);
-      /*this._super(p, {
+      this._super(p, {
         sprite: "pit_anim",
-        sheet: "Pit",
+        sheet: {"sx":16,"sy":0,"tileW":16,"tileH":24,"frames":3},
         gravity: 0.65,
+        x: 40,
+        y: 2768,
         frame: 1,
         alive:true
       });
 
       this.add("2d, platformerControls, animation");
       this.on("bump.left, bump.right, bum.top", function(collision){});
-      this.on("bump.left, bump.right, bum.top", this, "killed");
     },
     step: function(dt){
       if(this.p.alive){
+        if(this.p.y<0 || this.p.y>3300){
+          this.p.sheet= {"sx":16,"sy":0,"tileW":16,"tileH":24,"frames":3};
+          this.p.frame=1,
+          this.p.x=40;
+          this.p.y=2768;
+        }
         if(this.p.vx === 0) this.play("stand_right");
         if(this.p.vx >0) this.play("walk_right");
         if(this.p.vx <0) this.play("walk_left");
@@ -43,13 +47,13 @@ var game = function(){
     jump_right: {frames: [6,7], flip: false, loop: true, rate: 1/5},
     jump_left: {frames: [6,7], flip: "x", loop: true, rate: 1/5},
     death: {frames:[0], flip:false, rate:2, loop:false, trigger: "dying"}
-  });*/
+  });
   
 
   Q.scene("Level101", function(stage) {
     Q.stageTMX("Level101.tmx", stage);
-    //const player = stage.insert(new Q.Pit());
-    //stage.add("viewport").follow(player);
+    const player = stage.insert(new Q.Pit());
+    stage.add("viewport").follow(player);
     
   });
   
