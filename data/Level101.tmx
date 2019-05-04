@@ -6611,7 +6611,6 @@
  </layer>
  <layer id="5" name="frontground" width="16" height="206">
   <properties>
-   <property name="sensor" type="bool" value="true"/>
    <property name="type" type="int" value="0"/>
   </properties>
   <data>
