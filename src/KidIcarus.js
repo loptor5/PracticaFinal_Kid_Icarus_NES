@@ -22,7 +22,7 @@ var game = function(){
         frame: 1,
         alive:true,
         sort: true,
-        gravity: 0;
+        gravity: 0
       });
 
       this.add("2d, platformerControls, animation");
