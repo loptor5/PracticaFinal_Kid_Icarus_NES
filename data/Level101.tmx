@@ -3,7 +3,7 @@
  <tileset firstgid="1" name="Level1" tilewidth="16" tileheight="16">
  <image source="Level1.png" width="80" height="80"/>
 </tileset>
- <layer id="2" name="background" width="16" height="206">
+ <layer id="2" name="background" width="16" height="206" type="0">
   <data>
    <tile gid="1"/>
    <tile gid="1"/>
@@ -3308,6 +3308,7 @@
    <property name="collision" type="bool" value="true"/>
   </properties>
   <data>
+
    <tile/>
    <tile/>
    <tile/>
@@ -3340,6 +3341,7 @@
    <tile gid="6"/>
    <tile gid="6"/>
    <tile gid="6"/>
+
    <tile gid="6"/>
    <tile gid="6"/>
    <tile gid="6"/>
@@ -3356,6 +3358,7 @@
    <tile gid="6"/>
    <tile gid="6"/>
    <tile gid="6"/>
+
    <tile gid="6"/>
    <tile gid="6"/>
    <tile gid="6"/>
@@ -3372,6 +3375,7 @@
    <tile gid="6"/>
    <tile gid="6"/>
    <tile gid="6"/>
+
    <tile gid="6"/>
    <tile/>
    <tile/>
@@ -3388,6 +3392,7 @@
    <tile gid="6"/>
    <tile gid="6"/>
    <tile gid="6"/>
+
    <tile gid="6"/>
    <tile/>
    <tile/>
@@ -3404,6 +3409,7 @@
    <tile/>
    <tile/>
    <tile gid="6"/>
+
    <tile gid="6"/>
    <tile/>
    <tile/>
@@ -3420,6 +3426,7 @@
    <tile/>
    <tile/>
    <tile gid="6"/>
+
    <tile gid="6"/>
    <tile/>
    <tile/>
@@ -3436,6 +3443,7 @@
    <tile/>
    <tile/>
    <tile gid="6"/>
+
    <tile gid="6"/>
    <tile/>
    <tile/>
@@ -3452,6 +3460,7 @@
    <tile gid="6"/>
    <tile gid="6"/>
    <tile gid="6"/>
+
    <tile gid="6"/>
    <tile/>
    <tile/>
@@ -3468,6 +3477,7 @@
    <tile gid="6"/>
    <tile gid="6"/>
    <tile gid="6"/>
+
    <tile gid="6"/>
    <tile gid="6"/>
    <tile/>
@@ -3484,6 +3494,7 @@
    <tile/>
    <tile/>
    <tile gid="6"/>
+
    <tile gid="6"/>
    <tile gid="6"/>
    <tile/>
@@ -3500,6 +3511,7 @@
    <tile/>
    <tile/>
    <tile gid="6"/>
+
    <tile gid="6"/>
    <tile/>
    <tile/>
@@ -3516,6 +3528,7 @@
    <tile/>
    <tile/>
    <tile gid="6"/>
+
    <tile gid="6"/>
    <tile/>
    <tile gid="3"/>
@@ -3532,6 +3545,7 @@
    <tile/>
    <tile/>
    <tile gid="6"/>
+
    <tile gid="6"/>
    <tile/>
    <tile/>
@@ -3548,6 +3562,7 @@
    <tile/>
    <tile/>
    <tile gid="6"/>
+
    <tile gid="6"/>
    <tile/>
    <tile/>
@@ -3564,6 +3579,7 @@
    <tile/>
    <tile/>
    <tile gid="6"/>
+
    <tile gid="6"/>
    <tile gid="6"/>
    <tile gid="6"/>
@@ -3580,6 +3596,7 @@
    <tile/>
    <tile/>
    <tile gid="6"/>
+
    <tile gid="6"/>
    <tile gid="6"/>
    <tile gid="6"/>
@@ -3596,6 +3613,7 @@
    <tile/>
    <tile/>
    <tile gid="6"/>
+
    <tile/>
    <tile/>
    <tile/>
@@ -3612,6 +3630,7 @@
    <tile/>
    <tile/>
    <tile gid="6"/>
+
    <tile/>
    <tile/>
    <tile/>
@@ -3628,6 +3647,7 @@
    <tile/>
    <tile/>
    <tile gid="6"/>
+
    <tile/>
    <tile/>
    <tile/>
@@ -3644,6 +3664,7 @@
    <tile/>
    <tile/>
    <tile gid="6"/>
+
    <tile/>
    <tile/>
    <tile/>
@@ -3660,6 +3681,7 @@
    <tile/>
    <tile/>
    <tile gid="6"/>
+
    <tile/>
    <tile/>
    <tile/>
@@ -3676,6 +3698,7 @@
    <tile gid="3"/>
    <tile gid="3"/>
    <tile gid="6"/>
+   
    <tile/>
    <tile/>
    <tile/>
