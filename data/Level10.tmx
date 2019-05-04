@@ -2,7 +2,7 @@
 <map version="1.2" tiledversion="1.2.3" orientation="orthogonal" renderorder="right-down" width="16" height="206" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="4">
  <tileset firstgid="1" source="Level1.tsx"/>
  <tileset firstgid="26" source="Pit.tsx"/>
- <layer id="3" name="background" width="16" height="206" visible="0">
+ <layer id="3" name="background" width="16" height="206">
   <data>
    <tile gid="1"/>
    <tile gid="1"/>
