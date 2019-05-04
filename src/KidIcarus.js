@@ -21,7 +21,8 @@ var game = function(){
         y: 2768,
         frame: 1,
         alive:true,
-        sort: true
+        sort: true,
+        gravity: 0;
       });
 
       this.add("2d, platformerControls, animation");
@@ -44,8 +45,8 @@ var game = function(){
     shoot: function() {
       var p= this.p;
       this.stage.insert(new Q.Arrow({
-        x: p.x+p.h/2,
-        y: p.y+p.w/2,
+        x: p.x+p.h,
+        y: p.y+p.w,
         vx: 200
       }))
     }
