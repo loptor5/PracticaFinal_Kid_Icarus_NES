@@ -26,18 +26,21 @@ var game = function(){
 
       this.add("2d, platformerControls, animation");
       this.on("bump.left, bump.right, bump.up", function(collision){});
-      this.on("fire", this, "shoot");
+      Q.input.on("fire", this, "shoot");
     },
+
     step: function(dt){
       if(this.p.alive){
         if(this.p.x>257) this.p.x=1;
         if(this.p.x<0) this.p.x=256;
+        if(this.p.vx === 0) this.play("stand_right");
         if(this.p.vx >0) this.play("walk_right");
         if(this.p.vx <0) this.play("walk_left");
         if(this.p.vy >0 || this.p.vy <0) this.play("jump_right");
         if((this.p.vy >0 || this.p.vy <0)&& this.p.vx <0) this.play("jump_left");
       }
     },
+    
     shoot: function() {
       var p= this.p;
       this.stage.insert(new Q.Arrow({

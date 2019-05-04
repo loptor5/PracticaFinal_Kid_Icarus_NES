@@ -1,5 +1,5 @@
 {
-	"pit":{"sx":0,"sy":0,"tileW":16,"tileH":24,"frames":3},
+	"pit":{"sx":0,"sy":0,"tileW":15,"tileH":24,"frames":3},
 	"arrow":{"sx":25,"sy":12,"tileW":6,"tileH":1,"frames":1}
 
 }
