@@ -5,12 +5,17 @@ var game = function(){
       .controls()
       .touch();
 
+      var SPRITE_PLAYER=1;
+      var SPRITE_BULLET=2;
+      var SPRITE_ENEMY=3;
+
 
   Q.Sprite.extend("Pit",{
     init: function(p) {
       this._super(p, {
         sprite: "pit_anim",
         sheet: "pit",
+        type: SPRITE_PLAYER=1;
         gravity: 0.65,
         x: 100,
         y: 2768,
@@ -20,15 +25,7 @@ var game = function(){
       });
 
       this.add("2d, platformerControls, animation");
-      this.on("bump.left, bump.right", function(collision){});
-      this.on("bump.up", function(collision){
-        if(this.p.vy >0){
-          this.z=z+2;
-        }else{
-          this.z=0;
-        }
-
-      } );
+      this.on("bump.left, bump.right, bump.up", function(collision){});
       this.on("fire", this, "shoot");
     },
     step: function(dt){
@@ -40,6 +37,14 @@ var game = function(){
         if(this.p.vy >0 || this.p.vy <0) this.play("jump_right");
         if((this.p.vy >0 || this.p.vy <0)&& this.p.vx <0) this.play("jump_left");
       }
+    },
+    shoot: function() {
+      var p= this.p;
+      this.stage.insert(new Q.Arrow({
+        x: p.x;
+        y: p.y-p.w/2;
+        vx: -200;
+      }))
     }
   });
   //----------------------------------------------------------------------//
@@ -52,6 +57,26 @@ var game = function(){
     jump_right: {frames: [6,7], flip: false, loop: true, rate: 1/5},
     jump_left: {frames: [6,7], flip: "x", loop: true, rate: 1/5},
     death: {frames:[0], flip:false, rate:2, loop:false, trigger: "dying"}
+  });
+  //----------------------------------------------------------------------//
+
+  Q.MovingSprite.extend("Arrow", {
+    init: function(p) {
+      this._super(p, {
+        sheet: "arrow",
+        sprite: "arrow",
+        type: SPRITE_BULLET,
+        collisionMask: SPRITE_ENEMY,
+        sensor: true;
+      });
+      this.add("2d");
+    },
+
+    step: funstion(dt){
+      if(this.p.vx==0){
+        this.destroy();
+      }
+    }
   });
   
 
