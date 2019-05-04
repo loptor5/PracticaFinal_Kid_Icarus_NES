@@ -60,8 +60,8 @@ var game = function(){
     Q.stageTMX("Level101.tmx", stage);
     const player = stage.insert(new Q.Pit());
     stage.add("viewport").follow(player);
-    stage.viewport.offsetX = -400;
-    stage.viewport.offsetY = 640;
+    stage.viewport.offsetX = -1300;
+    stage.viewport.offsetY = 1600;
     
   });
   
