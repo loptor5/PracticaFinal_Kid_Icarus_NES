@@ -67,7 +67,7 @@ var game = function(){
         sprite: "arrow",
         type: SPRITE_BULLET,
         collisionMask: SPRITE_ENEMY,
-        sensor: true;
+        sensor: true
       });
 
       this.add("2d");
