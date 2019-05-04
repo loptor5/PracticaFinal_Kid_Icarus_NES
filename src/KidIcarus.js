@@ -40,13 +40,13 @@ var game = function(){
         if((this.p.vy >0 || this.p.vy <0)&& this.p.vx <0) this.play("jump_left");
       }
     },
-    
+
     shoot: function() {
       var p= this.p;
       this.stage.insert(new Q.Arrow({
-        x: p.x,
-        y: p.y-p.w/2,
-        vx: -200
+        x: p.x+p.h/2,
+        y: p.y+p.w/2,
+        vx: 200
       }))
     }
   });
