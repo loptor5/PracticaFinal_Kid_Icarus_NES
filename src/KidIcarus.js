@@ -59,7 +59,7 @@ var game = function(){
   Q.scene("Level101", function(stage) {
     Q.stageTMX("Level101.tmx", stage);
     const player = stage.insert(new Q.Pit());
-    stage.add("viewport").follow(player);
+    stage.add("viewport").follow(player, {x:true, y:false});
     stage.viewport.scale= 2;
     
   });
