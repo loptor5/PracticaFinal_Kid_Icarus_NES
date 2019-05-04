@@ -15,14 +15,15 @@ var game = function(){
         x: 100,
         y: 2768,
         frame: 1,
-        alive:true
+        alive:true,
+        sort: true
       });
 
       this.add("2d, platformerControls, animation");
       this.on("bump.left, bump.right", function(collision){});
       this.on("bump.up", function(collision){
         if(this.p.vy >0){
-          this.z++;
+          this.z=z+2;
         }else{
           this.z=0;
         }
