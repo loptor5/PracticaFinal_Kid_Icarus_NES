@@ -19,7 +19,15 @@ var game = function(){
       });
 
       this.add("2d, platformerControls, animation");
-      this.on("bump.left, bump.right, bum.top", function(collision){});
+      this.on("bump.left, bump.right", function(collision){});
+      this.on("bump.up", function(collision){
+        if(this.p.vy >0){
+          this.z++;
+        }else{
+          this.z=0;
+        }
+
+      } );
       this.on("fire", this, "shoot");
     },
     step: function(dt){
