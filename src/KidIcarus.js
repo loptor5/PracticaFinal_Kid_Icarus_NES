@@ -15,7 +15,7 @@ var game = function(){
       this._super(p, {
         sprite: "pit_anim",
         sheet: "pit",
-        type: SPRITE_PLAYER=1;
+        type: SPRITE_PLAYER,
         gravity: 0.65,
         x: 100,
         y: 2768,
