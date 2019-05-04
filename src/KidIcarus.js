@@ -60,7 +60,7 @@ var game = function(){
     Q.stageTMX("Level101.tmx", stage);
     const player = stage.insert(new Q.Pit());
     stage.add("viewport").follow(player);
-    stage.viewport.scale= 50;
+    stage.viewport.scale= 10;
     
   });
   
