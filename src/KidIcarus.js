@@ -44,8 +44,8 @@ var game = function(){
     shoot: function() {
       var p= this.p;
       this.stage.insert(new Q.Arrow({
-        x: p.x+p.h,
-        y: p.y+p.w,
+        x: p.x+p.h/4,
+        y: p.y+p.w/4,
         vx: 200
       }))
     }
