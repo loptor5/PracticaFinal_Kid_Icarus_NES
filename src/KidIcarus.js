@@ -24,12 +24,6 @@ var game = function(){
     },
     step: function(dt){
       if(this.p.alive){
-        if(this.p.y<0 || this.p.y>3300){
-          this.p.sheet= "pit";
-          this.p.frame=1,
-          this.p.x=100;
-          this.p.y=2768;
-        }
         if(this.p.x>257) this.p.x=1;
         if(this.p.x<0) this.p.x=256;
         if(this.p.vx === 0) this.play("stand_right");
