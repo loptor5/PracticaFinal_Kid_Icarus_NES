@@ -41,9 +41,9 @@ var game = function(){
     shoot: function() {
       var p= this.p;
       this.stage.insert(new Q.Arrow({
-        x: p.x;
-        y: p.y-p.w/2;
-        vx: -200;
+        x: p.x,
+        y: p.y-p.w/2,
+        vx: -200
       }))
     }
   });
@@ -62,17 +62,18 @@ var game = function(){
 
   Q.MovingSprite.extend("Arrow", {
     init: function(p) {
-      this._super(p, {
+      this._super( p, {
         sheet: "arrow",
         sprite: "arrow",
         type: SPRITE_BULLET,
         collisionMask: SPRITE_ENEMY,
         sensor: true;
       });
+
       this.add("2d");
     },
 
-    step: funstion(dt){
+    step: function(dt){
       if(this.p.vx==0){
         this.destroy();
       }
