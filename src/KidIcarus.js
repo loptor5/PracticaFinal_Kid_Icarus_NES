@@ -22,7 +22,6 @@ var game = function(){
         frame: 1,
         alive:true,
         sort: true,
-        gravity: 0
       });
 
       this.add("2d, platformerControls, animation");
@@ -71,7 +70,8 @@ var game = function(){
         sprite: "arrow",
         type: SPRITE_BULLET,
         collisionMask: SPRITE_ENEMY,
-        sensor: true
+        sensor: true,
+        gravity: 0
       });
 
       this.add("2d");
