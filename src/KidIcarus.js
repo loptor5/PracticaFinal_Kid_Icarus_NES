@@ -35,7 +35,6 @@ var game = function(){
       if(this.p.alive){
         if(this.p.x>257) this.p.x=1;
         if(this.p.x<0) this.p.x=256;
-        if(this.p.vx === 0) this.play("stand_right");
         if(this.p.vx >0) this.play("walk_right");
         if(this.p.vx <0) this.play("walk_left");
         if(this.p.vy >0 || this.p.vy <0) this.play("jump_right");
@@ -48,8 +47,8 @@ var game = function(){
   Q.animations("pit_anim",{
     stand_right: {frames:[1], flip:false, loop:true, rate: 1/5},
     stand_left: {frames:[1], flip: "x", loop:true, rate: 1/5},
-    walk_right: {frames: [1,2,3], rate: 1/15, flip:false, loop:true},
-    walk_left: {frames: [1,2,3], rate: 1/15, flip: "x", loop:true},
+    walk_right: {frames: [1,2,3], rate: 1/16, flip:false, loop:true},
+    walk_left: {frames: [1,2,3], rate: 1/16, flip: "x", loop:true},
     jump_right: {frames: [6,7], flip: false, loop: true, rate: 1/5},
     jump_left: {frames: [6,7], flip: "x", loop: true, rate: 1/5},
     death: {frames:[0], flip:false, rate:2, loop:false, trigger: "dying"}
@@ -59,7 +58,7 @@ var game = function(){
   Q.scene("Level101", function(stage) {
     Q.stageTMX("Level101.tmx", stage);
     const player = stage.insert(new Q.Pit());
-    stage.add("viewport").follow(player, {x:true, y:false});
+    stage.add("viewport").follow(player);
     stage.viewport.scale= 2;
     
   });
