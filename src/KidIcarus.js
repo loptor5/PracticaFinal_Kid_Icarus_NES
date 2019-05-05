@@ -28,7 +28,7 @@ var game = function(){
       this.add("2d, platformerControls, animation");
       this.on("bump.left, bump.right, bump.up", function(collision){});
       Q.input.on("fire", this, "shoot");
-      //Q.input.on( "fire, up", this, "shootUp");
+      Q.input.on( "fire, up", this, "shootUp");
     },
 
     step: function(dt){
