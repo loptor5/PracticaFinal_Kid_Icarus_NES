@@ -61,14 +61,14 @@ var game = function(){
       var p= this.p;
       if(p.direction==="right"){
         this.stage.insert(new Q.Arrow({
-          x: p.x+p.h/2,
-          y: p.y+p.w/4,
+          x: p.x+p.w,
+          y: p.y+p.h/2,
           vx: 200
         }))
       }else{
         this.stage.insert(new Q.Arrow({
-          x: p.x-p.h/4,
-          y: p.y+p.w/4,
+          x: p.x-p.w,
+          y: p.y+p.h/2,
           vx: -200
         }))
       }
@@ -79,8 +79,8 @@ var game = function(){
       var p=this.p;
       this.play("lookUp");
       this.stage.insert(new Q.ArrowUp({
-        x: p.x+p.h/2,
-        y: p.y-1,
+        x: p.x,
+        y: p.y-p.w,
         vy: -200
       }))
     }
