@@ -68,10 +68,9 @@ var game = function(){
 
     shootUp: function(){
       var p=this.p;
-      this.stage.insert(new Q.Arrow({
+      this.stage.insert(new Q.ArrowUp({
         x: p.x,
         y: p.y,
-        sprite: "arrowUp",
         vy: -200
       }))
     }
@@ -105,7 +104,28 @@ var game = function(){
     },
 
     step: function(dt){
-      if(this.p.vx==0 || this.p.vy==0){
+      if(this.p.vx==0){
+        this.destroy();
+      }
+    }
+  });
+
+  Q.MovingSprite.extend("ArrowUp", {
+    init: function(p) {
+      this._super( p, {
+        sheet: "arrowUp",
+        sprite: "arrowUp",
+        type: SPRITE_BULLET,
+        collisionMask: SPRITE_ENEMY,
+        sensor: true,
+        gravity: 0
+      });
+
+      this.add("2d");
+    },
+
+    step: function(dt){
+      if(this.p.vy==0){
         this.destroy();
       }
     }
