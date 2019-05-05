@@ -59,13 +59,13 @@ var game = function(){
       var p= this.p;
       if(p.direction==="right"){
         this.stage.insert(new Q.Arrow({
-          x: p.x+p.w,
+          x: p.x,
           y: p.y+p.h/6,
           vx: 200
         }))
       }else{
         this.stage.insert(new Q.Arrow({
-          x: p.x-p.w,
+          x: p.x,
           y: p.y+p.h/6,
           vx: -200
         }))
