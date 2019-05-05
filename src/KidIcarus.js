@@ -159,15 +159,15 @@ var game = function(){
         exp: 100
       });
 
-      this.add("2d, platformerControls, animation");
-      this.on("bump.left, bump.right, bump.botton, bump.top", this, "kill");
+      this.add("2d, aiBounce, animation");
+      //this.on("bump.left, bump.right, bump.botton, bump.top", this, "kill");
       this.on("hit", this, "killed");
     },
 
-    kill: function(collision){
+    /*kill: function(collision){
       if(collision.obj.isA("Pit")){
       }
-    },
+    },*/
 
     killed: function(collision){
       if(collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")){
@@ -188,14 +188,21 @@ var game = function(){
     }
 
   });
-  
+  //------------------------------------------------------------------------//
+
+  Q.animations("viperix_anim", {
+    right: { frames: [0], flip: false, loop: true , rate:1},
+    left: { frames: [1], flip: false, loop: true, rate:1 }
+  });
+
+  //----------------------------------------------------------------------///
 
   Q.scene("Level101", function(stage) {
     Q.stageTMX("Level101.tmx", stage);
     const player = stage.insert(new Q.Pit());
     stage.add("viewport").follow(player);
     stage.viewport.scale= 2;
-    stage.insert(new Q.Viperix({ x: 60, y: 2666 }));
+    stage.insert(new Q.Viperix({ x: 60, y: 2666 , vx:5}));
     
   });
   
@@ -204,7 +211,7 @@ var game = function(){
 
   Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, EnemigosL1.png, EnemigosL1.json", function() {
     Q.compileSheets("Pit.png", "Pit.json");
-    Q.compileSheets("EnemigosL1.png", "EnemigosL1.json");
+    Q.compileSheets("Viperix.png", "Viperix.json");
     Q.stageScene("Level101");
   });
 };
