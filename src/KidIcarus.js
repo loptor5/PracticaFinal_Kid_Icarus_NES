@@ -35,23 +35,23 @@ var game = function(){
       if(this.p.alive){
         if(this.p.x>257) this.p.x=1;
         if(this.p.x<0) this.p.x=256;
-        if(this.p.vx === 0 && this.p.direction === "right") this.play("stand_right");
-        if(this.p.vx === 0 && this.p.direction === "left") this.play("stand_left");
+        if(this.p.vx === 0 && this.p.direction == "right") this.play("stand_right");
+        if(this.p.vx === 0 && this.p.direction == "left") this.play("stand_left");
         if(this.p.vx >0){
-          this.p.direction= "right";
+          this.p.direction = "right";
           this.play("walk_right");
 
         }
         if(this.p.vx <0) {
-          this.p.direction="left";
+          this.p.direction ="left";
           this.play("walk_left");
         }
         if(this.p.vy >0 || this.p.vy <0){
-          this.p.direction= "right";
+          this.p.direction = "right";
           this.play("jump_right");
         } 
         if((this.p.vy >0 || this.p.vy <0)&& this.p.vx <0)
-          this.p.direction= "left";
+          this.p.direction = "left";
           this.play("jump_left");
       }
     },
@@ -59,7 +59,7 @@ var game = function(){
     shoot: function() {
       var p= this.p;
       this.stage.insert(new Q.Arrow({
-        x: p.x+p.h/4,
+        x: p.x+p.h/2,
         y: p.y+p.w/4,
         vx: 200
       }))
