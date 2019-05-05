@@ -80,7 +80,7 @@ var game = function(){
       this.play("lookUp");
       this.stage.insert(new Q.ArrowUp({
         x: p.x,
-        y: p.y-p.w,
+        y: p.y-p.h,
         vy: -200
       }))
     }
