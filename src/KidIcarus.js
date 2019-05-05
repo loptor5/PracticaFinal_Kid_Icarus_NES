@@ -70,7 +70,7 @@ var game = function(){
       this.stage.insert(new Q.Arrow({
         x: p.x,
         y: p.y,
-        sprite: "arrowUp"
+        sprite: "arrowUp",
         vy: -200
       }))
     }
