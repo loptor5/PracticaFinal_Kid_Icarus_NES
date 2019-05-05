@@ -181,8 +181,8 @@ var game = function(){
 
     step: function(dt){
       if(this.p.alive){
-        if(this.p.vx>0) this.p.sheet="viperix1";
-        if(this.p.vx<0) this.p.sheet="viperix11";
+        if(this.p.vx>0) this.play("right");
+        if(this.p.vx<0) this.play("Left");
         if(this.p.vx==0) this.p.vx=-this.p.vx;
       }
     }
@@ -191,8 +191,8 @@ var game = function(){
   //------------------------------------------------------------------------//
 
   Q.animations("viperix_anim", {
-    right: { frames: [0], flip: false, loop: true , rate:1},
-    left: { frames: [1], flip: false, loop: true, rate:1 }
+    right: { frames: [0,1], flip: false, loop: true , rate:1},
+    left: { frames: [0, 1], flip: true, loop: true, rate:1 }
   });
 
   //----------------------------------------------------------------------///
