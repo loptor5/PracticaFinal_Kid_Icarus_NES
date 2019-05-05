@@ -62,13 +62,13 @@ var game = function(){
       if(p.direction==="right"){
         this.stage.insert(new Q.Arrow({
           x: p.x+p.w,
-          y: p.y+p.h/2,
+          y: p.y-p.h/2,
           vx: 200
         }))
       }else{
         this.stage.insert(new Q.Arrow({
           x: p.x-p.w,
-          y: p.y+p.h/2,
+          y: p.y-p.h/2,
           vx: -200
         }))
       }
@@ -80,7 +80,7 @@ var game = function(){
       this.play("lookUp");
       this.stage.insert(new Q.ArrowUp({
         x: p.x,
-        y: p.y-p.h,
+        y: p.y-p.h/2,
         vy: -200
       }))
     }
