@@ -61,7 +61,7 @@ var game = function(){
       var p= this.p;
       if(p.direction==="right"){
         this.stage.insert(new Q.Arrow({
-          x: p.x+p.h/4,
+          x: p.x+p.h/2,
           y: p.y+p.w/4,
           vx: 200
         }))
@@ -77,10 +77,10 @@ var game = function(){
 
     shootUp: function(){
       var p=this.p;
-      this.play("shootUp");
+      this.play("lookUp");
       this.stage.insert(new Q.ArrowUp({
         x: p.x+p.h/2,
-        y: p.y+1,
+        y: p.y-1,
         vy: -200
       }))
     }
@@ -94,7 +94,7 @@ var game = function(){
     walk_left: {frames: [1,2,3,4], rate: 1/16, flip: "x", loop:true},
     jump_right: {frames: [6,7], flip: false, loop: true, rate: 1/5},
     jump_left: {frames: [6,7], flip: "x", loop: true, rate: 1/5},
-    shootUp: {frames: [8,9], rate: 1/16, flip: false, loop: true},
+    lookUp: {frames: [8,9], rate: 1/16, flip: false, loop: true},
     death: {frames:[0], flip:false, rate:2, loop:false, trigger: "dying"}
   });
   //----------------------------------------------------------------------//
@@ -117,6 +117,9 @@ var game = function(){
       if(this.p.vx==0){
         this.destroy();
       }
+      if(this.p.x<0 || this.p.x>257){
+        this.destroy();
+      }
     }
   });
 
@@ -136,6 +139,9 @@ var game = function(){
 
     step: function(dt){
       if(this.p.vy==0){
+        this.destroy();
+      }
+      if(this.p.y<0){
         this.destroy();
       }
     }
