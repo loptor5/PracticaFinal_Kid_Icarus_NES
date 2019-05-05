@@ -46,11 +46,9 @@ var game = function(){
           this.play("walk_left");
         }
         if(this.p.vy >0 || this.p.vy <0){
-          this.p.direction= "right";
           this.play("jump_right");
         } 
         if((this.p.vy >0 || this.p.vy <0)&& this.p.vx <0){
-          this.p.direction= "left";
           this.play("jump_left");
         }
       }
