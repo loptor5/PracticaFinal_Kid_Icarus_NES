@@ -28,7 +28,7 @@ var game = function(){
       this.add("2d, platformerControls, animation");
       this.on("bump.left, bump.right, bump.up", function(collision){});
       Q.input.on("fire", this, "shoot");
-      Q.input.on( "fire, bump.up", this, "shootUp");
+      Q.input.on( "action", this, "shootUp");
     },
 
     step: function(dt){
@@ -59,15 +59,25 @@ var game = function(){
 
     shoot: function() {
       var p= this.p;
-      this.stage.insert(new Q.Arrow({
-        x: p.x+p.h/4,
-        y: p.y+p.w/4,
-        vx: 200
-      }))
+      if(p.direction==="right"){
+        this.stage.insert(new Q.Arrow({
+          x: p.x+p.h/4,
+          y: p.y+p.w/4,
+          vx: 200
+        }))
+      }else{
+        this.stage.insert(new Q.Arrow({
+          x: p.x-p.h/4,
+          y: p.y+p.w/4,
+          vx: -200
+        }))
+      }
+      
     },
 
     shootUp: function(){
       var p=this.p;
+      this.play("shootUp");
       this.stage.insert(new Q.ArrowUp({
         x: p.x,
         y: p.y,
@@ -80,8 +90,8 @@ var game = function(){
   Q.animations("pit_anim",{
     stand_right: {frames:[1], flip:false, loop:true, rate: 1/5},
     stand_left: {frames:[1], flip: "x", loop:true, rate: 1/5},
-    walk_right: {frames: [1,2,3], rate: 1/16, flip:false, loop:true},
-    walk_left: {frames: [1,2,3], rate: 1/16, flip: "x", loop:true},
+    walk_right: {frames: [1,2,3,4], rate: 1/16, flip:false, loop:true},
+    walk_left: {frames: [1,2,3,4], rate: 1/16, flip: "x", loop:true},
     jump_right: {frames: [6,7], flip: false, loop: true, rate: 1/5},
     jump_left: {frames: [6,7], flip: "x", loop: true, rate: 1/5},
     shootUp: {frames: [8,9], rate: 1/16, flip: false, loop: true},
