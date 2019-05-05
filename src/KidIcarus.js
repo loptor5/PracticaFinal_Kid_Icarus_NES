@@ -94,7 +94,7 @@ var game = function(){
     walk_left: {frames: [1,2,3,4], rate: 1/16, flip: "x", loop:true},
     jump_right: {frames: [6,7], flip: false, loop: true, rate: 1/5},
     jump_left: {frames: [6,7], flip: "x", loop: true, rate: 1/5},
-    lookUp: {frames: [8,9], rate: 1/16, flip: false, loop: true},
+    lookUp: {frames: [8,9], rate: 1/5, flip: false, loop: true},
     death: {frames:[0], flip:false, rate:2, loop:false, trigger: "dying"}
   });
   //----------------------------------------------------------------------//
