@@ -29,6 +29,7 @@ var game = function(){
       this.on("bump.left, bump.right, bump.up", function(collision){});
       Q.input.on("fire", this, "shoot");
       Q.input.on( "S", this, "shootUp");
+      this.play("stand_right");
     },
 
     step: function(dt){
@@ -60,13 +61,13 @@ var game = function(){
       if(p.direction==="right"){
         this.stage.insert(new Q.Arrow({
           x: p.x,
-          y: p.y+p.h/6,
+          y: p.y+p.h/6+2,
           vx: 200
         }))
       }else{
         this.stage.insert(new Q.Arrow({
           x: p.x,
-          y: p.y+p.h/6,
+          y: p.y+p.h/6+2,
           vx: -200
         }))
       }
