@@ -192,7 +192,7 @@ var game = function(){
 
   Q.animations("viperix_anim", {
     right: { frames: [0,1], flip: false, loop: true , rate:1},
-    left: { frames: [0, 1], flip: true, loop: true, rate:1 }
+    left: { frames: [0,1], flip: true, loop: true, rate:1 }
   });
 
   //----------------------------------------------------------------------///
@@ -209,7 +209,7 @@ var game = function(){
 
  
 
-  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, EnemigosL1.png, EnemigosL1.json", function() {
+  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, Viperix.png, Viperix.json", function() {
     Q.compileSheets("Pit.png", "Pit.json");
     Q.compileSheets("Viperix.png", "Viperix.json");
     Q.stageScene("Level101");
