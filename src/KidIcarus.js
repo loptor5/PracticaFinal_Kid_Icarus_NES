@@ -145,6 +145,49 @@ var game = function(){
       }
     }
   });
+
+  Q.Sprite.extend("Viperix", {
+    init: function(p){
+      this._super(p, {
+        sprite: "viperix_anim",
+        sheet: "viperix1",
+        type: SPRITE_ENEMY,
+        collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
+        gravity: 0.65,
+        frame: 1,
+        live:1,
+        exp: 100
+      });
+
+      this.add("2d, platformerControls, animation");
+      this.on("bump.left, bump.right, bump.botton, bump.top", this, "kill");
+      this.on("hit", this, "killed");
+    },
+
+    kill: function(collision){
+      if(collision.obj.isA("Pit")){
+      }
+    },
+
+    killed: function(collision){
+      if(collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")){
+        this.p.live--;
+        if(this.p.live<=0){
+          this.destroy();
+        }
+      }
+
+    },
+
+    step: function(dt){
+      if(this.p.alive){
+        if(this.p.vx>0) this.p.sheet="viperix1";
+        if(this.p.vx<0) this.p.sheet="viperix11";
+        if(this.p.vx==0) this.p.vx=-this.p.vx;
+      }
+    }
+
+  });
   
 
   Q.scene("Level101", function(stage) {
@@ -152,14 +195,16 @@ var game = function(){
     const player = stage.insert(new Q.Pit());
     stage.add("viewport").follow(player);
     stage.viewport.scale= 2;
+    stage.insert(new Q.Viperix({ x: 60, y: 2666 }));
     
   });
   
 
  
 
-  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json", function() {
+  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, EnemigosL1.png, EnemigosL1.json", function() {
     Q.compileSheets("Pit.png", "Pit.json");
+    Q.compileSheets("EnemigosL1.png", "EnemigosL1.json");
     Q.stageScene("Level101");
   });
 };
