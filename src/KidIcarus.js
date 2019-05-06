@@ -196,6 +196,7 @@ var game = function(){
         this.p.live--;
         if(this.p.live<=0){
           this.p.sheet="corazonMini";
+          this.p.vx=0;
         }
       }
 
