@@ -8,7 +8,7 @@ var game = function(){
       var SPRITE_PLAYER=1;
       var SPRITE_BULLET=2;
       var SPRITE_ENEMY=3;
-      var SPRITE_OBJET=4;
+      var SPRITE_OBJECT=4;
 
 
   Q.Sprite.extend("Pit",{
@@ -185,10 +185,13 @@ var game = function(){
       this.on("hit", this, "killed");
     },
     killed: function(collision){
+      var serp= this.p;
       if(collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")){
         this.p.live--;
         if(this.p.live<=0){
           this.destroy();
+          stage.insert(new Q.CorazonMini({ x:serp.x , y: serp.y}));
+
         }
       }
 
@@ -212,21 +215,37 @@ var game = function(){
 
   //----------------------------------------------------------------------///
 
+  Q.Sprite.extend("CorazonMini",{
+    init: function(p){
+      this._super(p, {
+        sheet: "corazonMini",
+        type: SPRITE_OBJECT,
+        collisionMask: SPRITE_PLAYER,
+        gravity:1,
+        frame: 1,
+        exp: 1
+      });
+      this.add("2d");
+    }
+  });
+
   Q.scene("Level101", function(stage) {
     Q.stageTMX("Level101.tmx", stage);
     const player = stage.insert(new Q.Pit());
     stage.add("viewport").follow(player);
     stage.viewport.scale= 2;
     stage.insert(new Q.Viperix({ x: 60, y: 2666 , vx:20}));
+
     
   });
   
 
  
 
-  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, Viperix.png, Viperix.json", function() {
+  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, Viperix.png, Viperix.json, Items.png, Items.json", function() {
     Q.compileSheets("Pit.png", "Pit.json");
     Q.compileSheets("Viperix.png", "Viperix.json");
+    Q.compileSheets("Items.png","Items.json");
     Q.stageScene("Level101");
   });
 };
