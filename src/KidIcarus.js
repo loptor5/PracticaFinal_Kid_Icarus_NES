@@ -106,6 +106,7 @@ var game = function(){
         type: SPRITE_BULLET,
         collisionMask: SPRITE_ENEMY,
         sensor: true,
+        sort:true,
         gravity: 0
       });
 
@@ -130,6 +131,7 @@ var game = function(){
         type: SPRITE_BULLET,
         collisionMask: SPRITE_ENEMY,
         sensor: true,
+        sort:true,
         gravity: 0
       });
 
@@ -191,8 +193,8 @@ var game = function(){
   //------------------------------------------------------------------------//
 
   Q.animations("viperix_anim", {
-    right: { frames: [0,1], flip: false, loop: true , rate:1/15},
-    left: { frames: [0,1], flip: "x", loop: true, rate:1/15 }
+    right: { frames: [0,1], flip: false, loop:true , rate:1/15},
+    left: { frames: [0,1], flip: "x", loop:true, rate:1/15 }
   });
 
   //----------------------------------------------------------------------///
