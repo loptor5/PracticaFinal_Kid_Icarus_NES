@@ -88,7 +88,7 @@ var game = function(){
       }))
     },
 
-    hit: function(){
+    hit: function(collision){
       if(collision.obj.isA("Viperix")){
         this.p.live--;
         if(this.p.live==0){
@@ -182,16 +182,21 @@ var game = function(){
       });
 
       this.add("2d, aiBounce, animation");
+      this.on("bump.left, bump.right, bump.up", this, "hit");
       this.on("hit", this, "killed");
     },
+    hit: function(collision){
+      if(collision.obj.isA("Pit") && this.p.live<=0){
+        this.destroy();
+      }
+
+    },
     killed: function(collision){
-      var serp= this.p;
       if(collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")){
         this.p.live--;
         if(this.p.live<=0){
           this.destroy();
-          Q.stage.insert(new Q.CorazonMini({ x:serp.x , y: serp.y}));
-
+          this.p.sheet="corazonMini";
         }
       }
 
