@@ -191,7 +191,7 @@ var game = function(){
   //------------------------------------------------------------------------//
 
   Q.animations("viperix_anim", {
-    right: { frames: [0,1], flip: false, loop: true , rate:1/16},
+    right: { frames: [0,1], flip: false, loop: true , rate:8/16},
     left: { frames: [0,1], flip: true, loop: true, rate:1/16 }
   });
 
