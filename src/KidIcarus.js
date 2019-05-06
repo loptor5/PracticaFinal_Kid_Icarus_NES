@@ -184,13 +184,13 @@ var game = function(){
       this.add("2d, aiBounce, animation");
       this.on("hit", this, "killed");
     },
-    killed: function(collision, stage){
+    killed: function(collision){
       var serp= this.p;
       if(collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")){
         this.p.live--;
         if(this.p.live<=0){
           this.destroy();
-          stage.insert(new Q.CorazonMini({ x:serp.x , y: serp.y}));
+          Q.stage.insert(new Q.CorazonMini({ x:serp.x , y: serp.y}));
 
         }
       }
