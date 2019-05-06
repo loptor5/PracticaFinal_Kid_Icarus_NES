@@ -182,7 +182,7 @@ var game = function(){
     },
 
     step: function(dt){
-      if(this.p.alive){
+      if(this.p.live>0){
         if(this.p.vx>0) this.play("right");
         if(this.p.vx<0) this.play("left");
         if(this.p.vx==0) this.p.vx=-this.p.vx;
