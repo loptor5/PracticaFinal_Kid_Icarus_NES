@@ -96,7 +96,7 @@ var game = function(){
           this.play("death");
         }
       }
-    }
+    },
     die: function() { 
       this.destroy();
       const player = stage.insert(new Q.Pit());
