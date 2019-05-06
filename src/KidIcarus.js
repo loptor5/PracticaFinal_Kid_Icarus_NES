@@ -8,6 +8,7 @@ var game = function(){
       var SPRITE_PLAYER=1;
       var SPRITE_BULLET=2;
       var SPRITE_ENEMY=3;
+      var SPRITE_OBJET=4;
 
 
   Q.Sprite.extend("Pit",{
@@ -31,6 +32,7 @@ var game = function(){
       this.on("bump.left, bump.right, bump.up", this, "hit");
       Q.input.on("fire", this, "shoot");
       Q.input.on( "S", this, "shootUp");
+      this.on("dying", this, "die");
       this.play("stand_right");
     },
 
@@ -85,6 +87,7 @@ var game = function(){
         vy: -200
       }))
     },
+
     hit: function(){
       if(collision.obj.isA("Viperix")){
         this.p.live--;
@@ -93,6 +96,12 @@ var game = function(){
           this.play("death");
         }
       }
+    }
+    die: function() { 
+      this.destroy();
+      const player = stage.insert(new Q.Pit());
+      stage.add("viewport").follow(player);
+      stage.viewport.scale= 2;
     }
   });
   //----------------------------------------------------------------------//
