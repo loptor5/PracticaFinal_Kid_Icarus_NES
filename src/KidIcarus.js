@@ -21,12 +21,14 @@ var game = function(){
         y: 2768,
         frame: 1,
         alive:true,
+        live: 7,
         sort: true,
         direction: "right"
       });
 
       this.add("2d, platformerControls, animation");
       this.on("bump.left, bump.right, bump.up", function(collision){});
+      this.on("bump.left, bump.right, bump.up", this, "hit");
       Q.input.on("fire", this, "shoot");
       Q.input.on( "S", this, "shootUp");
       this.play("stand_right");
@@ -82,6 +84,15 @@ var game = function(){
         y: p.y-p.h/2,
         vy: -200
       }))
+    },
+    hit: function(){
+      if(collision.obj.isA("Viperix")){
+        this.p.live--;
+        if(this.p.live==0){
+          this.p.alive=false;
+          this.play("death");
+        }
+      }
     }
   });
   //----------------------------------------------------------------------//
@@ -162,15 +173,8 @@ var game = function(){
       });
 
       this.add("2d, aiBounce, animation");
-      //this.on("bump.left, bump.right, bump.botton, bump.top", this, "kill");
       this.on("hit", this, "killed");
     },
-
-    /*kill: function(collision){
-      if(collision.obj.isA("Pit")){
-      }
-    },*/
-
     killed: function(collision){
       if(collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")){
         this.p.live--;
