@@ -184,7 +184,7 @@ var game = function(){
       this.add("2d, aiBounce, animation");
       this.on("hit", this, "killed");
     },
-    killed: function(collision){
+    killed: function(collision, stage){
       var serp= this.p;
       if(collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")){
         this.p.live--;
