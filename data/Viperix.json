@@ -1,5 +1,4 @@
 {
-	"viperix1":{"sx":2,"sy":1,"tileW":8,"tileH":16,"frames":1},
-	"viperix11":{"sx":12,"sy":0,"tileW":10,"tileH":16,"frames":1}
+	"viperix1":{"sx":2,"sy":1,"cols":2, "tileW":8,"tileH":16,"frames":2}
 
 }

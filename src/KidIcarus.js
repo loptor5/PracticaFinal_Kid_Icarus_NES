@@ -191,8 +191,8 @@ var game = function(){
   //------------------------------------------------------------------------//
 
   Q.animations("viperix_anim", {
-    right: { frames: [0,1,2,3], flip: false, loop: true , rate:8/16},
-    left: { frames: [0,1,2,3], flip: true, loop: true, rate:8/16 }
+    right: { frames: [0,1], flip: false, loop: true , rate:1/16},
+    left: { frames: [0,1], flip: "x", loop: true, rate:1/16 }
   });
 
   //----------------------------------------------------------------------///
@@ -202,7 +202,7 @@ var game = function(){
     const player = stage.insert(new Q.Pit());
     stage.add("viewport").follow(player);
     stage.viewport.scale= 2;
-    stage.insert(new Q.Viperix({ x: 60, y: 2666 , vx:10}));
+    stage.insert(new Q.Viperix({ x: 60, y: 2666 , vx:20}));
     
   });
   
