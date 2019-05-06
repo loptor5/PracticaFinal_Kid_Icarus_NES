@@ -195,7 +195,6 @@ var game = function(){
       if(collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")){
         this.p.live--;
         if(this.p.live<=0){
-          this.destroy();
           this.p.sheet="corazonMini";
         }
       }
@@ -214,25 +213,11 @@ var game = function(){
   //------------------------------------------------------------------------//
 
   Q.animations("viperix_anim", {
-    right: { frames: [0,1], flip: false, loop:true , rate:1/15},
-    left: { frames: [0,1], flip: "x", loop:true, rate:1/15 }
+    right: { frames: [0,1], flip: false, loop:true , rate:1/10},
+    left: { frames: [0,1], flip: "x", loop:true, rate:1/10 }
   });
 
-  //----------------------------------------------------------------------///
-
-  Q.Sprite.extend("CorazonMini",{
-    init: function(p){
-      this._super(p, {
-        sheet: "corazonMini",
-        type: SPRITE_OBJECT,
-        collisionMask: SPRITE_PLAYER,
-        gravity:1,
-        frame: 1,
-        exp: 1
-      });
-      this.add("2d");
-    }
-  });
+  //----------------------------------------------------------------------//
 
   Q.scene("Level101", function(stage) {
     Q.stageTMX("Level101.tmx", stage);
