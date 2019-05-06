@@ -196,6 +196,7 @@ var game = function(){
         this.p.live--;
         if(this.p.live<=0){
           this.p.sheet="corazonMini";
+          this.play("stop");
           this.p.vx=0;
         }
       }
@@ -215,7 +216,8 @@ var game = function(){
 
   Q.animations("viperix_anim", {
     right: { frames: [0,1], flip: false, loop:true , rate:1/10},
-    left: { frames: [0,1], flip: "x", loop:true, rate:1/10 }
+    left: { frames: [0,1], flip: "x", loop:true, rate:1/10 },
+    stop: {frames: [0],flip:false, loop:false,rate:1/5}
   });
 
   //----------------------------------------------------------------------//
