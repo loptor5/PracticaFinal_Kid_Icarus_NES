@@ -236,9 +236,9 @@ var game = function(){
         live:1,
         exp: 300,
         heart: 5,
-        vx: 15,
+        vx: 60,
         vy: 30,
-        z: 2
+        z: 0
       });
 
       this.add(" animation");
@@ -271,16 +271,16 @@ var game = function(){
         if(this.p.vx>0) this.play("monoculusR");
         if(this.p.vx<0) this.play("monoculusL");
         if(this.p.vx==0) {
-          this.p.vx=15;
+          this.p.vx=60;
         }
         if(this.p.vy==0){
           this.p.vy=30;
         }
-        if(Math.abs(this.p.yIni-this.p.y)==100 || Math.abs(this.p.yIni-this.p.y)==0 ){
+        if(Math.abs(this.p.yIni-this.p.y)>50 || Math.abs(this.p.yIni-this.p.y)<0 ){
           this.p.vx= -this.p.vx;
           this.p.vy= -this.p.vy;
         }
-        if(this.p.x<=0 || this.p.x>=257){
+        if(this.p.x<0 || this.p.x>257){
           this.p.vx= -this.p.vx;
           this.p.vy= -this.p.vy;
         }
