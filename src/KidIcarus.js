@@ -241,7 +241,7 @@ var game = function(){
         z: 2
       });
 
-      this.add(" animation");
+      this.add("2d, animation");
       this.on("bump.left, bump.right, bump.up, bump.bottom", this, "hit");
       this.on("hit", this, "killed");
     },
