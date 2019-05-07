@@ -111,8 +111,8 @@ var game = function(){
     stand_left: {frames:[1], flip: "x", loop:true, rate: 1/5},
     walk_right: {frames: [1,2,3,4], rate: 1/16, flip:false, loop:true, next: "stand_right"},
     walk_left: {frames: [1,2,3,4], rate: 1/16, flip: "x", loop:true, next: "stand_left"},
-    jump_right: {frames: [6,7], flip: false, loop: true, rate: 1/5},
-    jump_left: {frames: [6,7], flip: "x", loop: true, rate: 1/5},
+    jump_right: {frames: [6,7], flip: false, loop: false, rate: 1/5},
+    jump_left: {frames: [6,7], flip: "x", loop: false, rate: 1/5},
     lookUp: {frames: [8,9], rate: 1/5, flip: false, loop: false},
     death: {frames:[0], flip:false, rate:2, loop:false, trigger: "dying"}
   });
@@ -236,8 +236,8 @@ var game = function(){
         live:1,
         exp: 300,
         heart: 5,
-        vx: 30,
-        vy: 20,
+        vx: 15,
+        vy: 30,
         z: 2
       });
 
@@ -271,10 +271,10 @@ var game = function(){
         if(this.p.vx>0) this.play("monoculusR");
         if(this.p.vx<0) this.play("monoculusL");
         if(this.p.vx==0) {
-          this.p.vx= -this.p.vx;
+          this.p.vx=15;
         }
         if(this.p.vy==0){
-          this.p.vy=20;
+          this.p.vy=30;
         }
         if(Math.abs(this.p.yIni-this.p.y)==100 || Math.abs(this.p.yIni-this.p.y)==0 ){
           this.p.vx= -this.p.vx;
