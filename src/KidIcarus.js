@@ -237,7 +237,8 @@ var game = function(){
         exp: 300,
         heart: 5,
         vx: 30,
-        vy: 20
+        vy: 20,
+        z: 2
       });
 
       this.add("2d, aiBounce, animation");
@@ -277,7 +278,7 @@ var game = function(){
           this.p.vx= -this.p.vx;
           this.p.vy= -this.p.vy;
         }
-        if(this.p.x<0 || this.p.x>257){
+        if(this.p.x<=0 || this.p.x>=257){
           this.p.vx= -this.p.vx;
           this.p.vy= -this.p.vy;
         }
