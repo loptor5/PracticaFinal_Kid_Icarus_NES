@@ -184,7 +184,7 @@ var game = function(){
       });
 
       this.add("2d, aiBounce, animation");
-      this.on("bump.left, bump.right, bump.up, bump.top", this, "hit");
+      this.on("bump.left, bump.right, bump.up, bump.bottom", this, "hit");
       this.on("hit", this, "killed");
     },
     hit: function(collision){
@@ -241,7 +241,7 @@ var game = function(){
       });
 
       this.add("2d, aiBounce, animation");
-      this.on("bump.left, bump.right, bump.up, bump.down", this, "hit");
+      this.on("bump.left, bump.right, bump.up, bump.bottom", this, "hit");
       this.on("hit", this, "killed");
     },
 
