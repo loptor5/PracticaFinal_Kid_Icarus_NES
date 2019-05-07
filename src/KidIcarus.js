@@ -174,7 +174,7 @@ var game = function(){
         sprite: "viperix_anim",
         sheet: "viperix1",
         type: SPRITE_ENEMY,
-        collisionMask: SPRITE_BULLET | SPRITE_PLAYER | ,
+        collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
         gravity: 0.65,
         frame: 1,
         live:1,
