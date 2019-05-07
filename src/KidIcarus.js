@@ -18,7 +18,7 @@ var game = function(){
         sheet: "pit",
         type: SPRITE_PLAYER,
         gravity: 0.65,
-        x: 100,
+        x: 90,
         y: 2768,
         frame: 1,
         alive:true,
@@ -301,7 +301,7 @@ var game = function(){
     stage.add("viewport").follow(player);
     stage.viewport.scale= 2;
     stage.insert(new Q.Viperix({ x: 60, y: 2666}));
-    stage.insert(new Q.Monoculus({ x:60, y: 2070, yIni:2070}));
+    stage.insert(new Q.Monoculus({ x:60, y: 2068, yIni:2068}));
 
     
   });
