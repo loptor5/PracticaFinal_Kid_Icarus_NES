@@ -240,7 +240,7 @@ var game = function(){
         vy: 20
       });
 
-      this.add("2d, animation");
+      this.add("2d, aiBounce, animation");
       this.on("bump.left, bump.right, bump.up", this, "hit");
       this.on("hit", this, "killed");
     },
