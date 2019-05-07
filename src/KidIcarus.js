@@ -183,7 +183,7 @@ var game = function(){
         vx:20
       });
 
-      this.add(" aiBounce, animation");
+      this.add("animation");
       this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
       this.on("hit", this, "killed");
     },
