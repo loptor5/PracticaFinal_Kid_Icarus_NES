@@ -244,12 +244,14 @@ var game = function(){
       this.on("bump.left, bump.right, bump.up, bump.down", this, "hit");
       this.on("hit", this, "killed");
     },
+
     hit: function(collision){
       if(collision.obj.isA("Pit") && this.p.live<=0){
         this.destroy();
       }
 
     },
+
     killed: function(collision){
       if(collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")){
         this.p.live--;
@@ -267,7 +269,10 @@ var game = function(){
       if(this.p.live>0){
         if(this.p.vx>0) this.play("monoculusR");
         if(this.p.vx<0) this.play("monoculusL");
-        if(this.p.vx==0) this.p.vx=-this.p.vx;
+        if(this.p.vx==0) {
+          this.p.vy=-this.p.vy;
+          this.p.vx=-this.p.vx;
+        }
         if(Math.abs(this.p.yIni-this.p.y)==100 || Math.abs(this.p.yIni-this.p.y)==0 ){
           this.p.vx= -this.p.vx;
           this.p.vy= -this.p.vy;
