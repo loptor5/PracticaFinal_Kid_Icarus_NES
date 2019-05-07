@@ -4,7 +4,7 @@ var game = function(){
       .setup({maximize: true})
       .controls()
       .touch();
-
+      var SPRITE_FLY=0;
       var SPRITE_PLAYER=1;
       var SPRITE_BULLET=2;
       var SPRITE_ENEMY=3;
@@ -174,7 +174,7 @@ var game = function(){
         sprite: "viperix_anim",
         sheet: "viperix1",
         type: SPRITE_ENEMY,
-        collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
+        collisionMask: SPRITE_BULLET | SPRITE_PLAYER | ,
         gravity: 0.65,
         frame: 1,
         live:1,
@@ -184,7 +184,7 @@ var game = function(){
       });
 
       this.add(" aiBounce, animation");
-      this.on("bump.left, bump.right, bump.up, bump.bottom", this, "hit");
+      this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
       this.on("hit", this, "killed");
     },
     hit: function(collision){
@@ -229,7 +229,7 @@ var game = function(){
       this._super(p, {
         sprite: "monoculus_anim",
         sheet: "monoculus",
-        type: SPRITE_ENEMY,
+        type: SPRITE_FLY,
         collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
         gravity: 0,
         frame: 1,
@@ -242,7 +242,7 @@ var game = function(){
       });
 
       this.add("2d, animation");
-      this.on("bump.left, bump.right, bump.up, bump.bottom", this, "hit");
+      this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
       this.on("hit", this, "killed");
     },
 
