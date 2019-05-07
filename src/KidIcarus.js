@@ -86,12 +86,6 @@ var game = function(){
         y: p.y-p.h/2,
         vy: -200
       }));
-      if(this.p.direction=="right"){
-        this.play("stand_right");
-      }else{
-        this.play("stand_left");
-      }
-      
     },
 
     hit: function(collision){
@@ -274,7 +268,11 @@ var game = function(){
         if(this.p.vx>0) this.play("right");
         if(this.p.vx<0) this.play("left");
         if(this.p.vx==0) this.p.vx=-this.p.vx;
-        if(Math.abs(this.p.xIni-this.p.x)==100 || Math.abs(this.p.xIni-this.p.x)==0 ){
+        if(Math.abs(this.p.yIni-this.p.y)==100 || Math.abs(this.p.yIni-this.p.y)==0 ){
+          this.p.vx= -this.p.vx;
+          this.p.vy= -this.p.vy;
+        }
+        if(this.p.x<0 || this.p.x>257){
           this.p.vx= -this.p.vx;
           this.p.vy= -this.p.vy;
         }
@@ -298,7 +296,7 @@ var game = function(){
     stage.add("viewport").follow(player);
     stage.viewport.scale= 2;
     stage.insert(new Q.Viperix({ x: 60, y: 2666}));
-    stage.insert(new Q.Monoculus({ x:20, y: 2070}));
+    stage.insert(new Q.Monoculus({ x:20, y: 2070, yIni:2070}));
 
     
   });
