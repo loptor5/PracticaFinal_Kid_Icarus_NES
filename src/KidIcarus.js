@@ -19,7 +19,7 @@ var game = function(){
         type: SPRITE_PLAYER,
         gravity: 0.65,
         x: 90,
-        y: 2768,
+        y: 2068,
         frame: 1,
         alive:true,
         live: 7,
