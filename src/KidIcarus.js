@@ -184,7 +184,7 @@ var game = function(){
       });
 
       this.add("2d, aiBounce, animation");
-      this.on("bump.left, bump.right, bump.up", this, "hit");
+      this.on("bump.left, bump.right, bump.up, bump.top", this, "hit");
       this.on("hit", this, "killed");
     },
     hit: function(collision){
@@ -198,7 +198,7 @@ var game = function(){
         this.p.live--;
         if(this.p.live<=0){
           this.p.sheet="corazonMini";
-          this.play("stop");
+          this.play("viperStop");
           this.p.vx=0;
         }
       }
@@ -207,8 +207,8 @@ var game = function(){
 
     step: function(dt){
       if(this.p.live>0){
-        if(this.p.vx>0) this.play("right");
-        if(this.p.vx<0) this.play("left");
+        if(this.p.vx>0) this.play("viperR");
+        if(this.p.vx<0) this.play("viperL");
         if(this.p.vx==0) this.p.vx=-this.p.vx;
       }
     }
@@ -217,9 +217,9 @@ var game = function(){
   //------------------------------------------------------------------------//
 
   Q.animations("viperix_anim", {
-    right: { frames: [0,1], flip: false, loop:true , rate:1/10},
-    left: { frames: [0,1], flip: "x", loop:true, rate:1/10 },
-    stop: {frames: [0],flip:false, loop:false,rate:1/5}
+    viperR: { frames: [0,1], flip: false, loop:true , rate:1/10},
+    viperL: { frames: [0,1], flip: "x", loop:true, rate:1/10 },
+    viperStop: {frames: [0],flip:false, loop:false,rate:1/5}
   });
 
   //----------------------------------------------------------------------//
@@ -241,7 +241,7 @@ var game = function(){
       });
 
       this.add("2d, aiBounce, animation");
-      this.on("bump.left, bump.right, bump.up", this, "hit");
+      this.on("bump.left, bump.right, bump.up, bump.top", this, "hit");
       this.on("hit", this, "killed");
     },
     hit: function(collision){
@@ -255,7 +255,7 @@ var game = function(){
         this.p.live--;
         if(this.p.live<=0){
           this.p.sheet="medioCorazon";
-          this.play("stop");
+          this.play("monoculusStop");
           this.p.vx=0;
           this.p.vy=0;
         }
@@ -265,8 +265,8 @@ var game = function(){
 
     step: function(dt){
       if(this.p.live>0){
-        if(this.p.vx>0) this.play("right");
-        if(this.p.vx<0) this.play("left");
+        if(this.p.vx>0) this.play("monoculusR");
+        if(this.p.vx<0) this.play("monoculusL");
         if(this.p.vx==0) this.p.vx=-this.p.vx;
         if(Math.abs(this.p.yIni-this.p.y)==100 || Math.abs(this.p.yIni-this.p.y)==0 ){
           this.p.vx= -this.p.vx;
@@ -283,9 +283,9 @@ var game = function(){
   //------------------------------------------------------------------------//
 
   Q.animations("monoculus_anim", {
-    right: { frames: [0], flip: false, loop:true , rate:1/10},
-    left: { frames: [1], flip: false, loop:true, rate:1/10 },
-    stop: {frames: [0],flip:false, loop:false,rate:1/5}
+    monoculusR: { frames: [0], flip: false, loop:true , rate:1/10},
+    monoculusL: { frames: [1], flip: false, loop:true, rate:1/10 },
+    monoculusStop: {frames: [0],flip:false, loop:false,rate:1/5}
   });
 
   //------------------------------------------------------------------------//
@@ -307,7 +307,7 @@ var game = function(){
   Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, Viperix.png, Viperix.json, Monoculus.png, Monoculus.json, Items.png, Items.json", function() {
     Q.compileSheets("Pit.png", "Pit.json");
     Q.compileSheets("Viperix.png", "Viperix.json");
-    Q.compileSheets("Monoculus.png, Monoculus.json");
+    Q.compileSheets("Monoculus.png", "Monoculus.json");
     Q.compileSheets("Items.png","Items.json");
     Q.stageScene("Level101");
   });
