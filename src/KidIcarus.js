@@ -40,8 +40,8 @@ var game = function(){
       if(this.p.alive){
         if(this.p.x>257) this.p.x=1;
         if(this.p.x<0) this.p.x=256;
-        if(this.p.x==0 && this.p.direction==="right") this.play("stand_right");
-        if(this.p.x==0 && this.p.direction==="left") this.play("stand_left");
+        if(this.p.x==0 && this.p.direction=="right") this.play("stand_right");
+        if(this.p.x==0 && this.p.direction=="left") this.play("stand_left");
         if(this.p.vx >0){
           this.p.direction = "right";
           this.play("walk_right");
@@ -241,7 +241,7 @@ var game = function(){
         z: 2
       });
 
-      this.add("2d, aiBounce, animation");
+      this.add(" animation");
       this.on("bump.left, bump.right, bump.up, bump.bottom", this, "hit");
       this.on("hit", this, "killed");
     },
