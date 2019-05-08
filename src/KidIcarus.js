@@ -331,9 +331,6 @@ var game = function(){
 
     step: function(dt){
       if(this.p.live>0){
-        if(Math.abs(this.p.xIni-this.p.x)>this.p.distancia || Math.abs(this.p.yIni-this.p.x)<0){
-          this.p.vx= -this.p.vx;
-        }
         var pit=Q("Pit");
         pit= pit.items[0];
         if(pit.p.y==this.p.y){
@@ -342,9 +339,11 @@ var game = function(){
           if(this.p.vx>0) this.play("funestoRunR");
           if(this.p.vx<0) this.play("funestoRunL");
         }else{
-          this.p.vx= 30;
           if(this.p.vx>0) this.play("funestoR");
           if(this.p.vx<0) this.play("funestoL");
+        }
+        if(Math.abs(this.p.xIni-this.p.x)>this.p.distancia || Math.abs(this.p.yIni-this.p.x)<0){
+          this.p.vx= -this.p.vx;
         }
       }
     }
