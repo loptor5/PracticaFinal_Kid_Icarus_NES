@@ -334,8 +334,8 @@ var game = function(){
         var pit=Q("Pit");
         pit= pit.items[0];
         if(pit.p.y==this.p.y){
-          if(pit.p.x-this.p.x>0) this.p.vx=-60;
-          if(pit.p.x-this.p.x<0) this.p.vx=60;
+          if(pit.p.x-this.p.x>0) this.p.vx=60;
+          if(pit.p.x-this.p.x<0) this.p.vx=-60;
           if(this.p.vx>0) this.play("funestoRunR");
           if(this.p.vx<0) this.play("funestoRunL");
         }else{
