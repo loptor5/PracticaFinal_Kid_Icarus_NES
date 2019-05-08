@@ -9,6 +9,7 @@ var game = function(){
       var SPRITE_BULLET=2;
       var SPRITE_ENEMY=3;
       var SPRITE_OBJECT=4;
+      var SPRITE_TOPE=5;
 
 
   Q.Sprite.extend("Pit",{
@@ -274,7 +275,7 @@ var game = function(){
       if(this.p.live>0){
         if(this.p.vx>0) this.play("monoculusR");
         if(this.p.vx<0) this.play("monoculusL");
-        if(this.p.x>=256 || this.p.x<=0 || Math.abs(this.p.xIni-this.p.x)>=32 ||  Math.abs(this.p.xIni-this.p.x)<=0){
+        if(this.p.x>=256 || this.p.x<=0 || Math.abs(this.p.yIni-this.p.y)>=32 ||  Math.abs(this.p.yIni-this.p.y)<=0){
           this.p.vx= -this.p.vx;
           this.p.vy= -this.p.vy;
         }
@@ -298,7 +299,7 @@ var game = function(){
         sprite: "funesto_anim",
         sheet: "funesto",
         type: SPRITE_ENEMY,
-        collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
+        collisionMask: SPRITE_BULLET | SPRITE_PLAYER | SPRITE_TOPE,
         gravity: 0.65,
         frame: 1,
         live:10,
@@ -374,7 +375,7 @@ var game = function(){
     stage.viewport.scale= 2;
     stage.insert(new Q.Viperix({ x: 60, y: 2666}));
     stage.insert(new Q.Monoculus({ x:60, y: 2068, yIni:2068}));
-    stage.insert(new Q.Funesto({ x:150, y: 1346, xIni:150, distancia:32}));
+    stage.insert(new Q.Funesto({ x:151, y: 1346, xIni:150, distancia:32}));
   });
   
 
