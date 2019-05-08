@@ -242,7 +242,7 @@ var game = function(){
         exp: 300,
         heart: 5,
         vx: 30,
-        vy: 15,
+        vy: 10,
         z: 32,
         hit:1
       });
@@ -276,7 +276,7 @@ var game = function(){
       if(this.p.live>0){
         if(this.p.vx>0) this.play("monoculusR");
         if(this.p.vx<0) this.play("monoculusL");
-        if(this.p.x>=256 || this.p.x<=0 || this.p.yIni==this.p.y || this.p.yFin==this.p.y){
+        if(this.p.x>=256 || this.p.x<=0 || this.p.yIni>this.p.y || this.p.yFin<this.p.y){
           this.p.vx= -this.p.vx;
           this.p.vy= -this.p.vy;
         }
@@ -348,7 +348,7 @@ var game = function(){
           if(this.p.vx>0) this.play("funestoR");
           if(this.p.vx<0) this.play("funestoL");
         }
-        if(this.p.xIni==this.p.x || this.p.xFin==this.p.x){
+        if(this.p.xIni>this.p.x || this.p.xFin<this.p.x){
           this.p.vx= -this.p.vx;
           this.p.vy= -this.p.vy;
         }
