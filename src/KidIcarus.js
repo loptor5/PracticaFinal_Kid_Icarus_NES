@@ -335,8 +335,9 @@ var game = function(){
         }
         var pit=Q("Pit");
         pit= pit.items[0];
-        if(pit.p.x==this.p.x){
-          this.p.vx= this.p.vx*2;
+        if(pit.p.y==this.p.y){
+          if(pit.p.x-this.p.x>0) this.p.vx=-60;
+          if(pit.p.x-this.p.x<0) this.p.vx=60;
           if(this.p.vx>0) this.play("funestoRunR");
           if(this.p.vx<0) this.play("funestoRunL");
         }else{
@@ -368,7 +369,7 @@ var game = function(){
     stage.viewport.scale= 2;
     stage.insert(new Q.Viperix({ x: 60, y: 2666}));
     stage.insert(new Q.Monoculus({ x:60, y: 2068, yIni:2068}));
-    stage.insert(new Q.Funesto({ x:130, y: 1346, xIni:130, distancia:64}));
+    stage.insert(new Q.Funesto({ x:140, y: 1346, xIni:130, distancia:64}));
   });
   
 
