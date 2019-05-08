@@ -334,6 +334,7 @@ var game = function(){
           this.p.vx= -this.p.vx;
         }
         var pit=Q("Pit");
+        pit= pit.items[0];
         if(pit.p.x==this.p.x){
           this.p.vx= this.p.vx*2;
           if(this.p.vx>0) this.play("funestoRunR");
