@@ -347,12 +347,11 @@ var game = function(){
       var pit=Q("Pit");
       pit= pit.items[0];
       if(this.p.live>0){
-        if(this.p.atack){
+        if(this.p.atack && p.atack==100){
           if(pit.p.x-this.p.x>0) this.p.vx=60;
           if(pit.p.x-this.p.x<0) this.p.vx=-60;
           if(this.p.vx>0 && this.p.atack==100) this.play("funestoRunR");
           if(this.p.vx<0 && this.p.atack==100) this.play("funestoRunL");
-          this.p.atackT--;
         }else{
           if(pit.p.y==this.p.y){
             this.p.atack=true;
@@ -369,6 +368,7 @@ var game = function(){
           this.p.vx= -this.p.vx;
           this.p.vy= -this.p.vy;
         }
+        this.p.atackT--;
       }
       
     }
