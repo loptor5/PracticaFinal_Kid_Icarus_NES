@@ -314,7 +314,8 @@ var game = function(){
         heart: 10,
         hit:2,
         vx:10,
-        atack:false;
+        atack:false,
+        atackT:0
       });
 
       this.add("2d, aiBounce, animation");
@@ -344,22 +345,31 @@ var game = function(){
 
     step: function(dt){
       if(this.p.live>0){
-        var pit=Q("Pit");
-        pit= pit.items[0];
-        if(pit.p.y==this.p.y){
+        if(this.p.atack){
           if(pit.p.x-this.p.x>0) this.p.vx=60;
           if(pit.p.x-this.p.x<0) this.p.vx=-60;
-          if(this.p.vx>0) this.play("funestoRunR");
-          if(this.p.vx<0) this.play("funestoRunL");
+          if(this.p.vx>0 && this.p.atack==100) this.play("funestoRunR");
+          if(this.p.vx<0 && this.p.atack==100) this.play("funestoRunL");
+          this.p.atackT--;
         }else{
-          if(this.p.vx>0) this.play("funestoR");
-          if(this.p.vx<0) this.play("funestoL");
-        }
-        if(this.p.xIni>this.p.x || this.p.xFin<this.p.x){
-          this.p.vx= -this.p.vx;
-          this.p.vy= -this.p.vy;
+          var pit=Q("Pit");
+          pit= pit.items[0];
+          if(pit.p.y==this.p.y){
+            this.p.atack=true;
+            this.p.atackT=100;
+          }else{
+            this.p.atack=false;
+            this.p.atackT=100;
+            if(this.p.vx>0) this.play("funestoR");
+            if(this.p.vx<0) this.play("funestoL");
+          }
+          if(this.p.xIni>this.p.x || this.p.xFin<this.p.x){
+            this.p.vx= -this.p.vx;
+            this.p.vy= -this.p.vy;
+          }
         }
       }
+      
     }
 
   });
