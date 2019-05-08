@@ -241,7 +241,7 @@ var game = function(){
         exp: 300,
         heart: 5,
         vx: 30,
-        z: 0,
+        z: 32,
         hit:1
       });
 
