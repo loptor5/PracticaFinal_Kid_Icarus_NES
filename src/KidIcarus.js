@@ -278,7 +278,6 @@ var game = function(){
         if(this.p.vx<0) this.play("monoculusL");
         if(this.p.x>=256 || this.p.x<=0 || this.p.yIni>=this.p.y || this.p.yFin<=this.p.y){
           this.p.vx= -this.p.vx;
-          this.p.vy= -this.p.vy;
         }
       }
     }
@@ -363,8 +362,8 @@ var game = function(){
     funestoR: { frames: [0], flip: false, loop:true , rate:1/10},
     funestoL: { frames: [0], flip: "x", loop:true, rate:1/10 },
     funestoStop: {frames: [0],flip:false, loop:false,rate:1/5},
-    funestoRunR: {frames: [1,2], flip: false, loop: true, rate:1/10},
-    funestoRunL: {frames: [1,2], flip: "x", loop: true, rate:1/10}
+    funestoRunR: {frames: [1,2], flip: false, loop: true, rate:1/30},
+    funestoRunL: {frames: [1,2], flip: "x", loop: true, rate:1/30}
   });
 
   //------------------------------------------------------------------------//
