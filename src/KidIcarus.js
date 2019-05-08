@@ -369,7 +369,7 @@ var game = function(){
     stage.viewport.scale= 2;
     stage.insert(new Q.Viperix({ x: 60, y: 2666}));
     stage.insert(new Q.Monoculus({ x:60, y: 2068, yIni:2068}));
-    stage.insert(new Q.Funesto({ x:140, y: 1346, xIni:130, distancia:64}));
+    stage.insert(new Q.Funesto({ x:150, y: 1346, xIni:130, distancia:64}));
   });
   
 
