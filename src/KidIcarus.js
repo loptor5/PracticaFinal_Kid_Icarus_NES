@@ -346,7 +346,7 @@ var game = function(){
           if(this.p.vx>0) this.play("funestoR");
           if(this.p.vx<0) this.play("funestoL");
         }
-        if(Math.abs(this.p.xIni-this.p.x)>=this.p.distancia || Math.abs(this.p.yIni-this.p.x)<=0){
+        if(Math.abs(this.p.xIni-this.p.x)>=this.p.distancia || this.p.yIni>this.p.x){
           this.p.vx= -this.p.vx;
           this.p.vy= -this.p.vy;
         }
