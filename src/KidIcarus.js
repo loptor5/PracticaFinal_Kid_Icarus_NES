@@ -276,8 +276,11 @@ var game = function(){
       if(this.p.live>0){
         if(this.p.vx>0) this.play("monoculusR");
         if(this.p.vx<0) this.play("monoculusL");
-        if(this.p.x>=256 || this.p.x<=0 || this.p.yIni>=this.p.y || this.p.yFin<=this.p.y){
+        if(this.p.yIni>=this.p.y || this.p.yFin<=this.p.y){
           this.p.vy= -this.p.vy;
+        }
+        if(this.p.x>=256 || this.p.x<=0){
+          this.p.vx= -this.p.vx;
         }
       }
     }
