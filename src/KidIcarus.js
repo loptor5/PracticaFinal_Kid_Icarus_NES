@@ -366,11 +366,11 @@ var game = function(){
   //------------------------------------------------------------------------//
 
   Q.animations("funesto_anim", {
-    funestoR: { frames: [0], flip: false, loop:true , rate:1/10},
-    funestoL: { frames: [0], flip: "x", loop:true, rate:1/10 },
-    funestoStop: {frames: [0],flip:false, loop:false,rate:1/5},
-    funestoRunR: {frames: [1,2], flip: false, loop: true, rate:1/30},
-    funestoRunL: {frames: [1,2], flip: "x", loop: true, rate:1/30}
+    funestoR: { frames: [0], flip: false, loop:true , rate:1},
+    funestoL: { frames: [0], flip: "x", loop:true, rate:1 },
+    funestoStop: {frames: [0],flip:false, loop:false,rate:1},
+    funestoRunR: {frames: [1,2], flip: false, loop: true, rate:1/5},
+    funestoRunL: {frames: [1,2], flip: "x", loop: true, rate:1/5}
   });
 
   //------------------------------------------------------------------------//
