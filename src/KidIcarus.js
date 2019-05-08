@@ -247,7 +247,7 @@ var game = function(){
         hit:1
       });
 
-      this.add("2d, animation");
+      this.add("2d, aiBounce, animation");
       this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
       this.on("hit", this, "killed");
     },
