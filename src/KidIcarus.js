@@ -313,7 +313,8 @@ var game = function(){
         exp: 500,
         heart: 10,
         hit:2,
-        vx:10
+        vx:10,
+        atack:false;
       });
 
       this.add("2d, aiBounce, animation");
@@ -369,8 +370,8 @@ var game = function(){
     funestoR: { frames: [0], flip: false, loop:true , rate:1},
     funestoL: { frames: [0], flip: "x", loop:true, rate:1 },
     funestoStop: {frames: [0],flip:false, loop:false,rate:1},
-    funestoRunR: {frames: [1,2], flip: false, loop: true, rate:1/5},
-    funestoRunL: {frames: [1,2], flip: "x", loop: true, rate:1/5}
+    funestoRunR: {frames: [1,2], flip: false, loop: false, rate:1/5},
+    funestoRunL: {frames: [1,2], flip: "x", loop: false, rate:1/5}
   });
 
   //------------------------------------------------------------------------//
