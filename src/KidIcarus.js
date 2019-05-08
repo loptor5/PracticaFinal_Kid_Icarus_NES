@@ -276,7 +276,7 @@ var game = function(){
       if(this.p.live>0){
         if(this.p.vx>0) this.play("monoculusR");
         if(this.p.vx<0) this.play("monoculusL");
-        if(this.p.x>=256 || this.p.x<=0 || this.p.yIni>this.p.y || this.p.yFin<this.p.y){
+        if(this.p.x>=256 || this.p.x<=0 || this.p.yIni>=this.p.y || this.p.yFin<=this.p.y){
           this.p.vx= -this.p.vx;
           this.p.vy= -this.p.vy;
         }
@@ -375,7 +375,7 @@ var game = function(){
     stage.add("viewport").follow(player);
     stage.viewport.scale= 2;
     stage.insert(new Q.Viperix({ x: 60, y: 2666}));
-    stage.insert(new Q.Monoculus({ x:60, y: 2068, yIni:2068, yFin: 2090}));
+    stage.insert(new Q.Monoculus({ x:60, y: 2068, yIni:2068, yFin: 2164}));
     stage.insert(new Q.Funesto({ x:135, y: 1346, xIni:135, xFin:180}));
   });
   
