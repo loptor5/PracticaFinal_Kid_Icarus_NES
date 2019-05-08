@@ -4,7 +4,7 @@ var game = function(){
       .setup({maximize: true})
       .controls()
       .touch();
-      var SPRITE_FLY=0;
+      var SPRITE_FLY=32;
       var SPRITE_PLAYER=1;
       var SPRITE_BULLET=2;
       var SPRITE_ENEMY=3;
@@ -112,8 +112,8 @@ var game = function(){
   Q.animations("pit_anim",{
     stand_right: {frames:[1], flip:false, loop:true, rate: 1/5},
     stand_left: {frames:[1], flip: "x", loop:true, rate: 1/5},
-    walk_right: {frames: [1,2,3,4,5], rate: 1/16, flip:false, loop:true, next: "stand_right"},
-    walk_left: {frames: [1,2,3,4,5], rate: 1/16, flip: "x", loop:true, next: "stand_left"},
+    walk_right: {frames: [1,2,3,4,5], rate: 1/32, flip:false, loop:true, next: "stand_right"},
+    walk_left: {frames: [1,2,3,4,5], rate: 1/32, flip: "x", loop:true, next: "stand_left"},
     jump_right: {frames: [6,7], flip: false, loop: false, rate: 1/5},
     jump_left: {frames: [6,7], flip: "x", loop: false, rate: 1/5},
     lookUp: {frames: [8,9], rate: 1/5, flip: false, loop: false},
@@ -242,6 +242,7 @@ var game = function(){
         exp: 300,
         heart: 5,
         vx: 30,
+        vy: 15,
         z: 32,
         hit:1
       });
@@ -275,7 +276,7 @@ var game = function(){
       if(this.p.live>0){
         if(this.p.vx>0) this.play("monoculusR");
         if(this.p.vx<0) this.play("monoculusL");
-        if(this.p.x>=256 || this.p.x<=0 || Math.abs(this.p.yIni-this.p.y)>=32 ||  Math.abs(this.p.yIni-this.p.y)<=0){
+        if(this.p.x>=256 || this.p.x<=0 || this.p.yIni==this.p.y || this.p.yFin==this.p.y){
           this.p.vx= -this.p.vx;
           this.p.vy= -this.p.vy;
         }
@@ -347,7 +348,7 @@ var game = function(){
           if(this.p.vx>0) this.play("funestoR");
           if(this.p.vx<0) this.play("funestoL");
         }
-        if(Math.abs(this.p.xIni-this.p.x)>=this.p.distancia || this.p.yIni>this.p.x){
+        if(this.p.xIni==this.p.x || this.p.xFin==this.p.x){
           this.p.vx= -this.p.vx;
           this.p.vy= -this.p.vy;
         }
@@ -374,8 +375,8 @@ var game = function(){
     stage.add("viewport").follow(player);
     stage.viewport.scale= 2;
     stage.insert(new Q.Viperix({ x: 60, y: 2666}));
-    stage.insert(new Q.Monoculus({ x:60, y: 2068, yIni:2068}));
-    stage.insert(new Q.Funesto({ x:151, y: 1346, xIni:150, distancia:32}));
+    stage.insert(new Q.Monoculus({ x:60, y: 2068, yIni:2068, yFin: 2090}));
+    stage.insert(new Q.Funesto({ x:135, y: 1346, xIni:135, xFin:180}));
   });
   
 
