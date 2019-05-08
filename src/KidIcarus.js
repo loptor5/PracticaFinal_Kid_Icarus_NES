@@ -314,8 +314,7 @@ var game = function(){
         heart: 10,
         hit:2,
         vx:10,
-        atack:false,
-        atackT:0
+        run: false
       });
 
       this.add("2d, aiBounce, animation");
@@ -344,33 +343,34 @@ var game = function(){
     },
 
     step: function(dt){
-      var pit=Q("Pit");
-      pit= pit.items[0];
       if(this.p.live>0){
-        if(this.p.atack && p.atack==100){
+        var pit=Q("Pit");
+        pit= pit.items[0];
+        if(pit.p.y==this.p.y){
           if(pit.p.x-this.p.x>0) this.p.vx=60;
           if(pit.p.x-this.p.x<0) this.p.vx=-60;
-          if(this.p.vx>0 && this.p.atack==100) this.play("funestoRunR");
-          if(this.p.vx<0 && this.p.atack==100) this.play("funestoRunL");
+          if(this.p.vx>0 && !this.p.run){
+            this.play("funestoRunR");
+            this.p.run=true;
+
+          } 
+          if(this.p.vx<0 && !this.p.run){
+            this.play("funestoRunL");
+            this.p.run=true;
+
+          } 
+
         }else{
-          if(pit.p.y==this.p.y){
-            this.p.atack=true;
-            this.p.atackT=100;
-          }else{
-            this.p.atack=false;
-            this.p.atackT=100;
-            if(this.p.vx>0) this.play("funestoR");
-            if(this.p.vx<0) this.play("funestoL");
-          }
-          
+          if(this.p.run) this.p.vx= this.p.vx/6;
+          if(this.p.vx>0) this.play("funestoR");
+          if(this.p.vx<0) this.play("funestoL");
+          this.p.run=false;
         }
         if(this.p.xIni>this.p.x || this.p.xFin<this.p.x){
           this.p.vx= -this.p.vx;
           this.p.vy= -this.p.vy;
         }
-        this.p.atackT--;
       }
-      
     }
 
   });
@@ -381,8 +381,8 @@ var game = function(){
     funestoR: { frames: [0], flip: false, loop:true , rate:1},
     funestoL: { frames: [0], flip: "x", loop:true, rate:1 },
     funestoStop: {frames: [0],flip:false, loop:false,rate:1},
-    funestoRunR: {frames: [1,2], flip: false, loop: false, rate:1/5},
-    funestoRunL: {frames: [1,2], flip: "x", loop: false, rate:1/5}
+    funestoRunR: {frames: [1,2], flip: false, loop: true, rate:1/5},
+    funestoRunL: {frames: [1,2], flip: "x", loop: true, rate:1/5}
   });
 
   //------------------------------------------------------------------------//
