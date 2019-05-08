@@ -363,10 +363,11 @@ var game = function(){
             if(this.p.vx>0) this.play("funestoR");
             if(this.p.vx<0) this.play("funestoL");
           }
-          if(this.p.xIni>this.p.x || this.p.xFin<this.p.x){
-            this.p.vx= -this.p.vx;
-            this.p.vy= -this.p.vy;
-          }
+          
+        }
+        if(this.p.xIni>this.p.x || this.p.xFin<this.p.x){
+          this.p.vx= -this.p.vx;
+          this.p.vy= -this.p.vy;
         }
       }
       
