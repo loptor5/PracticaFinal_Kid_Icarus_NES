@@ -274,8 +274,9 @@ var game = function(){
       if(this.p.live>0){
         if(this.p.vx>0) this.play("monoculusR");
         if(this.p.vx<0) this.play("monoculusL");
-        if(Math.abs(this.p.yIni-this.p.y)>=this.p.distancia || Math.abs(this.p.yIni-this.p.y)<=0){
+        if(Math.abs(this.p.yIni-this.p.y)>=256 || Math.abs(this.p.yIni-this.p.y)<=0){
           this.p.vx= -this.p.vx;
+          this.p.vy= -this.p.vy;
         }
       }
     }
@@ -345,7 +346,7 @@ var game = function(){
           if(this.p.vx>0) this.play("funestoR");
           if(this.p.vx<0) this.play("funestoL");
         }
-        if(Math.abs(this.p.xIni-this.p.x)>=256 || Math.abs(this.p.yIni-this.p.x)<=0){
+        if(Math.abs(this.p.xIni-this.p.x)>=this.p.distancia || Math.abs(this.p.yIni-this.p.x)<=0){
           this.p.vx= -this.p.vx;
           this.p.vy= -this.p.vy;
         }
