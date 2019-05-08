@@ -344,6 +344,8 @@ var game = function(){
     },
 
     step: function(dt){
+      var pit=Q("Pit");
+      pit= pit.items[0];
       if(this.p.live>0){
         if(this.p.atack){
           if(pit.p.x-this.p.x>0) this.p.vx=60;
@@ -352,8 +354,6 @@ var game = function(){
           if(this.p.vx<0 && this.p.atack==100) this.play("funestoRunL");
           this.p.atackT--;
         }else{
-          var pit=Q("Pit");
-          pit= pit.items[0];
           if(pit.p.y==this.p.y){
             this.p.atack=true;
             this.p.atackT=100;
