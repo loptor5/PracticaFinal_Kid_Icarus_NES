@@ -351,8 +351,6 @@ var game = function(){
           if(this.p.vx>0) this.play("funestoRunR");
           if(this.p.vx<0) this.play("funestoRunL");
         }else{
-          if(this.p.x>0) this.p.vx=10;
-          if(this.p.x<0) this.p.vx=-10;
           if(this.p.vx>0) this.play("funestoR");
           if(this.p.vx<0) this.play("funestoL");
         }
