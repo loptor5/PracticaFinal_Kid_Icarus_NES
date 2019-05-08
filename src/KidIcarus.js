@@ -277,7 +277,7 @@ var game = function(){
         if(this.p.vx>0) this.play("monoculusR");
         if(this.p.vx<0) this.play("monoculusL");
         if(this.p.x>=256 || this.p.x<=0 || this.p.yIni>=this.p.y || this.p.yFin<=this.p.y){
-          this.p.vx= -this.p.vx;
+          this.p.vy= -this.p.vy;
         }
       }
     }
