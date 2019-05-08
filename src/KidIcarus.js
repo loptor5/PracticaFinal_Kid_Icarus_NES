@@ -312,7 +312,7 @@ var game = function(){
         heart: 10,
         hit:2,
         vx:10,
-        run: false
+        running: false
       });
 
       this.add("2d, aiBounce, animation");
@@ -347,22 +347,22 @@ var game = function(){
         if(pit.p.y==this.p.y){
           if(pit.p.x-this.p.x>0) this.p.vx=60;
           if(pit.p.x-this.p.x<0) this.p.vx=-60;
-          if(this.p.vx>0 && !this.p.run){
+          if(this.p.vx>0 && !this.p.running){
             this.play("funestoRunR");
-            this.p.run=true;
+            this.p.running=true;
 
           } 
-          if(this.p.vx<0 && !this.p.run){
+          if(this.p.vx<0 && !this.p.running){
             this.play("funestoRunL");
-            this.p.run=true;
+            this.p.running=true;
 
           } 
 
         }else{
-          if(this.p.run) this.p.vx= this.p.vx/6;
+          if(this.p.running) this.p.vx= this.p.vx/6;
           if(this.p.vx>0) this.play("funestoR");
           if(this.p.vx<0) this.play("funestoL");
-          this.p.run=false;
+          this.p.running=false;
         }
         if(this.p.xIni>this.p.x || this.p.xFin<this.p.x){
           this.p.vx= -this.p.vx;
