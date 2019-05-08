@@ -41,8 +41,8 @@ var game = function(){
       if(this.p.alive){
         if(this.p.x>257) this.p.x=1;
         if(this.p.x<0) this.p.x=256;
-        if(this.p.vx==0 && this.p.vy==0 && this.p.direction=="right") this.play("stand_right");
-        if(this.p.vx==0 && this.p.vy==0 && this.p.direction=="left") this.play("stand_left");
+        if(this.p.vx==0 && this.p.direction=="right") this.play("stand_right");
+        if(this.p.vx==0 && this.p.direction=="left") this.play("stand_left");
         if(this.p.vx >0){
           this.p.direction = "right";
           this.play("walk_right");
@@ -347,6 +347,8 @@ var game = function(){
           if(this.p.vx>0) this.play("funestoRunR");
           if(this.p.vx<0) this.play("funestoRunL");
         }else{
+          if(this.p.x>0) this.p.vx=10;
+          if(this.p.x<0) this.p.vx=-10;
           if(this.p.vx>0) this.play("funestoR");
           if(this.p.vx<0) this.play("funestoL");
         }
