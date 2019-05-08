@@ -333,7 +333,7 @@ var game = function(){
         if(Math.abs(this.p.xIni-this.p.x)>this.p.distancia || Math.abs(this.p.yIni-this.p.x)<0){
           this.p.vx= -this.p.vx;
         }
-        var pit=Q("Pit",0);
+        var pit=Q("Pit");
         if(pit.p.x==this.p.x){
           this.p.vx= this.p.vx*2;
           if(this.p.vx>0) this.play("funestoRunR");
