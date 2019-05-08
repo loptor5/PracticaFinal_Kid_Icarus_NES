@@ -18,8 +18,8 @@ var game = function(){
         sheet: "pit",
         type: SPRITE_PLAYER,
         gravity: 0.65,
-        x: 90,
-        y: 2068,
+        x: 60,
+        y: 1346,
         frame: 1,
         alive:true,
         live: 7,
@@ -63,12 +63,14 @@ var game = function(){
     shoot: function() {
       var p= this.p;
       if(p.direction==="right"){
+        this.play("stand_right");
         this.stage.insert(new Q.Arrow({
           x: p.x,
           y: p.y+p.h/8,
           vx: 200
         }))
       }else{
+        this.play("stand_right");
         this.stage.insert(new Q.Arrow({
           x: p.x,
           y: p.y+p.h/8,
@@ -168,6 +170,8 @@ var game = function(){
     }
   });
 
+  //-------------------------------------------------------------------//
+
   Q.Sprite.extend("Viperix", {
     init: function(p){
       this._super(p, {
@@ -180,7 +184,8 @@ var game = function(){
         live:1,
         exp: 100,
         heart: 1,
-        vx:20
+        vx:20,
+        hit:1
       });
 
       this.add("2d, aiBounce, animation");
@@ -209,7 +214,6 @@ var game = function(){
       if(this.p.live>0){
         if(this.p.vx>0) this.play("viperR");
         if(this.p.vx<0) this.play("viperL");
-        if(this.p.vx==0) this.p.vx=-this.p.vx;
       }
     }
 
@@ -236,9 +240,9 @@ var game = function(){
         live:1,
         exp: 300,
         heart: 5,
-        vx: 60,
-        vy: 30,
-        z: 0
+        vx: 30,
+        z: 0,
+        hit:1
       });
 
       this.add("2d, animation");
@@ -270,20 +274,6 @@ var game = function(){
       if(this.p.live>0){
         if(this.p.vx>0) this.play("monoculusR");
         if(this.p.vx<0) this.play("monoculusL");
-        if(this.p.vx==0) {
-          this.p.vx=60;
-        }
-        if(this.p.vy==0){
-          this.p.vy=30;
-        }
-        if(Math.abs(this.p.yIni-this.p.y)>50 || Math.abs(this.p.yIni-this.p.y)<0 ){
-          this.p.vx= -this.p.vx;
-          this.p.vy= -this.p.vy;
-        }
-        if(this.p.x<0 || this.p.x>257){
-          this.p.vx= -this.p.vx;
-          this.p.vy= -this.p.vy;
-        }
       }
     }
 
@@ -298,6 +288,78 @@ var game = function(){
 
   //------------------------------------------------------------------------//
 
+  Q.Sprite.extend("Funesto", {
+    init: function(p){
+      this._super(p, {
+        sprite: "funesto_anim",
+        sheet: "funesto",
+        type: SPRITE_ENEMY,
+        collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
+        gravity: 0.65,
+        frame: 1,
+        live:10,
+        exp: 500,
+        heart: 10,
+        hit:2
+      });
+
+      this.add("2d, aiBounce, animation");
+      this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
+      this.on("hit", this, "killed");
+    },
+
+    hit: function(collision){
+      if(collision.obj.isA("Pit") && this.p.live<=0){
+        this.destroy();
+      }
+
+    },
+
+    killed: function(collision){
+      if(collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")){
+        this.p.live--;
+        if(this.p.live<=0){
+          this.p.sheet="corazon";
+          this.play("funestoStop");
+          this.p.vx=0;
+          this.p.vy=0;
+        }
+      }
+
+    },
+
+    step: function(dt){
+      if(this.p.live>0){
+        if(Math.abs(this.p.xIni-this.p.x)>this.p.distancia || Math.abs(this.p.yIni-this.p.x)<0){
+          this.p.vx= -this.p.vx;
+        }
+        var pit=Q("Pit");
+        if(pit.p.x==this.p.x){
+          this.p.vx= this.p.vx*2;
+          if(this.p.vx>0) this.play("funestoRunR");
+          if(this.p.vx<0) this.play("funestoRunL");
+        }else{
+          this.p.vx= 30;
+          if(this.p.vx>0) this.play("funestoR");
+          if(this.p.vx<0) this.play("funestoL");
+        }
+      }
+    }
+
+  });
+
+  //------------------------------------------------------------------------//
+
+  Q.animations("funesto_anim", {
+    funestoR: { frames: [0], flip: false, loop:true , rate:1/10},
+    funestoL: { frames: [0], flip: "x", loop:true, rate:1/10 },
+    funestoStop: {frames: [0],flip:false, loop:false,rate:1/5},
+    funestoRunR: {frames: [1,2], flip: false, loop: true, rate:1/10},
+    funestoRunL: {frames: [1,2], flip: "x", loop: true, rate:1/10}
+  });
+
+  //------------------------------------------------------------------------//
+
   Q.scene("Level101", function(stage) {
     Q.stageTMX("Level101.tmx", stage);
     const player = stage.insert(new Q.Pit());
@@ -305,18 +367,18 @@ var game = function(){
     stage.viewport.scale= 2;
     stage.insert(new Q.Viperix({ x: 60, y: 2666}));
     stage.insert(new Q.Monoculus({ x:60, y: 2068, yIni:2068}));
-
-    
+    stage.insert(new Q.Funesto({ x:130, y: 1346, xIni:130, distancia:64}));
   });
   
 
  
 
-  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, Viperix.png, Viperix.json, Monoculus.png, Monoculus.json, Items.png, Items.json", function() {
+  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, Viperix.png, Viperix.json, Monoculus.png, Monoculus.json, Items.png, Items.json, Funesto.png, Funesto.json", function() {
     Q.compileSheets("Pit.png", "Pit.json");
     Q.compileSheets("Viperix.png", "Viperix.json");
     Q.compileSheets("Monoculus.png", "Monoculus.json");
     Q.compileSheets("Items.png","Items.json");
+    Q.compileSheets("Funesto.png", "Funesto.json");
     Q.stageScene("Level101");
   });
 };
