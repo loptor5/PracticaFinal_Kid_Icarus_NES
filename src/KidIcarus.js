@@ -70,7 +70,7 @@ var game = function(){
           vx: 200
         }))
       }else{
-        this.play("stand_right");
+        this.play("stand_left");
         this.stage.insert(new Q.Arrow({
           x: p.x,
           y: p.y+p.h/8,
@@ -342,7 +342,7 @@ var game = function(){
           if(this.p.vx>0) this.play("funestoR");
           if(this.p.vx<0) this.play("funestoL");
         }
-        if(Math.abs(this.p.xIni-this.p.x)>this.p.distancia || Math.abs(this.p.yIni-this.p.x)<0){
+        if(Math.abs(this.p.xIni-this.p.x)>=this.p.distancia || Math.abs(this.p.yIni-this.p.x)<=0){
           this.p.vx= -this.p.vx;
         }
       }
