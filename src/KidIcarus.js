@@ -305,7 +305,7 @@ var game = function(){
         exp: 500,
         heart: 10,
         hit:2,
-        vx:30
+        vx:10
       });
 
       this.add("2d, aiBounce, animation");
