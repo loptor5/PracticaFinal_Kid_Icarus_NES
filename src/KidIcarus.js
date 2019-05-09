@@ -26,7 +26,7 @@ var game = function(){
         live: 7,
         sort: true,
         direction: "right",
-        speed: 60
+        speed: 70
       });
 
       this.add("2d, platformerControls, animation");
@@ -116,8 +116,8 @@ var game = function(){
   Q.animations("pit_anim",{
     stand_right: {frames:[1], flip:false, loop:true, rate: 1/5},
     stand_left: {frames:[1], flip: "x", loop:true, rate: 1/5},
-    walk_right: {frames: [1,4,3,2], rate: 1/20, flip:false, loop:true, next: "stand_right"},
-    walk_left: {frames: [1,4,3,2], rate: 1/20, flip: "x", loop:true, next: "stand_left"},
+    walk_right: {frames: [1,4,3,2], rate: 1/15, flip:false, loop:true, next: "stand_right"},
+    walk_left: {frames: [1,4,3,2], rate: 1/15, flip: "x", loop:true, next: "stand_left"},
     jump_right: {frames: [7,6], flip: false, loop: false, rate: 1/5},
     jump_left: {frames: [7,6], flip: "x", loop: false, rate: 1/5},
     lookUp: {frames: [8,9], rate: 1/5, flip: false, loop: false},
