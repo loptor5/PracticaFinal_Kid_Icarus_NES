@@ -92,7 +92,7 @@ var game = function(){
     hit: function(collision){
       if(collision.obj.isA("Viperix")){
         this.p.live--;
-        if(p.direction==="right"){
+        if(this.p.direction==="right"){
           this.play("damage_right");
         }else{
           this.play("damage_left");
