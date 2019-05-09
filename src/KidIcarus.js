@@ -27,7 +27,7 @@ var game = function(){
         sort: true,
         direction: "right",
         speed: 80,
-        jumpSpeed: -100
+        jumpSpeed: -200
       });
 
       this.add("2d, platformerControls, animation");
