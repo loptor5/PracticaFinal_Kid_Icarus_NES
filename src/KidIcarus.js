@@ -50,10 +50,10 @@ var game = function(){
           this.p.direction="left";
           this.play("walk_left");
         }
-        if((this.p.vy >0 || this.p.vy <0)&& p.direction=="right"){
+        if((this.p.vy >0 || this.p.vy <0)&& this.p.direction=="right"){
           this.play("jump_right");
         } 
-        if((this.p.vy >0 || this.p.vy <0)&& p.direction=="left"){
+        if((this.p.vy >0 || this.p.vy <0)&& this.p.direction=="left"){
           this.play("jump_left");
         }
       }
@@ -115,8 +115,8 @@ var game = function(){
   Q.animations("pit_anim",{
     stand_right: {frames:[1], flip:false, loop:true, rate: 1/5},
     stand_left: {frames:[1], flip: "x", loop:true, rate: 1/5},
-    walk_right: {frames: [1,2,3,4], rate: 1/32, flip:false, loop:true, next: "stand_right"},
-    walk_left: {frames: [1,2,3,4], rate: 1/32, flip: "x", loop:true, next: "stand_left"},
+    walk_right: {frames: [1,2,3,4], rate: 1/5, flip:false, loop:true, next: "stand_right"},
+    walk_left: {frames: [1,2,3,4], rate: 1/5, flip: "x", loop:true, next: "stand_left"},
     jump_right: {frames: [7,6], flip: false, loop: false, rate: 1/5},
     jump_left: {frames: [7,6], flip: "x", loop: false, rate: 1/5},
     lookUp: {frames: [8,9], rate: 1/5, flip: false, loop: false},
