@@ -92,6 +92,11 @@ var game = function(){
     hit: function(collision){
       if(collision.obj.isA("Viperix")){
         this.p.live--;
+        if(p.direction==="right"){
+          this.play("damage_right");
+        }else{
+          this.play("damage_left");
+        }
         if(this.p.live==0){
           this.p.alive=false;
           this.play("death");
@@ -110,12 +115,14 @@ var game = function(){
   Q.animations("pit_anim",{
     stand_right: {frames:[1], flip:false, loop:true, rate: 1/5},
     stand_left: {frames:[1], flip: "x", loop:true, rate: 1/5},
-    walk_right: {frames: [1,2,3,4,5], rate: 1/32, flip:false, loop:true, next: "stand_right"},
-    walk_left: {frames: [1,2,3,4,5], rate: 1/32, flip: "x", loop:true, next: "stand_left"},
+    walk_right: {frames: [1,2,3,4], rate: 1/32, flip:false, loop:true, next: "stand_right"},
+    walk_left: {frames: [1,2,3,4], rate: 1/32, flip: "x", loop:true, next: "stand_left"},
     jump_right: {frames: [6,7], flip: false, loop: false, rate: 1/5,  next: "stand_right"},
     jump_left: {frames: [6,7], flip: "x", loop: false, rate: 1/5, next: "stand_left"},
     lookUp: {frames: [8,9], rate: 1/5, flip: false, loop: false},
-    death: {frames:[0], flip:false, rate:2, loop:false, trigger: "dying"}
+    death: {frames:[0], flip:false, rate:1/5, loop:false, trigger: "dying"},
+    damage_right: {frames:[1,5,1,5], flip:false, rate:1/15, loop:false},
+    damage_left: {frames:[1,5,1,5], flip:false, rate:1/15, loop:"x"}
   });
   //----------------------------------------------------------------------//
 
