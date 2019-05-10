@@ -481,7 +481,7 @@ var game = function(){
     stage.insert(new Q.Monoculus({ x:60, y: 2068, yIni:2067, yFin: 2164, time: 0}));
     stage.insert(new Q.Monoculus({ x:62, y: 2050, yIni:2049, yFin: 2146, time: 1}));
     stage.insert(new Q.Funesto({ x:135, y: 1346, xIni:135, xFin:180}));
-    stage.insert(new Q.FunestoM({ x:135, y: 1346, yIni:135, yFin:180, time: 0}));
+    stage.insert(new Q.FunestoM({ x:135, y: 1046, yIni:1049, yFin:1146, time: 0}));
   });
   
 
