@@ -4,12 +4,12 @@ var game = function(){
       .setup({maximize: true})
       .controls()
       .touch();
-      var SPRITE_FLY=32;
+      
       var SPRITE_PLAYER=1;
       var SPRITE_BULLET=2;
       var SPRITE_ENEMY=3;
       var SPRITE_OBJECT=4;
-      var SPRITE_TOPE=5;
+      var SPRITE_FLY=5;
 
 
   Q.Sprite.extend("Pit",{
