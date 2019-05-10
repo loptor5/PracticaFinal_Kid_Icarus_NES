@@ -252,7 +252,7 @@ var game = function(){
         vy: 10,
         z: 32,
         hit:1,
-        sensor:true
+        sensor:false
       });
 
       this.add("2d, aiBounce, animation");
