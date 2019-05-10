@@ -292,11 +292,11 @@ var game = function(){
         if(this.p.x>=256 || this.p.x<=0){
           this.p.vx= -this.p.vx;
         }*/
-        this.p.time+=0.1;
+        this.p.time+=1;
         var centroX= 256/2;
         var centroY= (this.p.yIni+this.p.yFin)/2;
         var t=this.p.time;
-        scale= 40;
+        scale= 30;
         this.p.x= centroX+scale*Math.cos(t);
         this.p.y= centroY+scale*Math.sin(2*t)/2;
         if((this.p.x>centroX && this.p.y<centroY)||(this.p.x<centroX && this.p.y>centroY)){
