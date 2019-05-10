@@ -457,7 +457,7 @@ var game = function(){
         }else{
         	this.play("funestoML");
         }
-		*/
+		
       }
     }
 
