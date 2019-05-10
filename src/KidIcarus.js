@@ -252,7 +252,8 @@ var game = function(){
         vy: 10,
         z: 32,
         hit:1,
-        sensor:false
+        sensor:false,
+        time:0
       });
 
       this.add("2d, aiBounce, animation");
@@ -283,14 +284,27 @@ var game = function(){
 
     step: function(dt){
       if(this.p.live>0){
-        if(this.p.vx>0) this.play("monoculusR");
+        /*if(this.p.vx>0) this.play("monoculusR");
         if(this.p.vx<0) this.play("monoculusL");
         if(this.p.yIni>=this.p.y || this.p.yFin<=this.p.y){
           this.p.vy= -this.p.vy;
         }
         if(this.p.x>=256 || this.p.x<=0){
           this.p.vx= -this.p.vx;
+        }*/
+        this.p.time+=0.1;
+        var centroX= 256/2;
+        var centroY= (yIni+yFin)/2;
+        var t=time;
+        scale= 3-Math.cos(2*t);
+        this.p.x= centroX+scale*Math.cos(t);
+        this.p.y= centroY+scale*Math.sin(2*t)/2;
+        if((this.p.x>centroX && this.p.y<centroY)||(this.p.x<centroX && this.p.y>centroY)){
+        	this.play("monoculusR");
+        }else{
+        	this.play("monoculusL");
         }
+
       }
     }
 
