@@ -242,7 +242,7 @@ var game = function(){
         sprite: "monoculus_anim",
         sheet: "monoculus",
         type: SPRITE_FLY,
-        collisionMask: SPRITE_BULLET || SPRITE_PLAYER,
+        collisionMask: SPRITE_BULLET && SPRITE_PLAYER,
         gravity: 0,
         frame: 1,
         live:1,
@@ -262,6 +262,7 @@ var game = function(){
 
     hit: function(collision){
       if(collision.obj.isA("Pit") && this.p.live<=0){
+      	this.p.sensor=true;
         this.destroy();
       }
 
@@ -290,10 +291,6 @@ var game = function(){
         if(this.p.x>=256 || this.p.x<=0){
           this.p.vx= -this.p.vx;
         }
-        /*if(this.p.vx==0 || this.p.vy==0){
-          this.p.vy=10;
-          this.p.vx=30;
-        }*/
       }
     }
 
