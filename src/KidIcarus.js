@@ -242,7 +242,7 @@ var game = function(){
         sprite: "monoculus_anim",
         sheet: "monoculus",
         type: SPRITE_FLY,
-        collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
+        collisionMask: SPRITE_BULLET || SPRITE_PLAYER,
         gravity: 0,
         frame: 1,
         live:1,
