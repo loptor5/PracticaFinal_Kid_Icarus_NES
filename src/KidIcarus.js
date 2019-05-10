@@ -398,6 +398,81 @@ var game = function(){
 
   //------------------------------------------------------------------------//
 
+  Q.Sprite.extend("FunestoM", {
+    init: function(p){
+      this._super(p, {
+        sprite: "funestoM_anim",
+        sheet: "funestoM",
+        type: SPRITE_FLY,
+        collisionMask: SPRITE_BULLET,
+        gravity: 0,
+        frame: 1,
+        live:1,
+        exp: 300,
+        heart: 5,
+        vx: 30,
+        vy: 10,
+        z: 32,
+        hit:1,
+        sensor:false
+      });
+
+      this.add("2d, aiBounce, animation");
+      this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
+      this.on("hit", this, "killed");
+    },
+
+    hit: function(collision){
+      if(collision.obj.isA("Pit") && this.p.live<=0){
+        this.destroy();
+      }
+
+    },
+
+    killed: function(collision){
+      if(collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")){
+        this.p.live--;
+        if(this.p.live<=0){
+          this.p.sheet="corazonMini";
+          this.play("funestoMStop");
+          this.p.vx=0;
+          this.p.vy=0;
+          this.p.sensor=true;
+          this.p.collisionMask= SPRITE_PLAYER;
+        }
+      }
+
+    },
+
+    step: function(dt){
+      if(this.p.live>0){
+        this.p.time+=0.01;
+        var centroX= 256/2;
+        var centroY= (this.p.yIni+this.p.yFin)/2;
+        var t=this.p.time;
+        scale= 120;
+        this.p.x= -(centroY+scale*Math.sin(2*t)/2);
+        this.p.y= centroX+scale*Math.cos(t);
+        if((this.p.x>centroX && this.p.y<centroY)||(this.p.x<centroX && this.p.y>centroY)){
+        	this.play("funestoMR");
+        }else{
+        	this.play("funestoML");
+        }
+
+      }
+    }
+
+  });
+  //------------------------------------------------------------------------//
+
+  Q.animations("funestoM_anim", {
+    funestoMR: { frames: [0], flip: false, loop:true , rate:1/10},
+    funestoML: { frames: [0], flip: "x", loop:true, rate:1/10 },
+    funestoMStop: {frames: [0],flip:false, loop:false,rate:1/5}
+  });
+
+  //------------------------------------------------------------------------//
+
   Q.scene("Level101", function(stage) {
     Q.stageTMX("Level101.tmx", stage);
     const player = stage.insert(new Q.Pit());
@@ -407,17 +482,19 @@ var game = function(){
     stage.insert(new Q.Monoculus({ x:60, y: 2068, yIni:2067, yFin: 2164, time: 0}));
     stage.insert(new Q.Monoculus({ x:62, y: 2050, yIni:2049, yFin: 2146, time: 1}));
     stage.insert(new Q.Funesto({ x:135, y: 1346, xIni:135, xFin:180}));
+    stage.insert(new Q.FunestoM({ x:135, y: 1346, yIni:135, yFin:180, time: 0}));
   });
   
 
  
 
-  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, Viperix.png, Viperix.json, Monoculus.png, Monoculus.json, Items.png, Items.json, Funesto.png, Funesto.json", function() {
+  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, Viperix.png, Viperix.json, Monoculus.png, Monoculus.json, Items.png, Items.json, Funesto.png, Funesto.json, FunestoM.png, FunestoM.json", function() {
     Q.compileSheets("Pit.png", "Pit.json");
     Q.compileSheets("Viperix.png", "Viperix.json");
     Q.compileSheets("Monoculus.png", "Monoculus.json");
     Q.compileSheets("Items.png","Items.json");
     Q.compileSheets("Funesto.png", "Funesto.json");
+    Q.compileSheets("FunestoM.png", "FunestoM.json");
     Q.stageScene("Level101");
   });
 };
