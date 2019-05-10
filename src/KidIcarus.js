@@ -294,8 +294,8 @@ var game = function(){
         }*/
         this.p.time+=0.1;
         var centroX= 256/2;
-        var centroY= (yIni+yFin)/2;
-        var t=time;
+        var centroY= (this.p.yIni+this.p.yFin)/2;
+        var t=this.p.time;
         scale= 3-Math.cos(2*t);
         this.p.x= centroX+scale*Math.cos(t);
         this.p.y= centroY+scale*Math.sin(2*t)/2;
