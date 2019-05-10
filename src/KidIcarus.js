@@ -242,7 +242,7 @@ var game = function(){
         sprite: "monoculus_anim",
         sheet: "monoculus",
         type: SPRITE_FLY,
-        collisionMask: SPRITE_BULLET || SPRITE_PLAYER,
+        collisionMask: SPRITE_BULLET,
         gravity: 0,
         frame: 1,
         live:1,
@@ -277,6 +277,7 @@ var game = function(){
           this.p.vx=0;
           this.p.vy=0;
           this.p.sensor=true;
+          this.p.collisionMask= SPRITE_PLAYER;
         }
       }
 
@@ -413,7 +414,7 @@ var game = function(){
     stage.viewport.scale= 2;
     stage.insert(new Q.Viperix({ x: 60, y: 2666}));
     stage.insert(new Q.Monoculus({ x:60, y: 2068, yIni:2067, yFin: 2164}));
-    stage.insert(new Q.Monoculus({ x:60, y: 2046, yIni:2045, yFin: 2142}));
+    stage.insert(new Q.Monoculus({ x:62, y: 2050, yIni:2049, yFin: 2146}));
     stage.insert(new Q.Funesto({ x:135, y: 1346, xIni:135, xFin:180}));
   });
   
