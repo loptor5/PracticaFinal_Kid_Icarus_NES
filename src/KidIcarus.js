@@ -242,7 +242,7 @@ var game = function(){
         sprite: "monoculus_anim",
         sheet: "monoculus",
         type: SPRITE_FLY,
-        collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
+        collisionMask: SPRITE_BULLET || SPRITE_PLAYER,
         gravity: 0,
         frame: 1,
         live:1,
@@ -252,7 +252,7 @@ var game = function(){
         vy: 10,
         z: 32,
         hit:1,
-        sensor:true
+        sensor:false
       });
 
       this.add("2d, aiBounce, animation");
@@ -290,10 +290,10 @@ var game = function(){
         if(this.p.x>=256 || this.p.x<=0){
           this.p.vx= -this.p.vx;
         }
-        if(this.p.vx==0 || this.p.vy==0){
+        /*if(this.p.vx==0 || this.p.vy==0){
           this.p.vy=10;
           this.p.vx=30;
-        }
+        }*/
       }
     }
 
