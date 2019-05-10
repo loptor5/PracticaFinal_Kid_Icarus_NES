@@ -410,8 +410,6 @@ var game = function(){
         live:1,
         exp: 300,
         heart: 5,
-        vx: 30,
-        vy: 10,
         z: 32,
         hit:1,
         sensor:false
@@ -446,11 +444,11 @@ var game = function(){
 
     step: function(dt){
       if(this.p.live>0){
-        this.p.time+=0.01;
+        /*this.p.time+=0.01;
         var centroX= 256/2;
         var centroY= (this.p.yIni+this.p.yFin)/2;
         var t=this.p.time;
-        scale= 10;
+        scale= 1;
         this.p.x= centroY+scale*Math.sin(2*t)/2;
         this.p.y= centroX+scale*Math.cos(t);
         if((this.p.x>centroX && this.p.y<centroY)||(this.p.x<centroX && this.p.y>centroY)){
@@ -458,7 +456,7 @@ var game = function(){
         }else{
         	this.play("funestoML");
         }
-
+		*/
       }
     }
 
