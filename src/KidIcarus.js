@@ -444,7 +444,7 @@ var game = function(){
 
     step: function(dt){
       if(this.p.live>0){
-        /this.p.time+=0.01;
+        this.p.time+=0.01;
         var centroX= 256/2;
         var centroY= (this.p.yIni+this.p.yFin)/2;
         var t=this.p.time;
