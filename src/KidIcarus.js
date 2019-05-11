@@ -229,8 +229,8 @@ var game = function(){
   //------------------------------------------------------------------------//
 
   Q.animations("viperix_anim", {
-    viperR: { frames: [0,1], flip: false, loop:true , rate:1/10},
-    viperL: { frames: [0,1], flip: "x", loop:true, rate:1/10 },
+    viperR: { frames: [0,1], flip: false, loop:true , rate:1/5},
+    viperL: { frames: [0,1], flip: "x", loop:true, rate:1/5 },
     viperStop: {frames: [0],flip:false, loop:false,rate:1/5}
   });
 
@@ -593,8 +593,8 @@ var game = function(){
   //------------------------------------------------------------------------//
 
   Q.animations("netora_anim", {
-    netoraR: { frames: [0,1,2], flip: false, loop:true , rate:1/10},
-    netoraL: { frames: [0,1,2], flip: "x", loop:true, rate:1/10 },
+    netoraR: { frames: [0,1,2], flip: false, loop:true , rate:1/5},
+    netoraL: { frames: [0,1,2], flip: "x", loop:true, rate:1/5 },
     netoraStop: {frames: [0],flip:false, loop:false,rate:1/5}
   });
 
