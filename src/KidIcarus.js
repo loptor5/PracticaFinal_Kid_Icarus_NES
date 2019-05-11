@@ -448,7 +448,7 @@ var game = function(){
         var centroX= 256/2;
         var centroY= (this.p.yIni+this.p.yFin)/2;
         var t=this.p.time;
-        scale= 1;
+        scale= 100;
         this.p.x= centroX+scale*Math.sin(2*t)/2;
         this.p.y= centroY+scale*Math.cos(t);
         if((this.p.x>centroX && this.p.y<centroY)||(this.p.x<centroX && this.p.y>centroY)){
