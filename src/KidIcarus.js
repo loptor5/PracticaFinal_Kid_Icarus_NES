@@ -471,6 +471,80 @@ var game = function(){
 
   //------------------------------------------------------------------------//
 
+  Q.Sprite.extend("Napias", {
+    init: function(p){
+      this._super(p, {
+        sprite: "napias_anim",
+        sheet: "napias",
+        type: SPRITE_FLY,
+        collisionMask: SPRITE_BULLET,
+        gravity: 0,
+        frame: 1,
+        live:2,
+        exp: 0,
+        heart: 5,
+        vx: 30,
+        vy: 10,
+        hit:1,
+        sensor:false
+      });
+
+      this.add("2d, aiBounce, animation");
+      this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
+      this.on("hit", this, "killed");
+    },
+
+    hit: function(collision){
+      if(collision.obj.isA("Pit") && this.p.live<=0){
+        this.destroy();
+      }
+
+    },
+
+    killed: function(collision){
+      if(collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")){
+        this.p.live--;
+        if(this.p.live<=0){
+          this.p.sheet="corazon";
+          this.play("napiasStop");
+          this.p.vx=0;
+          this.p.vy=0;
+          this.p.sensor=true;
+          this.p.collisionMask= SPRITE_PLAYER;
+        }
+      }
+
+    },
+
+    step: function(dt){
+      if(this.p.live>0){
+        this.p.time+=0.01;
+        var centroX= 256/2;
+        var centroY= (this.p.yIni+this.p.yFin)/2;
+        var t=this.p.time;
+        scale= 120;
+        this.p.x= centroX+scale*Math.cos(t);
+        this.p.y= centroY+scale*Math.sin(2*t)/2;
+        if((this.p.x>centroX && this.p.y<centroY)||(this.p.x<centroX && this.p.y>centroY)){
+        	this.play("napiasR");
+        }else{
+        	this.play("napiasL");
+        }
+
+      }
+    }
+
+  });
+  //------------------------------------------------------------------------//
+
+  Q.animations("napias_anim", {
+    napiasR: { frames: [0], flip: false, loop:true , rate:1/10},
+    napiasL: { frames: [0], flip: false, loop:true, rate:1/10 },
+    napiasStop: {frames: [0],flip:false, loop:false,rate:1/5}
+  });
+  //-----------------------------------------------------------------------//
+
+
   Q.scene("Level101", function(stage) {
     Q.stageTMX("Level101.tmx", stage);
     const player = stage.insert(new Q.Pit());
@@ -481,18 +555,20 @@ var game = function(){
     stage.insert(new Q.Monoculus({ x:62, y: 2050, yIni:2049, yFin: 2146, time: 1}));
     stage.insert(new Q.Funesto({ x:135, y: 1346, xIni:135, xFin:180}));
     stage.insert(new Q.FunestoM({ x:135, y: 1046, yIni:1049, yFin:1146, time: 0}));
+    stage.insert(new Q.Napias({ x:135, y: 1046, yIni:2500, yFin:2600, time: 1}));
   });
   
 
  
 
-  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, Viperix.png, Viperix.json, Monoculus.png, Monoculus.json, Items.png, Items.json, Funesto.png, Funesto.json, FunestoM.png, FunestoM.json", function() {
+  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, Viperix.png, Viperix.json, Monoculus.png, Monoculus.json, Items.png, Items.json, Funesto.png, Funesto.json, FunestoM.png, FunestoM.json, Napias.png, Napias.json", function() {
     Q.compileSheets("Pit.png", "Pit.json");
     Q.compileSheets("Viperix.png", "Viperix.json");
     Q.compileSheets("Monoculus.png", "Monoculus.json");
     Q.compileSheets("Items.png","Items.json");
     Q.compileSheets("Funesto.png", "Funesto.json");
     Q.compileSheets("FunestoM.png", "FunestoM.json");
+    Q.compileSheets("Napias.png", "Napias.json");
     Q.stageScene("Level101");
   });
 };
