@@ -538,8 +538,8 @@ var game = function(){
   //------------------------------------------------------------------------//
 
   Q.animations("napias_anim", {
-    napiasR: { frames: [0], flip: false, loop:true , rate:1/10},
-    napiasL: { frames: [0], flip: false, loop:true, rate:1/10 },
+    napiasR: { frames: [0], flip: false, loop:true , rate:1/10, next:"napiasL"},
+    napiasL: { frames: [0], flip: "x", loop:true, rate:1/10, next:"napiasR"},
     napiasStop: {frames: [0],flip:false, loop:false,rate:1/5}
   });
   //-----------------------------------------------------------------------//
