@@ -452,9 +452,9 @@ var game = function(){
         this.p.x= centroX+scale*Math.sin(2*t)/2;
         this.p.y= centroY+scale*Math.cos(t);
         if((this.p.x>centroX && this.p.y<centroY)||(this.p.x<centroX && this.p.y>centroY)){
-        	this.play("funestoMR");
-        }else{
         	this.play("funestoML");
+        }else{
+        	this.play("funestoMR");
         }
 		
       }
