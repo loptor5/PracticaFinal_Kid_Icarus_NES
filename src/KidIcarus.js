@@ -544,6 +544,62 @@ var game = function(){
   });
   //-----------------------------------------------------------------------//
 
+  Q.Sprite.extend("Netora", {
+    init: function(p){
+      this._super(p, {
+        sprite: "netora_anim",
+        sheet: "netora",
+        type: SPRITE_ENEMY,
+        collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
+        gravity: 0.65,
+        frame: 1,
+        live:1,
+        exp: 100,
+        heart: 1,
+        vx:20,
+        hit:1
+      });
+
+      this.add("2d, aiBounce, animation");
+      this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
+      this.on("hit", this, "killed");
+    },
+    hit: function(collision){
+      if(collision.obj.isA("Pit") && this.p.live<=0){
+        this.destroy();
+      }
+
+    },
+    killed: function(collision){
+      if(collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")){
+        this.p.live--;
+        if(this.p.live<=0){
+          this.p.sheet="medioCorazon";
+          this.play("netoraStop");
+          this.p.vx=0;
+        }
+      }
+
+    },
+
+    step: function(dt){
+      if(this.p.live>0){
+        if(this.p.vx>0) this.play("netoraR");
+        if(this.p.vx<0) this.play("netoraL");
+      }
+    }
+
+  });
+  //------------------------------------------------------------------------//
+
+  Q.animations("netora_anim", {
+    netoraR: { frames: [0,1,2], flip: false, loop:true , rate:1/10},
+    netoraL: { frames: [0,1,2], flip: "x", loop:true, rate:1/10 },
+    netoraStop: {frames: [0],flip:false, loop:false,rate:1/5}
+  });
+
+  //----------------------------------------------------------------------//
+
 
   Q.scene("Level101", function(stage) {
     Q.stageTMX("Level101.tmx", stage);
@@ -556,12 +612,13 @@ var game = function(){
     stage.insert(new Q.Funesto({ x:135, y: 1346, xIni:135, xFin:180}));
     stage.insert(new Q.FunestoM({ x:135, y: 1046, yIni:1049, yFin:1146, time: 0}));
     stage.insert(new Q.Napias({ x:135, y: 1046, yIni:2500, yFin:2600, time: 1}));
+    stage.insert(new Q.Netora({ x: 70, y: 2666}));
   });
   
 
  
 
-  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, Viperix.png, Viperix.json, Monoculus.png, Monoculus.json, Items.png, Items.json, Funesto.png, Funesto.json, FunestoM.png, FunestoM.json, Napias.png, Napias.json", function() {
+  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, Viperix.png, Viperix.json, Monoculus.png, Monoculus.json, Items.png, Items.json, Funesto.png, Funesto.json, FunestoM.png, FunestoM.json, Napias.png, Napias.json, Netora.png, Netora.json", function() {
     Q.compileSheets("Pit.png", "Pit.json");
     Q.compileSheets("Viperix.png", "Viperix.json");
     Q.compileSheets("Monoculus.png", "Monoculus.json");
@@ -569,6 +626,7 @@ var game = function(){
     Q.compileSheets("Funesto.png", "Funesto.json");
     Q.compileSheets("FunestoM.png", "FunestoM.json");
     Q.compileSheets("Napias.png", "Napias.json");
+    Q.compileSheets("Netora.png", "Netora.json");
     Q.stageScene("Level101");
   });
 };
