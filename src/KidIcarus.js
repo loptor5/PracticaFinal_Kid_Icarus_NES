@@ -10,6 +10,7 @@ var game = function(){
       var SPRITE_ENEMY=3;
       var SPRITE_OBJECT=4;
       var SPRITE_FLY=5;
+      var SPRITE_BULLET_ENEMY=6;
 
 
   Q.Sprite.extend("Pit",{
@@ -226,6 +227,7 @@ var game = function(){
     }
 
   });
+
   //------------------------------------------------------------------------//
 
   Q.animations("viperix_anim", {
