@@ -647,7 +647,7 @@ var game = function(){
 		        pit= pit.items[0];
 		        if(Math.abs(pit.p.y-this.p.y)<=32){
 		        	this.p.time+=0.1;
-		        	if(this.p.time%2==0){
+		        	if(this.p.time%1==0){
 			        if(pit.p.x-this.p.x>0)
 			       		this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: 20}));
 			        if(pit.p.x-this.p.x<0)
