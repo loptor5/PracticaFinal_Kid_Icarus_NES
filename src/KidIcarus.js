@@ -624,26 +624,14 @@ var game = function(){
       });
 
       this.add("2d, aiBounce, animation");
-      this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
       this.on("hit", this, "killed");
-    },
-
-    hit: function(collision){
-      if(collision.obj.isA("Pit") && this.p.live<=0){
-        this.destroy();
-      }
-
     },
 
     killed: function(collision){
       if(collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")){
         this.p.live--;
         if(this.p.live<=0){
-          this.p.sheet="corazon";
-          this.play("funestoStop");
-          this.p.vx=0;
-          this.p.vy=0;
-        }
+          this.destroy();        }
       }
 
     },
