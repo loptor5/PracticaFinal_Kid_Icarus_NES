@@ -20,8 +20,8 @@ var game = function(){
         sheet: "pit",
         type: SPRITE_PLAYER,
         gravity: 0.50,
-        x: 100,
-        y: 2551,
+        x: 60,
+        y: 2651,
         frame: 1,
         alive:true,
         live: 7,
@@ -620,7 +620,7 @@ var game = function(){
         heart: 10,
         hit:2,
         visible:false,
-        time:0.1
+        time:0
       });
 
       this.add("2d, aiBounce, animation");
@@ -646,12 +646,13 @@ var game = function(){
 	        	}
 		        pit= pit.items[0];
 		        if(Math.abs(pit.p.y-this.p.y)<=32){
-		        	this.p.time+=0.1;
-		        	if(this.p.time%1==0){
-			        if(pit.p.x-this.p.x>0)
-			       		this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: 20}));
-			        if(pit.p.x-this.p.x<0)
-			        	this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: -20}));
+		        	this.p.time+=1;
+		        	if(this.p.time%10==0){
+			        	if(pit.p.x-this.p.x>0)
+			       			this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: 20}));
+			        	if(pit.p.x-this.p.x<0)
+			        		this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: -20}));
+			        	this.p.time=0;
 			    	}
 		      	}
 	  		}
@@ -663,10 +664,10 @@ var game = function(){
   //------------------------------------------------------------------------//
 
   Q.animations("fuego_anim", {
-  	fuegoR1: { frames: [1], flip: false, loop:true , rate:1, next: "fuegoL1"},
-  	fuegoL1: { frames: [1], flip: false, loop:true , rate:1, next: "fuegoR2"},
-    fuegoR2: { frames: [1], flip: false, loop:true , rate:1, next: "fuegoL2"},
-    fuegoL2: { frames: [1], flip: "x", loop:true, rate:1, next: "fuegoR1" }
+  	fuegoR1: { frames: [1], flip: false, loop:true , rate:1/5, next: "fuegoL1"},
+  	fuegoL1: { frames: [1], flip: false, loop:true , rate:1/5, next: "fuegoR2"},
+    fuegoR2: { frames: [1], flip: false, loop:true , rate:1/5, next: "fuegoL2"},
+    fuegoL2: { frames: [1], flip: "x", loop:true, rate:1/5, next: "fuegoR1" }
   });
 
  //-------------------------------------------------------------------------//
