@@ -653,7 +653,7 @@ var game = function(){
 	    if(this.p.live>0){
 	        var pit=Q("Pit");
 	        if(pit.items[0]){
-	        	this.p.visible: true;
+	        	this.p.visible= true;
 		        pit= pit.items[0];
 		        if(pit.p.y==this.p.y){
 		          if(pit.p.x-this.p.x>0)
