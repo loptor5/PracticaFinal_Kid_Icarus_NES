@@ -241,7 +241,7 @@ var game = function ()
         sprite: "viperix_anim",
         sheet: "viperix1",
         type: SPRITE_ENEMY,
-        collisionMask: SPRITE_BULLET,
+        collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
         gravity: 0.65,
         frame: 1,
         live: 1,
@@ -401,7 +401,7 @@ var game = function ()
         sprite: "funesto_anim",
         sheet: "funesto",
         type: SPRITE_ENEMY,
-        collisionMask: SPRITE_BULLET,
+        collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
         gravity: 0.65,
         frame: 1,
         live: 10,
@@ -624,7 +624,7 @@ var game = function ()
 
     killed: function (collision)
     {
-      if (collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp"))
+      if (collision.obj.isA("Arrow") | collision.obj.isA("ArrowUp"))
       {
         this.p.live--;
         if (this.p.live <= 0)
@@ -685,7 +685,7 @@ var game = function ()
         sprite: "netora_anim",
         sheet: "netora",
         type: SPRITE_ENEMY,
-        collisionMask: SPRITE_BULLET,
+        collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
         gravity: 0.65,
         frame: 1,
         live: 1,
@@ -753,7 +753,7 @@ var game = function ()
         sprite: "fuego_anim",
         sheet: "fuego",
         type: SPRITE_ENEMY,
-        collisionMask: SPRITE_BULLET,
+        collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
         gravity: 0.65,
         frame: 1,
         live:10,
