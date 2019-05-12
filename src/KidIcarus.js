@@ -726,7 +726,7 @@ var game = function(){
 
  
 
-  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, Viperix.png, Viperix.json, Monoculus.png, Monoculus.json, Items.png, Items.json, Funesto.png, Funesto.json, FunestoM.png, FunestoM.json, Napias.png, Napias.json, Netora.png, Netora.json, Fuego.png, Fuego,json, EnemyFire.png, EnemyFire.json", function() {
+  Q.loadTMX("Level101.tmx , Level1.png , Pit.png, Pit.json, Viperix.png, Viperix.json, Monoculus.png, Monoculus.json, Items.png, Items.json, Funesto.png, Funesto.json, FunestoM.png, FunestoM.json, Napias.png, Napias.json, Netora.png, Netora.json, Fuego.png, Fuego.json, EnemyFire.png, EnemyFire.json", function() {
     Q.compileSheets("Pit.png", "Pit.json");
     Q.compileSheets("Viperix.png", "Viperix.json");
     Q.compileSheets("Monoculus.png", "Monoculus.json");
