@@ -612,7 +612,7 @@ var game = function(){
         sprite: "fuego_anim",
         sheet: "fuego",
         type: SPRITE_ENEMY,
-        collisionMask: SPRITE_BULLET,
+        collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
         gravity: 0.65,
         frame: 1,
         live:10,
