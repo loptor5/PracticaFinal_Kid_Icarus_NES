@@ -646,9 +646,9 @@ var game = function(){
 		        pit= pit.items[0];
 		        if(Math.abs(pit.p.y-this.p.y)<=32){
 		          if(pit.p.x-this.p.x>0)
-		          	this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y+p.h/8, vx: 20}));
+		          	this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y+this.p.h/8, vx: 20}));
 		          if(pit.p.x-this.p.x<0)
-		           this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y+p.h/8, vx: 20}));
+		           this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y+this.p.h/8, vx: 20}));
 		      	}
 	  		}
     	}
