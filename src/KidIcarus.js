@@ -120,7 +120,7 @@ var game = function ()
 
     hit: function (collision)
     {
-      if (collision.obj.isA("Viperix"))
+      if (collision.obj.isA("Viperix") || collision.obj.isA("Monoculus") || collision.obj.isA("Funesto") || collision.obj.isA("FunestoM") || collision.obj.isA("Napias") ||collision.obj.isA("Fuego")|| collision.obj.isA("EnemyFire")|| collision.obj.isA("Netora"))
       {
         this.p.live--;
         if (this.p.direction == "right")
@@ -443,41 +443,51 @@ var game = function ()
 
     },
 
-    step: function (dt)
-    {
-      if (this.p.live > 0)
-      {
-        var pit = Q("Pit");
-        pit = pit.items[0];
-        if (pit.p.y == this.p.y)
-        {
-          if (pit.p.x - this.p.x > 0) this.p.vx = 60;
-          if (pit.p.x - this.p.x < 0) this.p.vx = -60;
-          if (this.p.vx > 0 && !this.p.running)
-          {
-            this.play("funestoRunR");
-            this.p.running = true;
+    step: function(dt){
 
-          }
-          if (this.p.vx < 0 && !this.p.running)
-          {
-            this.play("funestoRunL");
-            this.p.running = true;
-          }
+      if(this.p.live>0){
 
-        }
-        else
-        {
-          if (this.p.running) this.p.vx = this.p.vx / 6;
-          if (this.p.vx > 0) this.play("funestoR");
-          if (this.p.vx < 0) this.play("funestoL");
-          this.p.running = false;
-        }
-        if (this.p.xIni > this.p.x || this.p.xFin < this.p.x)
-        {
-          this.p.vx = -this.p.vx;
-          this.p.vy = -this.p.vy;
-        }
+        var pit=Q("Pit");
+
+        if(pit.items[0]){
+
+	        pit= pit.items[0];
+
+	        if(pit.p.y==this.p.y){
+
+	          if(pit.p.x-this.p.x>0) this.p.vx=60;
+
+	          if(pit.p.x-this.p.x<0) this.p.vx=-60;
+
+	          if(this.p.vx>0 && !this.p.running){
+
+	            this.play("funestoRunR");
+	            this.p.running=true;
+
+	          } 
+	          if(this.p.vx<0 && !this.p.running){
+
+	            this.play("funestoRunL");
+	            this.p.running=true;
+
+	          } 
+
+	        }else{
+
+	          if(this.p.running) this.p.vx= this.p.vx/6;
+
+	          if(this.p.vx>0) this.play("funestoR");
+
+	          if(this.p.vx<0) this.play("funestoL");
+
+	          this.p.running=false;
+	        }
+	        if(this.p.xIni>this.p.x || this.p.xFin<this.p.x){
+	        	
+	          this.p.vx= -this.p.vx;
+	          this.p.vy= -this.p.vy;
+	        }
+    	}
       }
     }
 
