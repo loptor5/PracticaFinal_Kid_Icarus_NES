@@ -619,7 +619,6 @@ var game = function(){
         exp: 500,
         heart: 10,
         hit:2,
-        vx:10,
         visible:true
       });
 
