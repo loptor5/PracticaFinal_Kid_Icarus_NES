@@ -619,7 +619,7 @@ var game = function(){
         exp: 500,
         heart: 10,
         hit:2,
-        visible:true
+        visible:false
       });
 
       this.add("2d, aiBounce, animation");
@@ -636,11 +636,13 @@ var game = function(){
     },
 
     step: function(dt){
-      	this.play("fuegoR1");
 	    if(this.p.live>0){
 	        var pit=Q("Pit");
 	        if(pit.items[0]){
-	        	this.p.visible= true;
+	        	if(!this.p.visible){
+	        		this.p.visible= true;
+	        		this.play("fuegoR1");
+	        	}
 		        pit= pit.items[0];
 		        if(pit.p.y==this.p.y){
 		          if(pit.p.x-this.p.x>0)
