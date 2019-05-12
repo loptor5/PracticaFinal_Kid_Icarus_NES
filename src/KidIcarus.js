@@ -649,7 +649,7 @@ var game = function(){
     },
 
     step: function(dt){
-      	this.play(fuegoR1);
+      	this.play("fuegoR1");
 	    if(this.p.live>0){
 	        var pit=Q("Pit");
 	        if(pit.items[0]){
