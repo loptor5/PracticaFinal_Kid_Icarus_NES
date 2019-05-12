@@ -644,7 +644,7 @@ var game = function(){
 	        		this.play("fuegoR1");
 	        	}
 		        pit= pit.items[0];
-		        if(pit.p.y==this.p.y){
+		        if(Math.abs(pit.p.y-this.p.y)==16){
 		          if(pit.p.x-this.p.x>0)
 		          	this.stage.insert(new Q.EnemyFire({x: p.x, y: p.y+p.h/8, vx: 20}));
 		          if(pit.p.x-this.p.x<0)
