@@ -885,7 +885,7 @@ var game = function ()
 		      	}
 	  		}
     	}
-	}
+	},
 
 
     lives: function (lives)
