@@ -1,0 +1,5 @@
+{
+	"corazonMini":{"sx":112,"sy":49, "tileW":8,"tileH":7, "frames":1},
+	"medioCorazon": {"sx":16,"sy":49, "tileW":8,"tileH":14, "frames":1},
+	"corazon": {"sx":24,"sy":49, "tileW":14,"tileH":14, "frames":1}
+}

@@ -763,37 +763,10 @@ var game = function ()
     {
       this.p.label = "HEARTS: " + score + " | LIVES: " + Q.state.get("lives");
     },
-<<<<<<< HEAD
-
-    step: function(dt){
-	    if(this.p.live>0){
-	        var pit=Q("Pit");
-	        if(pit.items[0]){
-	        	if(!this.p.visible){
-	        		this.p.visible= true;
-	        		this.play("fuegoR1");
-	        	}
-		        pit= pit.items[0];
-		        if(Math.abs(pit.p.y-this.p.y)<=32){
-		        	this.p.time+=1;
-		        	if(this.p.time%100==0){
-			        	if(pit.p.x-this.p.x>0)
-			       			this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: 20}));
-			        	if(pit.p.x-this.p.x<0)
-			        		this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: -20}));
-			        	this.p.time=0;
-			    	}
-		      	}
-	  		}
-    	}
-	}
-
-=======
     lives: function (lives)
     {
       this.p.label = "HEARTS: " + Q.state.get("score") + " | LIVES: " + lives;
     } 
->>>>>>> a567986acd9137b02dc9661518750a998dee37ce
   });
 
   // HUD
