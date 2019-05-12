@@ -11,7 +11,9 @@ var game = function ()
   var SPRITE_BULLET = 2;
   var SPRITE_ENEMY = 3;
   var SPRITE_OBJECT = 4;
-  var SPRITE_FLY = 5;
+  var SPRITE_BULLET_ENEMY=5;
+  var SPRITE_FLY=6;
+  
 
 
   // PIT
@@ -136,10 +138,11 @@ var game = function ()
         }
       }
     },
+
     die: function ()
     {
       this.destroy();
-      const player = stage.insert(new Q.Pit());
+      const player = this.stage.insert(new Q.Pit());
       stage.add("viewport").follow(player);
       stage.viewport.scale = 2;
     }
@@ -742,28 +745,37 @@ var game = function ()
 
   //----------------------------------------------------------------------//
 
-  // SCORE
+  // Enemigo Fuego
 
-  Q.UI.Text.extend("Score",
-  {
-    init: function (p)
-    {
-        this._super(
-        {
-          label: "HEARTS: 0 | LIVES: 7",
-          color: "white",
-          x: 200,
-          y: 0
-        });
+  Q.Sprite.extend("Fuego", {
+    init: function(p){
+      this._super(p, {
+        sprite: "fuego_anim",
+        sheet: "fuego",
+        type: SPRITE_ENEMY,
+        collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
+        gravity: 0.65,
+        frame: 1,
+        live:10,
+        exp: 500,
+        heart: 10,
+        hit:2,
+        visible:false,
+        time:0
+      });
 
-        Q.state.on("change.score", this, "score");
-        Q.state.on("change.lives", this, "lives");
+      this.add("2d, aiBounce, animation");
+      this.on("hit", this, "killed");
     },
-    score: function (score)
-    {
-      this.p.label = "HEARTS: " + score + " | LIVES: " + Q.state.get("lives");
+
+    killed: function(collision){
+      if(collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")){
+        this.p.live--;
+        if(this.p.live<=0){
+          this.destroy();        }
+      }
+
     },
-<<<<<<< HEAD
 
     step: function(dt){
 	    if(this.p.live>0){
@@ -788,12 +800,98 @@ var game = function ()
     	}
 	}
 
-=======
+  });
+
+  //------------------------------------------------------------------------//
+
+  Q.animations("fuego_anim", {
+  	fuegoR1: { frames: [1], flip: false, loop:true , rate:1/5, next: "fuegoL1"},
+  	fuegoL1: { frames: [1], flip: false, loop:true , rate:1/5, next: "fuegoR2"},
+    fuegoR2: { frames: [1], flip: false, loop:true , rate:1/5, next: "fuegoL2"},
+    fuegoL2: { frames: [1], flip: "x", loop:true, rate:1/5, next: "fuegoR1" }
+  });
+
+ //-------------------------------------------------------------------------//
+
+ //Disparo enemigo
+
+ Q.MovingSprite.extend("EnemyFire", {
+    init: function(p) {
+      this._super( p, {
+        sheet: "enemyFire",
+        sprite: "enemyFire",
+        type: SPRITE_BULLET,
+        collisionMask: SPRITE_PLAYER,
+        sensor: true,
+        sort:true,
+        gravity: 0
+      });
+
+      this.add("2d");
+    },
+
+    step: function(dt){
+      if(this.p.vx==0){
+        this.destroy();
+      }
+      if(this.p.x<0 || this.p.x>257){
+        this.destroy();
+      }
+    }
+  });
+
+ //----------------------------------------------------------------------//
+
+  // SCORE
+
+  Q.UI.Text.extend("Score",
+  {
+    init: function (p)
+    {
+        this._super(
+        {
+          label: "HEARTS: 0 | LIVES: 7",
+          color: "white",
+          x: 200,
+          y: 0
+        });
+
+        Q.state.on("change.score", this, "score");
+        Q.state.on("change.lives", this, "lives");
+    },
+    score: function (score)
+    {
+      this.p.label = "HEARTS: " + score + " | LIVES: " + Q.state.get("lives");
+    },
+
+    step: function(dt){
+	    if(this.p.live>0){
+	        var pit=Q("Pit");
+	        if(pit.items[0]){
+	        	if(!this.p.visible){
+	        		this.p.visible= true;
+	        		this.play("fuegoR1");
+	        	}
+		        pit= pit.items[0];
+		        if(Math.abs(pit.p.y-this.p.y)<=32){
+		        	this.p.time+=1;
+		        	if(this.p.time%100==0){
+			        	if(pit.p.x-this.p.x>0)
+			       			this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: 20}));
+			        	if(pit.p.x-this.p.x<0)
+			        		this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: -20}));
+			        	this.p.time=0;
+			    	}
+		      	}
+	  		}
+    	}
+	}
+
+
     lives: function (lives)
     {
       this.p.label = "HEARTS: " + Q.state.get("score") + " | LIVES: " + lives;
     } 
->>>>>>> a567986acd9137b02dc9661518750a998dee37ce
   });
 
   // HUD
@@ -847,11 +945,12 @@ var game = function ()
     stage.insert(new Q.FunestoM({ x: 135, y: 1046, yIni: 1049, yFin: 1146, time: 0 }));
     stage.insert(new Q.Napias({ x: 135, y: 1046, yIni: 2500, yFin: 2600, time: 1 }));
     stage.insert(new Q.Netora({ x: 70, y: 2666 }));
+    stage.insert(new Q.Fuego({ x: 138, y: 2551 }));
   });
 
   // CARGA COMPONENTES
 
-  Q.loadTMX("Level101.tmx , Level1.png , TitleScreen.png, Pit.png, Pit.json, Viperix.png, Viperix.json, Monoculus.png, Monoculus.json, Items.png, Items.json, Funesto.png, Funesto.json, FunestoM.png, FunestoM.json, Napias.png, Napias.json, Netora.png, Netora.json, Titulo.mp3, Nivel_1.mp3, Nivel_Completado.mp3, Game_Over.mp3, Disparo.mp3, Corazon.mp3, Salto.mp3, Puerta.mp3, Final.mp3, Muerte_Serpiente.mp3", function ()
+  Q.loadTMX("Level101.tmx , Level1.png , TitleScreen.png, Pit.png, Pit.json, Viperix.png, Viperix.json, Monoculus.png, Monoculus.json, Items.png, Items.json, Funesto.png, Funesto.json, FunestoM.png, FunestoM.json, Napias.png, Napias.json, Netora.png, Netora.json, Fuego.png, Fuego.json, EnemyFire.png, EnemyFire.json, Titulo.mp3, Nivel_1.mp3, Nivel_Completado.mp3, Game_Over.mp3, Disparo.mp3, Corazon.mp3, Salto.mp3, Puerta.mp3, Final.mp3, Muerte_Serpiente.mp3", function ()
   {
     Q.compileSheets("Pit.png", "Pit.json");
     Q.compileSheets("Viperix.png", "Viperix.json");
@@ -861,6 +960,8 @@ var game = function ()
     Q.compileSheets("FunestoM.png", "FunestoM.json");
     Q.compileSheets("Napias.png", "Napias.json");
     Q.compileSheets("Netora.png", "Netora.json");
+    Q.compileSheets("Fuego.png", "Fuego.json");
+    Q.compileSheets("EnemyFire.png", "EnemyFire.json");
     Q.stageScene("TitleScreen");
   });
 };
