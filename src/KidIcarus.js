@@ -781,12 +781,12 @@ var game = function ()
 	    if(this.p.live>0){
 	        var pit=Q("Pit");
 	        if(pit.items[0]){
-	        	if(this.p.hidden){
-	        		this.p.hidden= false;
-	        		this.play("fuegoR1");
-	        	}
 		        pit= pit.items[0];
 		        if(Math.abs(pit.p.y-this.p.y)<=32){
+		        	if(this.p.hidden){
+		        		this.p.hidden= false;
+		        		this.play("fuegoR1");
+	        		}
 		        	this.p.time+=1;
 		        	if(this.p.time%100==0){
 			        	if(pit.p.x-this.p.x>0)
@@ -805,10 +805,10 @@ var game = function ()
   //------------------------------------------------------------------------//
 
   Q.animations("fuego_anim", {
-  	fuegoR1: { frames: [1], flip: false, loop:true , rate:1/15, next: "fuegoL1"},
-  	fuegoL1: { frames: [1], flip: "x", loop:true , rate:1/15, next: "fuegoR2"},
-    fuegoR2: { frames: [1], flip: false, loop:true , rate:1/15, next: "fuegoL2"},
-    fuegoL2: { frames: [1], flip: "x", loop:true, rate:1/15, next: "fuegoR1" }
+  	fuegoR1: { frames: [1], flip: false, loop:true , rate:1/10, next: "fuegoL1"},
+  	fuegoL1: { frames: [1], flip: "x", loop:true , rate:1/10, next: "fuegoR2"},
+    fuegoR2: { frames: [1], flip: false, loop:true , rate:1/10, next: "fuegoL2"},
+    fuegoL2: { frames: [1], flip: "x", loop:true, rate:1/10, next: "fuegoR1" }
   });
 
  //-------------------------------------------------------------------------//
