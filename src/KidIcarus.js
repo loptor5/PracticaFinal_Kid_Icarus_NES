@@ -619,7 +619,8 @@ var game = function(){
         exp: 500,
         heart: 10,
         hit:2,
-        visible:false
+        visible:false,
+        time:0.1
       });
 
       this.add("2d, aiBounce, animation");
@@ -645,10 +646,13 @@ var game = function(){
 	        	}
 		        pit= pit.items[0];
 		        if(Math.abs(pit.p.y-this.p.y)<=32){
-		          if(pit.p.x-this.p.x>0)
-		          	this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y+this.p.h/8, vx: 20}));
-		          if(pit.p.x-this.p.x<0)
-		           this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y+this.p.h/8, vx: 20}));
+		        	this.p.time+=0.1;
+		        	if(this.p.time%2==0){
+			        if(pit.p.x-this.p.x>0)
+			       		this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: 20}));
+			        if(pit.p.x-this.p.x<0)
+			        	this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: -20}));
+			    	}
 		      	}
 	  		}
     	}
