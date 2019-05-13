@@ -905,7 +905,7 @@ var game = function ()
       new Q.UI.Button({
         x: 0,
         y: 0,
-       	color: "#000000",
+       	color: "#FFFFFF",
         fill: "#CCCCCC",
         label: "Play Again",
         keyActionName: "fire"
@@ -914,7 +914,7 @@ var game = function ()
 
     const label = container.insert(
       new Q.UI.Text({
-      	color: "#000000",
+      	color: "#FFFFFF",
         x: 10,
         y: -10 - button.p.h,
         label: stage.options.label
