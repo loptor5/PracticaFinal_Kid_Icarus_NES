@@ -27,7 +27,7 @@ var game = function ()
         sprite: "pit_anim",
         sheet: "pit",
         type: SPRITE_PLAYER,
-        collisionMask: SPRITE_ENEMY | SPRITE_BULLET_ENEMY | SPRITE_FLY,
+        collisionMask: SPRITE_ENEMY | SPRITE_BULLET_ENEMY | SPRITE_FLY
         gravity: 0.50,
         x: 60,
         y: 1346,
@@ -80,6 +80,8 @@ var game = function ()
             Q.audio.play("Salto.mp3", { loop: false });
         }
       }
+      if(this.p.timeDamage==10)this.p.timeDamage=0;
+      if(this.p.timeDamage!=0)this.p.timeDamage++;
     },
 
     shoot: function ()
@@ -127,21 +129,18 @@ var game = function ()
       	if(this.p.timeDamage==0){
         	this.p.live-= collision.obj.p.hit;
         	this.p.timeDamage++;
-    	}else{
-
-    		if(this.p.timeDamage==100)this.p.timeDamage=0;
-
-    		if (this.p.direction == "right")
-	        {
-	          this.play("damage_right");
-	        }
-	        else
-	        {
-	          this.play("damage_left");
-	        }
-	        this.p.timeDamage++;
     	}
 
+		
+
+		if (this.p.direction == "right")
+        {
+          this.play("damage_right");
+        }
+        else
+        {
+          this.play("damage_left");
+        }
         
         if (this.p.live <= 0)
         {
