@@ -12,7 +12,8 @@ var game = function ()
   var SPRITE_ENEMY = 3;
   var SPRITE_OBJECT = 4;
   var SPRITE_BULLET_ENEMY=5;
-  var SPRITE_FLY=6;
+  var SPRITE_DOOR=6;
+  var SPRITE_FLY=7;
   
 
 
@@ -128,6 +129,7 @@ var game = function ()
       {
       	if(this.p.timeDamage==0){
         	this.p.live-= collision.obj.p.hit;
+        	Q.state.inc("lives", this.p.live);
         	this.p.timeDamage++;
     	}
 
@@ -153,10 +155,6 @@ var game = function ()
     die: function ()
     {
     	Q.stageScene("endGame", 1, { label: "You Died" });
-      /*this.destroy();
-      const player = this.stage.insert(new Q.Pit());
-      stage.add("viewport").follow(player);
-      stage.viewport.scale = 2;*/
     }
   });
   //----------------------------------------------------------------------//
@@ -344,6 +342,7 @@ var game = function ()
     {
       if (collision.obj.isA("Pit") && this.p.live <= 0)
       {
+      	Q.state.inc("score", 5);
         this.destroy();
       }
 
@@ -549,6 +548,7 @@ var game = function ()
     {
       if (collision.obj.isA("Pit") && this.p.live <= 0)
       {
+      	Q.state.inc("score", 1);
         this.destroy();
       }
 
@@ -639,6 +639,7 @@ var game = function ()
     {
       if (collision.obj.isA("Pit") && this.p.live <= 0)
       {
+      	Q.state.inc("score", 5);
         this.destroy();
       }
 
@@ -738,9 +739,10 @@ var game = function ()
         this.p.live--;
         if (this.p.live <= 0)
         {
-          this.p.sheet = "medioCorazon";
-          this.play("netoraStop");
-          this.p.vx = 0;
+        	Q.state.inc("score", 1);
+          	this.p.sheet = "medioCorazon";
+          	this.play("netoraStop");
+          	this.p.vx = 0;
         }
       }
 
@@ -792,9 +794,15 @@ var game = function ()
 
     killed: function(collision){
       if(collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")){
+
         this.p.live--;
+
         if(this.p.live<=0){
-          this.destroy();        }
+        	Q.state.inc("score", 10);
+          	this.destroy();        
+
+      	}
+
       }
 
     },
@@ -846,7 +854,8 @@ var game = function ()
         collisionMask: SPRITE_PLAYER,
         sensor: true,
         sort:true,
-        gravity: 0
+        gravity: 0,
+        hit: 1
       });
 
       this.add("2d");
@@ -863,6 +872,46 @@ var game = function ()
   });
 
  //----------------------------------------------------------------------//
+
+ // Puerta
+ Q.MovingSprite.extend("Door", {
+    init: function(p) {
+      this._super( p, {
+        sheet: "door",
+        sprite: "door",
+        type: SPRITE_DOOR,
+        collisionMask: SPRITE_PLAYER,
+        sensor: true,
+        sort:true,
+        gravity: 0
+      });
+
+      this.add("2d");
+      this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
+      if(this.p.option==0){
+      	this.p.sheet= "doorAOpen";
+      }else if(this.p.option==1){
+      	this.p.sheet= "doorBOpen";
+      }
+
+    },
+    hit: function(collision){
+    	if (collision.obj.isA("Pit") && this.p.live <= 0)
+      	{
+        	if(this.p.option==0){
+		    	this.p.sheet= "doorAClose";
+		    }else if(this.p.option==1){
+		    	this.p.sheet= "doorBClose";
+		    }
+      	}
+
+    },
+
+    step: function(dt){
+    }
+  });
+
+ //-----------------------------------------------------------------------//
 
   // SCORE
 

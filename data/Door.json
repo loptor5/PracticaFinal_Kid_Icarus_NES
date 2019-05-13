@@ -1,0 +1,6 @@
+{
+	"doorAOpen":{"sx":0,"sy":0, "tileW":16,"tileH":32, "frames":0},
+	"doorAClose":{"sx":17,"sy":0, "tileW":16,"tileH":32, "frames":0},
+	"doorBOpen":{"sx":32,"sy":0, "tileW":16,"tileH":32, "frames":0},
+	"doorBClose":{"sx":48,"sy":0, "tileW":16,"tileH":32, "frames":0}
+}
