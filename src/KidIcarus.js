@@ -292,6 +292,7 @@ var game = function ()
           this.p.sheet = "corazonMini";
           this.play("viperStop");
           this.p.vx = 0;
+          this.p.damage=0;
         }
       }
 
@@ -370,6 +371,7 @@ var game = function ()
           this.p.vy = 0;
           this.p.sensor = true;
           this.p.collisionMask = SPRITE_PLAYER;
+          this.p.damage=0;
         }
       }
 
@@ -458,6 +460,7 @@ var game = function ()
           this.play("funestoStop");
           this.p.vx = 0;
           this.p.vy = 0;
+          this.p.damage=0;
         }
       }
 
@@ -576,6 +579,7 @@ var game = function ()
           this.p.vy = 0;
           this.p.sensor = true;
           this.p.collisionMask = SPRITE_PLAYER;
+          this.p.damage=0;
         }
       }
 
@@ -667,6 +671,7 @@ var game = function ()
           this.p.vy = 0;
           this.p.sensor = true;
           this.p.collisionMask = SPRITE_PLAYER;
+          this.p.damage=0;
         }
       }
 
@@ -752,6 +757,7 @@ var game = function ()
           	this.p.sheet = "medioCorazon";
           	this.play("netoraStop");
           	this.p.vx = 0;
+          	this.p.damage=0;
         }
       }
 
@@ -807,6 +813,7 @@ var game = function ()
         this.p.live--;
 
         if(this.p.live<=0){
+        	this.p.damage=0;
         	Q.state.inc("score", 10);
           	this.destroy();        
 
