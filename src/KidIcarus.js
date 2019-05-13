@@ -27,7 +27,7 @@ var game = function ()
         sprite: "pit_anim",
         sheet: "pit",
         type: SPRITE_PLAYER,
-        collisionMask: SPRITE_ENEMY | SPRITE_BULLET_ENEMY | SPRITE_FLY
+        collisionMask: SPRITE_ENEMY | SPRITE_BULLET_ENEMY | SPRITE_FLY,
         gravity: 0.50,
         x: 60,
         y: 1346,
