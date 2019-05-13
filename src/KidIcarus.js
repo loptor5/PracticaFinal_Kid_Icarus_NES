@@ -126,8 +126,8 @@ var game = function ()
       {
       	if(this.p.timeDamage==0){
         	this.p.live-= collision.obj.p.hit;
+        	this.p.timeDamage++;
     	}else{
-    		this.p.timeDamage++;
 
     		if(this.p.timeDamage==100)this.p.timeDamage=0;
 
@@ -139,6 +139,7 @@ var game = function ()
 	        {
 	          this.play("damage_left");
 	        }
+	        this.p.timeDamage++;
     	}
 
         
