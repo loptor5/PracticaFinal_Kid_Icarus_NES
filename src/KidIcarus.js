@@ -87,71 +87,78 @@ var game = function ()
 
     shoot: function ()
     {
-      var p = this.p;
-      if (p.direction == "right")
-      {
-        this.play("stand_right");
-        this.stage.insert(new Q.Arrow(
-        {
-          x: p.x,
-          y: p.y + p.h / 8,
-          vx: 200
-        }))
-      }
-      else
-      {
-        this.play("stand_left");
-        this.stage.insert(new Q.Arrow(
-        {
-          x: p.x,
-          y: p.y + p.h / 8,
-          vx: -200
-        }))
-      }
+    	if (this.p.alive)
+	      {
+	      var p = this.p;
+	      if (p.direction == "right")
+	      {
+	        this.play("stand_right");
+	        this.stage.insert(new Q.Arrow(
+	        {
+	          x: p.x,
+	          y: p.y + p.h / 8,
+	          vx: 200
+	        }))
+	      }
+	      else
+	      {
+	        this.play("stand_left");
+	        this.stage.insert(new Q.Arrow(
+	        {
+	          x: p.x,
+	          y: p.y + p.h / 8,
+	          vx: -200
+	        }))
+	      }
+  		}
 
     },
 
     shootUp: function ()
     {
-      var p = this.p;
-      this.play("lookUp");
-      this.stage.insert(new Q.ArrowUp(
-      {
-        x: p.x,
-        y: p.y - p.h / 2,
-        vy: -200
-      }));
+    	if (this.p.alive){
+	      var p = this.p;
+	      this.play("lookUp");
+	      this.stage.insert(new Q.ArrowUp(
+	      {
+	        x: p.x,
+	        y: p.y - p.h / 2,
+	        vy: -200
+	      }));
+  		}
     },
 
     hit: function (collision)
     {
-      if (collision.obj.isA("Viperix") || collision.obj.isA("Monoculus") || collision.obj.isA("Funesto") || collision.obj.isA("FunestoM") || collision.obj.isA("Napias") ||collision.obj.isA("Fuego")|| collision.obj.isA("EnemyFire")|| collision.obj.isA("Netora"))
-      {
-      	if(this.p.timeDamage==0){
-        	this.p.live-= collision.obj.p.damage;
-        	Q.state.inc("lives", this.p.live);
-        	this.p.timeDamage++;
-    	}
+    	if (this.p.alive){
+	      if (collision.obj.isA("Viperix") || collision.obj.isA("Monoculus") || collision.obj.isA("Funesto") || collision.obj.isA("FunestoM") || collision.obj.isA("Napias") ||collision.obj.isA("Fuego")|| collision.obj.isA("EnemyFire")|| collision.obj.isA("Netora"))
+	      {
+	      	if(this.p.timeDamage==0){
+	        	this.p.live-= collision.obj.p.damage;
+	        	Q.state.inc("lives", this.p.live);
+	        	this.p.timeDamage++;
+	    	}
 
-		
+			
 
-		if (this.p.direction == "right")
-        {
-          this.play("damage_right");
-        }
-        else
-        {
-          this.play("damage_left");
-        }
-        
-        if (this.p.live <= 0)
-        {
-        	this.p.sensor=false;
-        	this.p.gravity=0;
-          	this.p.alive = false;
-         	 this.play("death");
-        }
-      }
+			if (this.p.direction == "right")
+	        {
+	          this.play("damage_right");
+	        }
+	        else
+	        {
+	          this.play("damage_left");
+	        }
+	        
+	        if (this.p.live <= 0)
+	        {
+	        	this.p.sensor=false;
+	        	this.p.gravity=0;
+	          	this.p.alive = false;
+	         	 this.play("death");
+	        }
+	      }
+  		}
     },
 
     die: function ()
