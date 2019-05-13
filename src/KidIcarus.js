@@ -923,7 +923,7 @@ var game = function ()
 
     button.on("click", function() {
       Q.clearStages();
-      Q.stageScene("level1");
+      Q.stageScene("level101");
     });
 
     container.fit(20);
