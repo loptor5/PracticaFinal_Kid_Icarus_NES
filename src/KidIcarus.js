@@ -44,7 +44,7 @@ var game = function ()
 
       this.add("2d, platformerControls, animation");
       this.on("bump.left, bump.right, bump.up", function (collision) { });
-      this.on("bump.left, bump.right, bump.up", this, "hit");
+      this.on("bump.left, bump.right, bump.up, bump.bottom", this, "hit");
       Q.input.on("fire", this, "shoot");
       Q.input.on("S", this, "shootUp");
       this.on("dying", this, "die");
@@ -171,8 +171,8 @@ var game = function ()
     jump_left: { frames: [7, 6], flip: "x", loop: false, rate: 1 / 5 },
     lookUp: { frames: [8, 9], rate: 1 / 5, flip: false, loop: false },
     death: { frames: [0], flip: false, rate: 1 / 5, loop: false, trigger: "dying" },
-    damage_right: { frames: [5, 1, 5, 1], flip: false, rate: 1 / 15, loop: false },
-    damage_left: { frames: [5, 1, 5, 1], flip: "x", rate: 1 / 15, loop: false }
+    damage_right: { frames: [5, 1, 5, 1], flip: false, rate: 1 / 15, loop: true },
+    damage_left: { frames: [5, 1, 5, 1], flip: "x", rate: 1 / 15, loop: true }
   });
   //----------------------------------------------------------------------//
 
