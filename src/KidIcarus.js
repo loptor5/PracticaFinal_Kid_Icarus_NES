@@ -128,7 +128,7 @@ var game = function ()
       if (collision.obj.isA("Viperix") || collision.obj.isA("Monoculus") || collision.obj.isA("Funesto") || collision.obj.isA("FunestoM") || collision.obj.isA("Napias") ||collision.obj.isA("Fuego")|| collision.obj.isA("EnemyFire")|| collision.obj.isA("Netora"))
       {
       	if(this.p.timeDamage==0){
-        	this.p.live-= collision.obj.p.hit;
+        	this.p.live-= collision.obj.p.damage;
         	Q.state.inc("lives", this.p.live);
         	this.p.timeDamage++;
     	}
@@ -146,8 +146,10 @@ var game = function ()
         
         if (this.p.live <= 0)
         {
-          this.p.alive = false;
-          this.play("death");
+        	this.p.sensor=false;
+        	this.p.gravity=0;
+          	this.p.alive = false;
+         	 this.play("death");
         }
       }
     },
@@ -258,7 +260,7 @@ var game = function ()
         exp: 100,
         heart: 1,
         vx: 20,
-        hit: 1
+        damage: 1
       });
 
       this.add("2d, aiBounce, animation");
@@ -329,7 +331,7 @@ var game = function ()
         vx: 30,
         vy: 10,
         z: 32,
-        hit: 1,
+        damage: 1,
         sensor: false
       });
 
@@ -418,7 +420,7 @@ var game = function ()
         live: 10,
         exp: 500,
         heart: 10,
-        hit: 2,
+        damage: 2,
         vx: 10,
         running: false
       });
@@ -535,7 +537,7 @@ var game = function ()
         exp: 100,
         heart: 1,
         z: 32,
-        hit: 1,
+        damage: 1,
         sensor: false
       });
 
@@ -626,7 +628,7 @@ var game = function ()
         heart: 5,
         vx: 30,
         vy: 10,
-        hit: 1,
+        damage: 1,
         sensor: false
       });
 
@@ -715,7 +717,7 @@ var game = function ()
         exp: 100,
         heart: 1,
         vx: 20,
-        hit: 1
+        damage: 1
       });
 
       this.add("2d, aiBounce, animation");
@@ -855,7 +857,7 @@ var game = function ()
         sensor: true,
         sort:true,
         gravity: 0,
-        hit: 1
+        damage: 1
       });
 
       this.add("2d");
