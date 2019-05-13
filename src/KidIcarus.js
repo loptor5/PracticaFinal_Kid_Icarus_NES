@@ -127,7 +127,7 @@ var game = function ()
         	this.p.live-= collision.obj.p.hit;
     	}else{
     		this.p.timeDamage++;
-    		
+
     		if(this.p.timeDamage==100)this.p.timeDamage=0;
 
     		if (this.p.direction == "right")
@@ -905,6 +905,7 @@ var game = function ()
       new Q.UI.Button({
         x: 0,
         y: 0,
+       	color: "#000000",
         fill: "#CCCCCC",
         label: "Play Again",
         keyActionName: "fire"
@@ -913,6 +914,7 @@ var game = function ()
 
     const label = container.insert(
       new Q.UI.Text({
+      	color: "#000000",
         x: 10,
         y: -10 - button.p.h,
         label: stage.options.label
