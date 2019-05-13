@@ -122,7 +122,7 @@ var game = function ()
     {
       if (collision.obj.isA("Viperix") || collision.obj.isA("Monoculus") || collision.obj.isA("Funesto") || collision.obj.isA("FunestoM") || collision.obj.isA("Napias") ||collision.obj.isA("Fuego")|| collision.obj.isA("EnemyFire")|| collision.obj.isA("Netora"))
       {
-        this.p.live--;
+        this.p.live-= collision.obj.p.hit;
         if (this.p.direction == "right")
         {
           this.play("damage_right");
@@ -131,7 +131,7 @@ var game = function ()
         {
           this.play("damage_left");
         }
-        if (this.p.live == 0)
+        if (this.p.live <= 0)
         {
           this.p.alive = false;
           this.play("death");
