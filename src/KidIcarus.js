@@ -37,7 +37,8 @@ var game = function ()
         direction: "right",
         speed: 80,
         jumpSpeed: -280,
-        jumped: false
+        jumped: false,
+        timeDamage: 0 //tiempo de invulnerabilidad
       });
 
       this.add("2d, platformerControls, animation");
@@ -122,15 +123,24 @@ var game = function ()
     {
       if (collision.obj.isA("Viperix") || collision.obj.isA("Monoculus") || collision.obj.isA("Funesto") || collision.obj.isA("FunestoM") || collision.obj.isA("Napias") ||collision.obj.isA("Fuego")|| collision.obj.isA("EnemyFire")|| collision.obj.isA("Netora"))
       {
-        this.p.live-= collision.obj.p.hit;
-        if (this.p.direction == "right")
-        {
-          this.play("damage_right");
-        }
-        else
-        {
-          this.play("damage_left");
-        }
+      	if(this.p.timeDamage==0){
+        	this.p.live-= collision.obj.p.hit;
+    	}else{
+    		this.p.timeDamage++;
+    		
+    		if(this.p.timeDamage==100)this.p.timeDamage=0;
+
+    		if (this.p.direction == "right")
+	        {
+	          this.play("damage_right");
+	        }
+	        else
+	        {
+	          this.play("damage_left");
+	        }
+    	}
+
+        
         if (this.p.live <= 0)
         {
           this.p.alive = false;
@@ -141,10 +151,11 @@ var game = function ()
 
     die: function ()
     {
-      this.destroy();
+    	Q.stageScene("endGame", 1, { label: "You Died" });
+      /*this.destroy();
       const player = this.stage.insert(new Q.Pit());
       stage.add("viewport").follow(player);
-      stage.viewport.scale = 2;
+      stage.viewport.scale = 2;*/
     }
   });
   //----------------------------------------------------------------------//
@@ -879,6 +890,42 @@ var game = function ()
       this.p.label = "HEARTS: " + Q.state.get("score") + " | LIVES: " + lives;
     } 
   });
+
+  // END GAME
+   Q.scene("endGame", function(stage) {
+    const container = stage.insert(
+      new Q.UI.Container({
+        x: Q.width/2,
+        y: Q.height/2,
+        fill: "rgba(0,0,0,0.5)"
+      })
+    );
+
+    const button = container.insert(
+      new Q.UI.Button({
+        x: 0,
+        y: 0,
+        fill: "#CCCCCC",
+        label: "Play Again",
+        keyActionName: "fire"
+      })
+    );
+
+    const label = container.insert(
+      new Q.UI.Text({
+        x: 10,
+        y: -10 - button.p.h,
+        label: stage.options.label
+      })
+    );
+
+    button.on("click", function() {
+      Q.clearStages();
+      Q.stageScene("level1");
+    });
+
+    container.fit(20);
+});
 
   // HUD
 
