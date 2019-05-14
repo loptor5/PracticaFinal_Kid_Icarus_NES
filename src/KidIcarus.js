@@ -294,6 +294,8 @@ var game = function ()
           this.p.vx = 0;
           this.p.damage=0;
           this.p.collisionMask= SPRITE_PLAYER;
+          this.p.gravity=0;
+          this.p.sensor=false;
         }
       }
 
