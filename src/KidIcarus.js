@@ -197,7 +197,8 @@ var game = function ()
         collisionMask: SPRITE_ENEMY,
         sensor: true,
         sort: true,
-        gravity: 0
+        gravity: 0,
+        z: 20;
       });
 
       this.add("2d");
@@ -293,10 +294,8 @@ var game = function ()
           this.play("viperStop");
           this.p.vx = 0;
           this.p.damage=0;
-          this.p.type= SPRITE_OBJECT;
-          this.p.collisionMask= SPRITE_PLAYER;
-          this.p.gravity=0;
-          this.p.sensor=false;
+          this.p.z=32;
+          this.sensor=false;
         }
       }
 
