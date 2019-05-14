@@ -45,7 +45,7 @@ var game = function ()
 
       this.add("2d, platformerControls, animation");
       this.on("bump.left, bump.right, bump.up", function (collision) { });
-      this.on("bump.left, bump.right, bump.up, bump.bottom", this, "hit");
+      this.on("bump.left, bump.right, bump.up, bump.bottom, bump.top", this, "hit");
       Q.input.on("fire", this, "shoot");
       Q.input.on("S", this, "shootUp");
       this.on("dying", this, "die");
@@ -59,13 +59,13 @@ var game = function ()
         // Si se sale de los limites
         if (this.p.x > 257) this.p.x = 1;
         if (this.p.x < 0) this.p.x = 256;
-        /*
+        
         if (this.p.vy == 0 && this.p.vx == 0 && !this.p.ignoreControls)
         {
           this.play("stand_" + this.p.direction);
           this.p.jumped = false;
         }
-        else */if (this.p.landed > 0 && !this.p.ignoreControls)
+        else if (this.p.landed > 0 && !this.p.ignoreControls)
         {
           this.p.jumped = false;
           this.play("walk_" + this.p.direction);
@@ -174,8 +174,8 @@ var game = function ()
     stand_left: { frames: [1], flip: "x", loop: true, rate: 1 / 5 },
     walk_right: { frames: [1, 4, 3, 2], rate: 1 / 20, flip: false, loop: true, next: "stand_right" },
     walk_left: { frames: [1, 4, 3, 2], rate: 1 / 20, flip: "x", loop: true, next: "stand_left" },
-    jump_right: { frames: [7, 6], flip: false, loop: false, rate: 1 / 5, next: "stand_right"},
-    jump_left: { frames: [7, 6], flip: "x", loop: false, rate: 1 / 5, next: "stand_left"  },
+    jump_right: { frames: [7, 6], flip: false, loop: false, rate: 1 / 5 },
+    jump_left: { frames: [7, 6], flip: "x", loop: false, rate: 1 / 5 },
     lookUp: { frames: [8, 9], rate: 1 / 5, flip: false, loop: false },
     death: { frames: [0], flip: false, rate: 1 / 5, loop: false, trigger: "dying" },
     damage_right: { frames: [5, 1, 5, 1], flip: false, rate: 1 / 15, loop: true },
@@ -293,6 +293,7 @@ var game = function ()
           this.play("viperStop");
           this.p.vx = 0;
           this.p.damage=0;
+          this.p.type= SPRITE_OBJECT;
           this.p.collisionMask= SPRITE_PLAYER;
           this.p.gravity=0;
           this.p.sensor=false;
