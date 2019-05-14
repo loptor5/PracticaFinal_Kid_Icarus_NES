@@ -175,7 +175,7 @@ var game = function ()
     walk_right: { frames: [1, 4, 3, 2], rate: 1 / 20, flip: false, loop: true, next: "stand_right" },
     walk_left: { frames: [1, 4, 3, 2], rate: 1 / 20, flip: "x", loop: true, next: "stand_left" },
     jump_right: { frames: [7, 6], flip: false, loop: false, rate: 1 / 5, next: "stand_right"},
-    jump_left: { frames: [7, 6], flip: "x", loop: false, rate: 1 / 5, , next: "stand_left"  },
+    jump_left: { frames: [7, 6], flip: "x", loop: false, rate: 1 / 5, next: "stand_left"  },
     lookUp: { frames: [8, 9], rate: 1 / 5, flip: false, loop: false },
     death: { frames: [0], flip: false, rate: 1 / 5, loop: false, trigger: "dying" },
     damage_right: { frames: [5, 1, 5, 1], flip: false, rate: 1 / 15, loop: true },
