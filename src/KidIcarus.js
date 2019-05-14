@@ -64,8 +64,8 @@ var game = function ()
         {
           this.play("stand_" + this.p.direction);
           this.p.jumped = false;
-        }*/
-        else if (this.p.landed > 0 && !this.p.ignoreControls)
+        }
+        else */if (this.p.landed > 0 && !this.p.ignoreControls)
         {
           this.p.jumped = false;
           this.play("walk_" + this.p.direction);
