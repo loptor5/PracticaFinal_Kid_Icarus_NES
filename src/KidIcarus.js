@@ -266,7 +266,7 @@ var game = function ()
         live: 1,
         exp: 100,
         heart: 1,
-        vx: 20,
+        vx: 10,
         damage: 1
       });
 
@@ -293,6 +293,8 @@ var game = function ()
           this.play("viperStop");
           this.p.vx = 0;
           this.p.damage=0;
+          this.p.type= SPRITE_OBJECT;
+          this.p.collisionMask=SPRITE_PLAYER;
           this.p.z=32;
           this.p.sensor=false;
         }
@@ -304,6 +306,8 @@ var game = function ()
     {
       if (this.p.live > 0)
       {
+      	if (this.p.x > 257) this.p.x = 1;
+        if (this.p.x < 0) this.p.x = 256;
         if (this.p.vx > 0) this.play("viperR");
         if (this.p.vx < 0) this.play("viperL");
       }
