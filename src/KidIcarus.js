@@ -857,7 +857,7 @@ var game = function ()
 		        		this.play("fuegoR1");
 	        		}
 		        	this.p.time+=1;
-		        	if(this.p.time%100==0){
+		        	if(this.p.time%300==0){
 			        	if(pit.p.x-this.p.x>0)
 			       			this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: 20}));
 			        	if(pit.p.x-this.p.x<0)
@@ -1095,8 +1095,8 @@ var game = function ()
     stage.insert(new Q.Monoculus({ x: 32, y: 1776, yIni: 1775, yFin: 18776, time: 0.75 }));
     stage.insert(new Q.Monoculus({ x: 32, y: 1360, yIni: 1359, yFin: 1460, time: 0 }));
     stage.insert(new Q.Funesto({ x: 135, y: 1346, xIni: 134, xFin: 180 }));
-    stage.insert(new Q.Napias({ x: 32, y: 1088, yIni: 1087, yFin: 1188, time: 1 }));
-    stage.insert(new Q.Napias({ x: 32, y: 1056, yIni: 1054, yFin: 1156, time: 0.75 }));
+    //stage.insert(new Q.Napias({ x: 32, y: 1088, yIni: 1087, yFin: 1188, time: 1 }));
+    //stage.insert(new Q.Napias({ x: 32, y: 1056, yIni: 1054, yFin: 1156, time: 0.75 }));
     stage.insert(new Q.Napias({ x: 32, y: 1024, yIni: 1023, yFin: 1124, time: 0.5 }));
     stage.insert(new Q.Napias({ x: 32, y: 992, yIni: 991, yFin: 1092, time: 0.25 }));
     stage.insert(new Q.Funesto({ x: 96, y: 1104, xIni: 96, xFin: 176 }));
@@ -1107,8 +1107,6 @@ var game = function ()
     stage.insert(new Q.Funesto({ x: 48, y: 544, xIni: 47, xFin: 80 }));
     stage.insert(new Q.Funesto({ x: 128, y: 480, xIni: 127, xFin: 176 }));
     stage.insert(new Q.Fuego({ x: 176, y: 480 }));
-    stage.insert(new Q.FunestoM({ x: 112, y: 400, yIni: 399, yFin: 500, time: 0 }));
-    stage.insert(new Q.FunestoM({ x: 112, y: 432, yIni: 431, yFin: 532, time: 1 }));
     stage.insert(new Q.Fuego({ x: 48, y: 432 }));
     stage.insert(new Q.Fuego({ x: 96, y: 256 }));
     stage.insert(new Q.Netora({ x: 80, y: 128 }));
