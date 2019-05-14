@@ -135,7 +135,7 @@ var game = function ()
 	      {
 	      	if(this.p.timeDamage==0){
 	        	this.p.live-= collision.obj.p.damage;
-	        	Q.state.inc("lives", this.p.live);
+	        	// Falta reducir su vida aqui
 	        	this.p.timeDamage++;
 	    	}
 
