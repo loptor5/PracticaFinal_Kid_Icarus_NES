@@ -39,7 +39,7 @@ var game = function ()
         direction: "right",
         speed: 80,
         jumpSpeed: -280,
-        jumped: false,
+        jumps: 0,
         timeDamage: 0 //tiempo de invulnerabilidad
       });
 
@@ -63,32 +63,40 @@ var game = function ()
         if (this.p.vy == 0 && this.p.vx == 0 && !this.p.ignoreControls)
         {
           this.play("stand_" + this.p.direction);
-          this.p.jumped = false;
+          this.p.jumped = 0;
         }
         else if (this.p.landed > 0 && !this.p.ignoreControls)
         {
-          this.p.jumped = false;
           this.play("walk_" + this.p.direction);
-            
+          this.p.jumped = 0;
         }
         else if (!this.p.ignoreControls)
-        { 
-          this.p.jumped = true;
-          this.play("jump_" + this.p.direction);
+        {
+          if(this.p.vy < 0)
+          {
+            this.play("jump_up_" + this.p.direction);
+          }
+          else
+          {
+            this.play("jump_down_" + this.p.direction);
+          }
+          
+          this.p.jumped++;
         }
 
-        if (this.p.jumped) {
-            Q.audio.play("Salto.mp3", { loop: false });
+        if (this.p.jumped == 1) {
+          Q.audio.play("Salto.mp3", { loop: false });
         }
       }
-      if(this.p.timeDamage==10)this.p.timeDamage=0;
-      if(this.p.timeDamage!=0)this.p.timeDamage++;
+      if(this.p.timeDamage == 10) this.p.timeDamage = 0;
+      if(this.p.timeDamage != 0) this.p.timeDamage++;
     },
 
     shoot: function ()
     {
     	if (this.p.alive)
-	      {
+	    {
+        Q.audio.play("Disparo.mp3", { loop: false }); // audio de disparo
 	      var p = this.p;
 	      if (p.direction == "right")
 	      {
@@ -111,12 +119,13 @@ var game = function ()
 	        }))
 	      }
   		}
-
     },
 
     shootUp: function ()
     {
-    	if (this.p.alive){
+      if (this.p.alive)
+      {
+        Q.audio.play("Disparo.mp3", { loop: false }); // audio de disparo
 	      var p = this.p;
 	      this.play("lookUp");
 	      this.stage.insert(new Q.ArrowUp(
@@ -130,40 +139,45 @@ var game = function ()
 
     hit: function (collision)
     {
-    	if (this.p.alive){
+      if (this.p.alive)
+      {
 	      if (collision.obj.isA("Viperix") || collision.obj.isA("Monoculus") || collision.obj.isA("Funesto") || collision.obj.isA("FunestoM") || collision.obj.isA("Napias") ||collision.obj.isA("Fuego")|| collision.obj.isA("EnemyFire")|| collision.obj.isA("Netora"))
 	      {
-	      	if(this.p.timeDamage==0){
-	        	this.p.live-= collision.obj.p.damage;
-	        	// Falta reducir su vida aqui
-	        	this.p.timeDamage++;
-	    	}
-
-			
-
-			if (this.p.direction == "right")
-	        {
-	          this.play("damage_right");
-	        }
-	        else
-	        {
-	          this.play("damage_left");
-	        }
-	        
-	        if (this.p.live <= 0)
-	        {
-	        	this.p.sensor=false;
-	        	this.p.gravity=0;
-	          	this.p.alive = false;
-	         	 this.play("death");
-	        }
-	      }
-  		}
+          if(this.p.timeDamage == 0)
+          {
+	        	this.p.live -= collision.obj.p.damage;
+            // Falta reducir su vida aqui
+            Q.state.set("lives", this.p.live);
+            //Q.state.set("live", this.p.live);
+            this.p.timeDamage++;
+            
+          }
+          this.play("damage_" + this.p.direction);
+          /*
+          if (this.p.direction == "right")
+          {
+            this.play("damage_right");
+          }
+          else
+          {
+            this.play("damage_left");
+          }
+          */  
+          if (this.p.live <= 0)
+          {
+            this.p.sensor = false;
+            this.p.gravity = 0;
+            this.p.alive = false;
+            this.play("death");
+          }
+        }
+      }
     },
 
     die: function ()
     {
-    	Q.stageScene("endGame", 1, { label: "You Died" });
+      this.destroy(); // elimina el personaje
+      Q.stageScene("endGame", 1, { label: "You Died" });
     }
   });
   //----------------------------------------------------------------------//
@@ -174,8 +188,10 @@ var game = function ()
     stand_left: { frames: [1], flip: "x", loop: true, rate: 1 / 5 },
     walk_right: { frames: [1, 4, 3, 2], rate: 1 / 20, flip: false, loop: true, next: "stand_right" },
     walk_left: { frames: [1, 4, 3, 2], rate: 1 / 20, flip: "x", loop: true, next: "stand_left" },
-    jump_right: { frames: [7, 6], flip: false, loop: false, rate: 1 / 5 },
-    jump_left: { frames: [7, 6], flip: "x", loop: false, rate: 1 / 5 },
+    jump_up_right: { frames: [7], flip: false, loop: false, rate: 1 / 5 },
+    jump_up_left: { frames: [7], flip: "x", loop: false, rate: 1 / 5 },
+    jump_down_right: { frames: [6], flip: false, loop: false, rate: 1 / 5 },
+    jump_down_left: { frames: [6], flip: "x", loop: false, rate: 1 / 5 },
     lookUp: { frames: [8, 9], rate: 1 / 5, flip: false, loop: false },
     death: { frames: [0], flip: false, rate: 1 / 5, loop: false, trigger: "dying" },
     damage_right: { frames: [5, 1, 5, 1], flip: false, rate: 1 / 15, loop: true },
@@ -278,6 +294,7 @@ var game = function ()
     {
       if (collision.obj.isA("Pit") && this.p.live <= 0)
       {
+        Q.state.inc("score", 5);
         this.destroy();
       }
 
@@ -292,11 +309,11 @@ var game = function ()
           this.p.sheet = "corazonMini";
           this.play("viperStop");
           this.p.vx = 0;
-          this.p.damage=0;
-          this.p.type= SPRITE_OBJECT;
-          this.p.collisionMask=SPRITE_PLAYER;
-          this.p.z=32;
-          this.p.sensor=false;
+          this.p.damage = 0;
+          this.p.type = SPRITE_OBJECT;
+          this.p.collisionMask = SPRITE_PLAYER;
+          this.p.z = 32;
+          this.p.sensor = false;
         }
       }
 
@@ -964,42 +981,50 @@ var game = function ()
   });
 
   // END GAME
-   Q.scene("endGame", function(stage) {
+  Q.scene("endGame", function(stage)
+  {
+    Q.audio.stop(); // para toda la musica
+    Q.audio.play("Game_Over.mp3", { loop: false }); // Reproduce la musica de Game Over
+
     const container = stage.insert(
-      new Q.UI.Container({
-        x: Q.width/2,
-        y: Q.height/2,
-        fill: "rgba(0,0,0,0.5)"
-      })
-    );
+    new Q.UI.Container(
+    {
+      x: Q.width/2,
+      y: Q.height/2,
+      fill: "rgba(0,0,0,0.5)"
+    }));
 
     const button = container.insert(
-      new Q.UI.Button({
-        x: 0,
-        y: 0,
-       	color: "#FFFFFF",
-        fill: "#CCCCCC",
-        label: "Play Again",
-        keyActionName: "fire"
-      })
-    );
+    new Q.UI.Button(
+    {
+      x: 0,
+      y: 0,
+      color: "#FFFFFF",
+      fill: "#CCCCCC",
+      label: "Play Again"
+      //keyActionName: "fire"
+    }));
 
     const label = container.insert(
-      new Q.UI.Text({
-      	color: "#FFFFFF",
-        x: 10,
-        y: -10 - button.p.h,
-        label: stage.options.label
-      })
-    );
+    new Q.UI.Text(
+    {
+      color: "#FFFFFF",
+      x: 10,
+      y: -10 - button.p.h,
+      label: stage.options.label
+    }));
 
-    button.on("click", function() {
+    button.on("click", function()
+    {
+      Q.audio.stop(); // para toda la musica
       Q.clearStages();
-      Q.stageScene("level101");
+      Q.stageScene("Level101");
+      Q.stageScene("HUD", 1);
     });
 
     container.fit(20);
-});
+
+  });
 
   // HUD
 
@@ -1025,15 +1050,11 @@ var game = function ()
 
     Q.input.on("confirm", function()
     {
-      //Q.audio.stop();
+      Q.audio.stop(); // para toda la musica
       Q.clearStages();
       Q.stageScene("Level101");
       Q.stageScene("HUD", 1);
     });
-
-    // Restart hearts and lives
-    Q.state.set({ score: 0, lives: 7 });
-    //Q.state.set("lives",5);
   });
 
   // NIVEL 1
@@ -1066,13 +1087,10 @@ var game = function ()
    	stage.insert(new Q.Monoculus({ x: 32, y: 2048, yIni: 2047, yFin: 2147, time: 0 }));
    	stage.insert(new Q.Monoculus({ x: 32, y: 2032, yIni: 2031, yFin: 2131, time: 0.5 }));
    	stage.insert(new Q.Monoculus({ x: 32, y: 2016, yIni: 2015, yFin: 2115, time: 1 }));
-   	stage.insert(new Q.Monoculus({ x: 32, y: 2000, yIni: 1999, yFin: 2199, time: 1.5 }));
-
-
-
-
-
-
+    stage.insert(new Q.Monoculus({ x: 32, y: 2000, yIni: 1999, yFin: 2199, time: 1.5 }));
+     
+    // INICIALIZA SCORE
+    Q.state.set({ score: 0, lives: 7 });
   });
 
   // CARGA COMPONENTES
