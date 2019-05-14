@@ -293,6 +293,7 @@ var game = function ()
           this.play("viperStop");
           this.p.vx = 0;
           this.p.damage=0;
+          this.p.collisionMask= SPRITE_PLAYER;
         }
       }
 
@@ -1049,9 +1050,15 @@ var game = function ()
     stage.insert(new Q.Netora({ x: 70, y: 2666 }));
     stage.insert(new Q.Fuego({ x: 138, y: 2551 }));
     */
-   	stage.insert(new Q.Viperix({ x: 80, y: 2615 }));
-   	stage.insert(new Q.Viperix({ x: 100, y: 2615 }));
-   	stage.insert(new Q.Viperix({ x: 130, y: 2615 }));
+   	stage.insert(new Q.Viperix({ x: 96, y: 2592 }));
+   	stage.insert(new Q.Viperix({ x: 112, y: 2592 }));
+   	stage.insert(new Q.Viperix({ x: 128, y: 2592 }));
+   	stage.insert(new Q.Viperix({ x: 64, y: 2592 }));
+   	stage.insert(new Q.Viperix({ x: 176, y: 2528 }));
+   	stage.insert(new Q.Viperix({ x: 192, y: 2528 }));
+   	stage.insert(new Q.Viperix({ x: 208, y: 2528 }));
+
+
   });
 
   // CARGA COMPONENTES
