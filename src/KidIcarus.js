@@ -198,7 +198,7 @@ var game = function ()
         sensor: true,
         sort: true,
         gravity: 0,
-        z: 20;
+        z: 20
       });
 
       this.add("2d");
