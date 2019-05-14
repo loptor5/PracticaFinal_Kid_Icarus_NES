@@ -1039,6 +1039,7 @@ var game = function ()
     const player = stage.insert(new Q.Pit());
     stage.add("viewport").follow(player);
     stage.viewport.scale = 2;
+    /*
     stage.insert(new Q.Viperix({ x: 60, y: 2666 }));
     stage.insert(new Q.Monoculus({ x: 60, y: 2068, yIni: 2067, yFin: 2164, time: 0 }));
     stage.insert(new Q.Monoculus({ x: 62, y: 2050, yIni: 2049, yFin: 2146, time: 1 }));
@@ -1047,6 +1048,10 @@ var game = function ()
     stage.insert(new Q.Napias({ x: 135, y: 1046, yIni: 2500, yFin: 2600, time: 1 }));
     stage.insert(new Q.Netora({ x: 70, y: 2666 }));
     stage.insert(new Q.Fuego({ x: 138, y: 2551 }));
+    */
+   	stage.insert(new Q.Viperix({ x: 80, y: 2615 }));
+   	stage.insert(new Q.Viperix({ x: 100, y: 2615 }));
+   	stage.insert(new Q.Viperix({ x: 130, y: 2615 }));
   });
 
   // CARGA COMPONENTES
