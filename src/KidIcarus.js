@@ -197,8 +197,7 @@ var game = function ()
         collisionMask: SPRITE_ENEMY,
         sensor: true,
         sort: true,
-        gravity: 0,
-        z: 20
+        gravity: 0
       });
 
       this.add("2d");
@@ -295,7 +294,7 @@ var game = function ()
           this.p.vx = 0;
           this.p.damage=0;
           this.p.z=32;
-          this.sensor=false;
+          this.p.sensor=false;
         }
       }
 
