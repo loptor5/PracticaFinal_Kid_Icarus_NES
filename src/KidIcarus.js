@@ -952,6 +952,64 @@ var game = function ()
     }
 
   });
+ //------------------------------------------------------------------------//
+
+ //DOOR
+
+ Q.MovingSprite.extend("Door",
+  {
+    init: function (p)
+    {
+      this._super(p,
+      {
+        type: SPRITE_DOOR,
+        collisionMask: SPRITE_PLAYER,
+        gravity: 0,
+        frame: 0,
+        sensor: true
+        //tipoPuerta sera puertaA o puertaB
+        //modelo indicará a donde transporta al personaje
+      });
+
+      this.add("2d");
+      this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
+    },
+
+    hit: function (collision)
+    {
+      if (collision.obj.isA("Pit"))
+      {
+      	//Según el tipo de puerta te mandará a un lugar a otro
+      	if(this.p.modelo==0){ // La ultima puerta
+      		Q.stageScene("winGame", 1, { label: "You Won!" });
+      	}else if(this.p.modelo==1){
+      		collision.obj.p.x=208;
+      		collision.obj.p.y=3216;
+      		this.p.sheet=tipoPuerta+"Close";
+      		this.p.modelo=-1;
+      	}else if(this.p.modelo==2){
+      		collision.obj.p.x=208;
+      		collision.obj.p.y=2528;
+      		//No la cerramos porque el modelo 1 y el 3 te llevan a la misma habitación
+      	}else if(this.p.modelo==3){
+      		collision.obj.p.x=208;
+      		collision.obj.p.y=3216;
+      		this.p.sheet=tipoPuerta+"Close";
+      		this.p.modelo=-1;
+      	}else if(this.p.modelo==4){
+      		collision.obj.p.x=208;
+      		collision.obj.p.y=2976;
+      		this.p.sheet=tipoPuerta+"Close";
+      		this.p.modelo=-1;
+      	}else if(this.p.modelo==5){
+      		collision.obj.p.x=160;
+      		collision.obj.p.y=1104;
+      	}
+      }
+
+    }
+
+  });
   //----------------------------------------------------------------------//
 
   // SCORE
@@ -1028,6 +1086,45 @@ var game = function ()
 
   });
 
+  //WIN GAME
+  Q.scene("winGame", function(stage) {
+    const container = stage.insert(
+      new Q.UI.Container({
+        x: Q.width/2,
+        y: Q.height/2,
+        fill: "rgba(0,0,0,0.5)"
+      })
+    );
+
+    const button = container.insert(
+      new Q.UI.Button({
+        x: 0,
+        y: 0,
+        fill: "#FFFFFF",
+        label: "Play Again",
+        keyActionName: "fire"
+      })
+    );
+
+    const label = container.insert(
+      new Q.UI.Text({
+      	color: "#FFFFFF",
+        x: 10,
+        y: -10 - button.p.h,
+        label: stage.options.label
+      })
+    );
+
+    button.on("click", function() {
+      Q.audio.stop(); // para toda la musica
+      Q.clearStages();
+      Q.stageScene("level101");
+      Q.stageScene("HUD", 1);
+    });
+    
+    container.fit(20);
+  });
+
   // HUD
 
   Q.scene("HUD", function (stage)
@@ -1102,6 +1199,17 @@ var game = function ()
     stage.insert(new Q.Fuego({ x: 96, y: 256 }));
     stage.insert(new Q.Netora({ x: 80, y: 128 }));
     stage.insert(new Q.Netora({ x: 192, y: 128 }));
+
+    stage.insert(new Q.Door({x: 16, y:2768, tipoPuerta: "doorB", sheet: "doorBClose", modelo:-1 }));
+    stage.insert(new Q.Door({x: 224, y:3216, tipoPuerta: "doorB", sheet: "doorBOpen", modelo: 2 }));
+    stage.insert(new Q.Door({x: 224, y:2976, tipoPuerta: "doorB", sheet: "doorBOpen", modelo: 5 }));
+    stage.insert(new Q.Door({x: 224, y:2528, tipoPuerta: "doorA", sheet: "doorAOpen", modelo: 1 }));
+
+    stage.insert(new Q.Door({x: 48, y:1328, tipoPuerta: "doorA", sheet: "doorAOpen", modelo: 3 }));
+    stage.insert(new Q.Door({x: 176, y:1104, tipoPuerta: "doorA", sheet: "doorAOpen", modelo: 4 }));
+    stage.insert(new Q.Door({x: 224, y:128, tipoPuerta: "doorB", sheet: "doorBOpen", modelo: 0 }));
+
+
     
 
 
@@ -1118,7 +1226,7 @@ var game = function ()
 
   // CARGA COMPONENTES
 
-  Q.loadTMX("Level101.tmx , Level1.png , TitleScreen.png, Pit.png, Pit.json, Viperix.png, Viperix.json, Monoculus.png, Monoculus.json, Items.png, Items.json, Funesto.png, Funesto.json, FunestoM.png, FunestoM.json, Napias.png, Napias.json, Netora.png, Netora.json, Fuego.png, Fuego.json, EnemyFire.png, EnemyFire.json, Titulo.mp3, Nivel_1.mp3, Nivel_Completado.mp3, Game_Over.mp3, Disparo.mp3, Corazon.mp3, Salto.mp3, Puerta.mp3, Final.mp3, Muerte_Serpiente.mp3", function ()
+  Q.loadTMX("Level101.tmx , Level1.png , TitleScreen.png, Pit.png, Pit.json, Viperix.png, Viperix.json, Monoculus.png, Monoculus.json, Items.png, Items.json, Funesto.png, Funesto.json, FunestoM.png, FunestoM.json, Napias.png, Napias.json, Netora.png, Netora.json, Fuego.png, Fuego.json, EnemyFire.png, EnemyFire.json, Titulo.mp3, Nivel_1.mp3, Nivel_Completado.mp3, Game_Over.mp3, Disparo.mp3, Corazon.mp3, Salto.mp3, Puerta.mp3, Final.mp3, Muerte_Serpiente.mp3, Door.png, Door.json", function ()
   {
     Q.compileSheets("Pit.png", "Pit.json");
     Q.compileSheets("Viperix.png", "Viperix.json");
@@ -1130,6 +1238,7 @@ var game = function ()
     Q.compileSheets("Netora.png", "Netora.json");
     Q.compileSheets("Fuego.png", "Fuego.json");
     Q.compileSheets("EnemyFire.png", "EnemyFire.json");
+    Q.compileSheets("Door.png", "Door.json");
     Q.stageScene("TitleScreen");
   });
 };
