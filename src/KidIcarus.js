@@ -10,10 +10,10 @@ var game = function ()
   var SPRITE_PLAYER = 1;
   var SPRITE_BULLET = 2;
   var SPRITE_ENEMY = 3;
-  var SPRITE_OBJECT = 4;
-  var SPRITE_BULLET_ENEMY=5;
-  var SPRITE_DOOR=6;
-  var SPRITE_FLY=7;
+  var SPRITE_OBJECT = 5;
+  var SPRITE_BULLET_ENEMY=9;
+  var SPRITE_DOOR=17;
+  var SPRITE_FLY=32;
   
 
 
