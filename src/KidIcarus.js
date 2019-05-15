@@ -786,6 +786,8 @@ var game = function ()
     {
       if (this.p.live > 0)
       {
+      	if (this.p.x > 257) this.p.x = 1;
+        if (this.p.x < 0) this.p.x = 256;
         if (this.p.vx > 0) this.play("netoraR");
         if (this.p.vx < 0) this.play("netoraL");
       }
@@ -1096,7 +1098,7 @@ var game = function ()
     //stage.insert(new Q.Napias({ x: 32, y: 1056, yIni: 1054, yFin: 1156, time: 0.75 }));
     stage.insert(new Q.Napias({ x: 32, y: 1024, yIni: 1023, yFin: 1124, time: 0.5 }));
     stage.insert(new Q.Napias({ x: 32, y: 992, yIni: 991, yFin: 1092, time: 0.25 }));
-    stage.insert(new Q.Funesto({ x: 96, y: 1104, xIni: 96, xFin: 176 }));
+    stage.insert(new Q.Funesto({ x: 96, y: 1104, xIni: 95, xFin: 176 }));
     stage.insert(new Q.FunestoM({ x: 112, y: 864, yIni: 863, yFin: 964, time: 0 }));
     stage.insert(new Q.FunestoM({ x: 112, y: 832, yIni: 831, yFin: 932, time: 0.33 }));
     stage.insert(new Q.FunestoM({ x: 112, y: 800, yIni: 799, yFin: 900, time: 0.66 }));
