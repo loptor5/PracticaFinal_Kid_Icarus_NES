@@ -294,8 +294,8 @@ var game = function ()
         this.p.live--;
         if (this.p.live <= 0)
         {
-        	this.stage.insert(new Q.Corazon({ x: this.p.x, y: this.p.y, sheet: "corazonMini", heart:5}));
-          this.destroy();
+        	this.stage.insert(new Q.Corazon({ x: this.p.x, y: this.p.y, sheet: "corazonMini", heart:1}));
+         	this.destroy();
         }
       }
 
@@ -345,7 +345,7 @@ var game = function ()
         vy: 10,
         z: 32,
         damage: 1,
-        sensor: true
+        sensor: false
       });
 
       this.add("2d, aiBounce, animation");
@@ -355,12 +355,12 @@ var game = function ()
 
     hit: function (collision)
     {
+    	/*
       if (collision.obj.isA("Pit") && this.p.live <= 0)
       {
       	Q.state.inc("score", 5);
         this.destroy();
-      }
-
+      }*/
     },
 
     killed: function (collision)
@@ -370,13 +370,8 @@ var game = function ()
         this.p.live--;
         if (this.p.live <= 0)
         {
-          this.p.sheet = "medioCorazon";
-          this.play("monoculusStop");
-          this.p.vx = 0;
-          this.p.vy = 0;
-          this.p.sensor = true;
-          this.p.collisionMask = SPRITE_PLAYER;
-          this.p.damage=0;
+        	this.stage.insert(new Q.Corazon({ x: this.p.x, y: this.p.y, sheet: "medioCorazon", heart:5}));
+         	this.destroy();
         }
       }
 
@@ -436,8 +431,7 @@ var game = function ()
         heart: 10,
         damage: 2,
         vx: 10,
-        running: false,
-        sensor: true
+        running: false
       });
 
       this.add("2d, aiBounce, animation");
@@ -447,11 +441,12 @@ var game = function ()
 
     hit: function (collision)
     {
+    	/*
       if (collision.obj.isA("Pit") && this.p.live <= 0)
       {
         Q.state.inc("score", 10); // Incremento score
         this.destroy(); // destruye objeto
-      }
+      }*/
 
     },
 
@@ -462,11 +457,8 @@ var game = function ()
         this.p.live--;
         if (this.p.live <= 0)
         {
-          this.p.sheet = "corazon";
-          this.play("funestoStop");
-          this.p.vx = 0;
-          this.p.vy = 0;
-          this.p.damage=0;
+        	this.stage.insert(new Q.Corazon({ x: this.p.x, y: this.p.y, sheet: "corazon", heart:10}));
+         	this.destroy();
         }
       }
 
@@ -555,8 +547,7 @@ var game = function ()
         heart: 1,
         z: 32,
         damage: 1,
-        sensor: false,
-        sensor: true
+        sensor: false
       });
 
       this.add("2d, aiBounce, animation");
@@ -648,7 +639,7 @@ var game = function ()
         vx: 30,
         vy: 10,
         damage: 1,
-        sensor: true
+        sensor: false
       });
 
       this.add("2d, aiBounce, animation");
@@ -737,8 +728,7 @@ var game = function ()
         exp: 100,
         heart: 1,
         vx: 20,
-        damage: 1,
-        sensor: true
+        damage: 1
       });
 
       this.add("2d, aiBounce, animation");
