@@ -7,13 +7,13 @@ var game = function ()
     .touch()
     .enableSound();
 
+  var SPRITE_PLAYER = 1;
   var SPRITE_BULLET = 2;
-  var SPRITE_PLAYER = 4;
-  var SPRITE_ENEMY = 16;
-  var SPRITE_OBJECT = 8;
-  var SPRITE_BULLET_ENEMY=16;
-  var SPRITE_DOOR=1;
-  var SPRITE_FLY=16;
+  var SPRITE_ENEMY = 3;
+  var SPRITE_OBJECT = 4;
+  var SPRITE_BULLET_ENEMY=5;
+  var SPRITE_DOOR=6;
+  var SPRITE_FLY=7;
   
 
 
@@ -145,12 +145,12 @@ var game = function ()
 	      {
           if(this.p.timeDamage == 0)
           {
-	        this.p.live -= collision.obj.p.damage;
+	       	this.p.live -= collision.obj.p.damage;
             Q.state.set("lives", this.p.live);
             this.p.timeDamage++;
             
           }
-          this.play("damage_" + this.p.direction);  
+          this.play("damage_" + this.p.direction); 
           if (this.p.live <= 0)
           {
             this.p.sensor = false;
