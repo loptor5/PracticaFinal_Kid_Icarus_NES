@@ -971,9 +971,9 @@ var game = function ()
       		this.p.modelo= 100;
       		Q.stage.insert(new Q.Napias({ x: 112, y: 3184, yIni: 3104, yFin: 3264, time: 0 }));
     		Q.stage.insert(new Q.Napias({ x: 112, y: 3184, yIni: 3184, yFin: 3264, time: 0 }));
-    		Q.stage.insert(new Q.Napias({ x: 112, y: 3184, yIni: 3104, yFin: 3264, time: 1 }));
+    		Q.stage.insert(new Q.Napias({ x: 112, y: 3184, yIni: 3104, yFin: 3264, time: 0.5 }));
     		Q.stage.insert(new Q.Napias({ x: 112, y: 3136, yIni: 3152, yFin: 3220, time: 0 }));
-    		Q.stage.insert(new Q.Napias({ x: 112, y: 3136, yIni: 3152, yFin: 3220, time: 1 }));
+    		Q.stage.insert(new Q.Napias({ x: 112, y: 3136, yIni: 3152, yFin: 3220, time: 0.5 }));
       	}else if(this.p.modelo==2){
       		collision.obj.p.x=200;
       		collision.obj.p.y=2528;
@@ -983,11 +983,18 @@ var game = function ()
       		collision.obj.p.y=3216;
       		this.p.sheet=this.p.tipoPuerta+"Close";
       		this.p.modelo= 100;
+      		Q.stage.insert(new Q.Napias({ x: 112, y: 3184, yIni: 3104, yFin: 3264, time: 0 }));
+    		Q.stage.insert(new Q.Napias({ x: 112, y: 3184, yIni: 3184, yFin: 3264, time: 0 }));
+    		Q.stage.insert(new Q.Napias({ x: 112, y: 3184, yIni: 3104, yFin: 3264, time: 0.5 }));
+    		Q.stage.insert(new Q.Napias({ x: 112, y: 3136, yIni: 3152, yFin: 3220, time: 0 }));
+    		Q.stage.insert(new Q.Napias({ x: 112, y: 3136, yIni: 3152, yFin: 3220, time: 0.5 }));
       	}else if(this.p.modelo==4){
       		collision.obj.p.x=200;
       		collision.obj.p.y=2976;
       		this.p.sheet=this.p.tipoPuerta+"Close";
       		this.p.modelo= 100;
+      		Q.stage.insert(new Q.Napias({ x: 112, y: 3998, yIni: 2864, yFin: 3008, time: 0 }));
+    		Q.stage.insert(new Q.FunestoM({ x: 112, y: 3184, yIni: 2864, yFin: 3008, time: 0.5 }));
       	}else if(this.p.modelo==5){
       		collision.obj.p.x=152;
       		collision.obj.p.y=1104;
@@ -1218,23 +1225,6 @@ var game = function ()
     stage.insert(new Q.Door({x: 64, y:1317, tipoPuerta: "doorA", sheet: "doorAOpen", modelo: 3 }));
     stage.insert(new Q.Door({x: 192, y:1093, tipoPuerta: "doorA", sheet: "doorAOpen", modelo: 4 }));
     stage.insert(new Q.Door({x: 240, y:117, tipoPuerta: "doorB", sheet: "doorBOpen", modelo: 0 }));
-
-
-
-    stage.insert(new Q.Napias({ x: 112, y: 3184, yIni: 3104, yFin: 3264, time: 0 }));
-    stage.insert(new Q.Napias({ x: 112, y: 3184, yIni: 3184, yFin: 3264, time: 0 }));
-    stage.insert(new Q.Napias({ x: 112, y: 3184, yIni: 3104, yFin: 3264, time: 1 }));
-    stage.insert(new Q.Napias({ x: 112, y: 3136, yIni: 3152, yFin: 3220, time: 0 }));
-    stage.insert(new Q.Napias({ x: 112, y: 3136, yIni: 3152, yFin: 3220, time: 1 }));
-
-    stage.insert(new Q.Napias({ x: 112, y: 3998, yIni: 2864, yFin: 3008, time: 0 }));
-    stage.insert(new Q.FunestoM({ x: 112, y: 3184, yIni: 2864, yFin: 3008, time: 0 }));
-
-
-
-
-
-
 
      
     // INICIALIZA SCORE
