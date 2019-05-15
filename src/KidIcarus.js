@@ -306,8 +306,6 @@ var game = function ()
           this.p.damage = 0;
           this.p.type = SPRITE_OBJECT;
           this.p.collisionMask = SPRITE_PLAYER;
-          this.p.z = 32;
-          this.p.sensor = false;
         }
       }
 
@@ -357,7 +355,7 @@ var game = function ()
         vy: 10,
         z: 32,
         damage: 1,
-        sensor: false
+        sensor: true
       });
 
       this.add("2d, aiBounce, animation");
@@ -448,7 +446,8 @@ var game = function ()
         heart: 10,
         damage: 2,
         vx: 10,
-        running: false
+        running: false,
+        sensor: true
       });
 
       this.add("2d, aiBounce, animation");
@@ -566,7 +565,8 @@ var game = function ()
         heart: 1,
         z: 32,
         damage: 1,
-        sensor: false
+        sensor: false,
+        sensor: true
       });
 
       this.add("2d, aiBounce, animation");
@@ -658,7 +658,7 @@ var game = function ()
         vx: 30,
         vy: 10,
         damage: 1,
-        sensor: false
+        sensor: true
       });
 
       this.add("2d, aiBounce, animation");
@@ -747,7 +747,8 @@ var game = function ()
         exp: 100,
         heart: 1,
         vx: 20,
-        damage: 1
+        damage: 1,
+        sensor: true
       });
 
       this.add("2d, aiBounce, animation");
@@ -818,7 +819,8 @@ var game = function ()
         heart: 10,
         hit:2,
         hidden:true,
-        time:0
+        time:0,
+        sensor: true
       });
 
       this.add("2d, aiBounce, animation");
