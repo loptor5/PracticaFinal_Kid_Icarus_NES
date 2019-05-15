@@ -7,13 +7,13 @@ var game = function ()
     .touch()
     .enableSound();
 
-  var SPRITE_PLAYER = 1;
-  var SPRITE_BULLET = 2;
-  var SPRITE_ENEMY = 3;
+  var SPRITE_PLAYER = 0;
+  var SPRITE_BULLET = 1;
+  var SPRITE_ENEMY = 2;
   var SPRITE_OBJECT = 4;
-  var SPRITE_BULLET_ENEMY=5;
-  var SPRITE_DOOR=6;
-  var SPRITE_FLY=7;
+  var SPRITE_BULLET_ENEMY=8;
+  var SPRITE_DOOR=16;
+  var SPRITE_FLY=32;
   
 
 
@@ -145,24 +145,12 @@ var game = function ()
 	      {
           if(this.p.timeDamage == 0)
           {
-	        	this.p.live -= collision.obj.p.damage;
-            // Falta reducir su vida aqui
+	        this.p.live -= collision.obj.p.damage;
             Q.state.set("lives", this.p.live);
-            //Q.state.set("live", this.p.live);
             this.p.timeDamage++;
             
           }
-          this.play("damage_" + this.p.direction);
-          /*
-          if (this.p.direction == "right")
-          {
-            this.play("damage_right");
-          }
-          else
-          {
-            this.play("damage_left");
-          }
-          */  
+          this.play("damage_" + this.p.direction);  
           if (this.p.live <= 0)
           {
             this.p.sensor = false;
@@ -528,12 +516,13 @@ var game = function ()
 
 	          this.p.running=false;
 	        }
-	        if(this.p.xIni>this.p.x || this.p.xFin<this.p.x){
-	        	
-	          this.p.vx= -this.p.vx;
-	          this.p.vy= -this.p.vy;
-	        }
+	        
     	}
+
+    	if(this.p.xIni>this.p.x || this.p.xFin<this.p.x){    	
+          this.p.vx= -this.p.vx;
+          this.p.vy= -this.p.vy;
+        }
       }
     }
 
