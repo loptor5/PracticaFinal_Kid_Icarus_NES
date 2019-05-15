@@ -506,9 +506,10 @@ var game = function ()
 	        
     	}
 
-    	if(this.p.xIni>this.p.x || this.p.xFin<this.p.x){    	
-          this.p.vx= -this.p.vx;
-          this.p.vy= -this.p.vy;
+    	if(this.p.xIni>this.p.x){    	
+        	this.p.vy= 10;
+        }else if( this.p.xFin<this.p.x){
+        	this.p.vy= -10;
         }
       }
     }
