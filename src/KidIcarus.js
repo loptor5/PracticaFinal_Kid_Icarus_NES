@@ -521,11 +521,11 @@ var game = function ()
         
         if(this.p.xIni > this.p.x)
         {    	
-          this.p.vy= 10;
+          this.p.vx= 10;
         }
         else if( this.p.xFin<this.p.x)
         {
-          this.p.vy= -10;
+          this.p.vx= -10;
         }
       }
     }
