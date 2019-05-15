@@ -217,7 +217,8 @@ var game = function ()
         type: SPRITE_BULLET,
         collisionMask: SPRITE_ENEMY,
         sort: true,
-        gravity: 0
+        gravity: 0,
+        sensor: true
       });
 
       this.add("2d");
@@ -248,7 +249,8 @@ var game = function ()
         type: SPRITE_BULLET,
         collisionMask: SPRITE_ENEMY,
         sort: true,
-        gravity: 0
+        gravity: 0,
+        sensor:true
       });
 
       this.add("2d");
