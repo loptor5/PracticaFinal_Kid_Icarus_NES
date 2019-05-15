@@ -557,12 +557,12 @@ var game = function ()
 
     hit: function (collision)
     {
+    	/*
       if (collision.obj.isA("Pit") && this.p.live <= 0)
       {
       	Q.state.inc("score", 1);
         this.destroy();
-      }
-
+      }*/
     },
 
     killed: function (collision)
@@ -572,13 +572,8 @@ var game = function ()
         this.p.live--;
         if (this.p.live <= 0)
         {
-          this.p.sheet = "corazonMini";
-          this.play("funestoMStop");
-          this.p.vx = 0;
-          this.p.vy = 0;
-          this.p.sensor = true;
-          this.p.collisionMask = SPRITE_PLAYER;
-          this.p.damage=0;
+        	this.stage.insert(new Q.Corazon({ x: this.p.x, y: this.p.y, sheet: "corazonMini", heart:1}));
+         	this.destroy();
         }
       }
 
@@ -649,11 +644,12 @@ var game = function ()
 
     hit: function (collision)
     {
+    	/*
       if (collision.obj.isA("Pit") && this.p.live <= 0)
       {
       	Q.state.inc("score", 5);
         this.destroy();
-      }
+      }*/
 
     },
 
@@ -664,13 +660,8 @@ var game = function ()
         this.p.live--;
         if (this.p.live <= 0)
         {
-          this.p.sheet = "corazon";
-          this.play("napiasStop");
-          this.p.vx = 0;
-          this.p.vy = 0;
-          this.p.sensor = true;
-          this.p.collisionMask = SPRITE_PLAYER;
-          this.p.damage=0;
+        	this.stage.insert(new Q.Corazon({ x: this.p.x, y: this.p.y, sheet: "corazon", heart:10}));
+         	this.destroy();
         }
       }
 
@@ -738,10 +729,11 @@ var game = function ()
 
     hit: function (collision)
     {
+    	/*
       if (collision.obj.isA("Pit") && this.p.live <= 0)
       {
         this.destroy();
-      }
+      }*/
 
     },
 
@@ -752,11 +744,8 @@ var game = function ()
         this.p.live--;
         if (this.p.live <= 0)
         {
-        	Q.state.inc("score", 1);
-          	this.p.sheet = "medioCorazon";
-          	this.play("netoraStop");
-          	this.p.vx = 0;
-          	this.p.damage=0;
+        	this.stage.insert(new Q.Corazon({ x: this.p.x, y: this.p.y, sheet: "mediocorazon", heart:1}));
+         	this.destroy();
         }
       }
 
@@ -802,7 +791,7 @@ var game = function ()
         hit:2,
         hidden:true,
         time:0,
-        sensor: true
+        sensor: false
       });
 
       this.add("2d, aiBounce, animation");
@@ -833,10 +822,11 @@ var game = function ()
 		        if(Math.abs(pit.p.y-this.p.y)<=32){
 		        	if(this.p.hidden){
 		        		this.p.hidden= false;
+		        		this.p.sensor=true;
 		        		this.play("fuegoR1");
 	        		}
 		        	this.p.time+=1;
-		        	if(this.p.time%300==0){
+		        	if(this.p.time%150==0){
 			        	if(pit.p.x-this.p.x>0)
 			       			this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: 20}));
 			        	if(pit.p.x-this.p.x<0)
