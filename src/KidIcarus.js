@@ -271,11 +271,10 @@ var game = function ()
         exp: 100,
         heart: 1,
         vx: 10,
-        damage: 1,
-        sensor: false
+        damage: 1
       });
 
-      this.add(" aiBounce, animation");
+      this.add("aiBounce, animation");
       this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
       this.on("hit", this, "killed");
     },
@@ -301,7 +300,6 @@ var game = function ()
           this.p.damage = 0;
           this.p.type = SPRITE_OBJECT;
           this.p.collisionMask = SPRITE_PLAYER;
-          this.p.sensor=true;
         }
       }
 
