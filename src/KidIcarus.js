@@ -178,8 +178,8 @@ var game = function ()
   {
     stand_right: { frames: [1], flip: false, loop: true, rate: 1 / 5 },
     stand_left: { frames: [1], flip: "x", loop: true, rate: 1 / 5 },
-    walk_right: { frames: [1, 4, 3, 2], rate: 1 / 20, flip: false, loop: true, next: "stand_right" },
-    walk_left: { frames: [1, 4, 3, 2], rate: 1 / 20, flip: "x", loop: true, next: "stand_left" },
+    walk_right: { frames: [1, 4, 3, 2], rate: 1 / 20, flip: false, loop: false, next: "stand_right" },
+    walk_left: { frames: [1, 4, 3, 2], rate: 1 / 20, flip: "x", loop: false, next: "stand_left" },
     jump_up_right: { frames: [7], flip: false, loop: false, rate: 1 / 5 },
     jump_up_left: { frames: [7], flip: "x", loop: false, rate: 1 / 5 },
     jump_down_right: { frames: [6], flip: false, loop: false, rate: 1 / 5 },
@@ -1093,18 +1093,18 @@ var game = function ()
     stage.insert(new Q.Monoculus({ x: 32, y: 1808, yIni: 1807, yFin: 1908, time: 0.25 }));
     stage.insert(new Q.Monoculus({ x: 32, y: 1776, yIni: 1775, yFin: 18776, time: 0.75 }));
     stage.insert(new Q.Monoculus({ x: 32, y: 1360, yIni: 1359, yFin: 1460, time: 0 }));
-    stage.insert(new Q.Funesto({ x: 135, y: 1346, xIni: 134, xFin: 180 }));
+    stage.insert(new Q.Funesto({ x: 157, y: 1346, xIni: 134, xFin: 180 }));
     //stage.insert(new Q.Napias({ x: 32, y: 1088, yIni: 1087, yFin: 1188, time: 1 }));
     //stage.insert(new Q.Napias({ x: 32, y: 1056, yIni: 1054, yFin: 1156, time: 0.75 }));
     stage.insert(new Q.Napias({ x: 32, y: 1024, yIni: 1023, yFin: 1124, time: 0.5 }));
     stage.insert(new Q.Napias({ x: 32, y: 992, yIni: 991, yFin: 1092, time: 0.25 }));
-    stage.insert(new Q.Funesto({ x: 96, y: 1104, xIni: 95, xFin: 176 }));
+    stage.insert(new Q.Funesto({ x: 135, y: 1104, xIni: 95, xFin: 176 }));
     stage.insert(new Q.FunestoM({ x: 112, y: 864, yIni: 863, yFin: 964, time: 0 }));
     stage.insert(new Q.FunestoM({ x: 112, y: 832, yIni: 831, yFin: 932, time: 0.33 }));
     stage.insert(new Q.FunestoM({ x: 112, y: 800, yIni: 799, yFin: 900, time: 0.66 }));
     stage.insert(new Q.FunestoM({ x: 112, y: 768, yIni: 767, yFin: 868, time: 0.99 }));
-    stage.insert(new Q.Funesto({ x: 48, y: 544, xIni: 47, xFin: 80 }));
-    stage.insert(new Q.Funesto({ x: 128, y: 480, xIni: 127, xFin: 176 }));
+    stage.insert(new Q.Funesto({ x: 63, y: 544, xIni: 47, xFin: 80 }));
+    stage.insert(new Q.Funesto({ x: 1, y: 480, xIni: 127, xFin: 176 }));
     stage.insert(new Q.Fuego({ x: 176, y: 480 }));
     stage.insert(new Q.Fuego({ x: 48, y: 432 }));
     stage.insert(new Q.Fuego({ x: 96, y: 256 }));
