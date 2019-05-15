@@ -40,7 +40,8 @@ var game = function ()
         speed: 80,
         jumpSpeed: -280,
         jumps: 0,
-        timeDamage: 0 //tiempo de invulnerabilidad
+        timeDamage: 0, //tiempo de invulnerabilidad
+        sensor: true
       });
 
       this.add("2d, platformerControls, animation");
@@ -1100,7 +1101,7 @@ var game = function ()
     stage.insert(new Q.FunestoM({ x: 112, y: 800, yIni: 799, yFin: 900, time: 0.66 }));
     stage.insert(new Q.FunestoM({ x: 112, y: 768, yIni: 767, yFin: 868, time: 0.99 }));
     stage.insert(new Q.Funesto({ x: 63, y: 544, xIni: 47, xFin: 80 }));
-    stage.insert(new Q.Funesto({ x: 1, y: 480, xIni: 127, xFin: 176 }));
+    stage.insert(new Q.Funesto({ x: 151, y: 480, xIni: 127, xFin: 176 }));
     stage.insert(new Q.Fuego({ x: 176, y: 480 }));
     stage.insert(new Q.Fuego({ x: 48, y: 432 }));
     stage.insert(new Q.Fuego({ x: 96, y: 256 }));
