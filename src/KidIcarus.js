@@ -12,7 +12,7 @@ var game = function ()
   var SPRITE_ENEMY = 3;
   var SPRITE_OBJECT = 4;
   var SPRITE_BULLET_ENEMY=8;
-  var SPRITE_DOOR=16;
+  var SPRITE_DOOR=32;
   var SPRITE_FLY=32;
   
 
