@@ -7,13 +7,13 @@ var game = function ()
     .touch()
     .enableSound();
 
-  var SPRITE_BULLET = 0;
-  var SPRITE_PLAYER = 1;
-  var SPRITE_ENEMY = 2;
-  var SPRITE_OBJECT = 4;
-  var SPRITE_BULLET_ENEMY=8;
-  var SPRITE_DOOR=16;
-  var SPRITE_FLY=32;
+  var SPRITE_BULLET = 2;
+  var SPRITE_PLAYER = 4;
+  var SPRITE_ENEMY = 16;
+  var SPRITE_OBJECT = 8;
+  var SPRITE_BULLET_ENEMY=16;
+  var SPRITE_DOOR=1;
+  var SPRITE_FLY=16;
   
 
 
