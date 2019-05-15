@@ -10,7 +10,7 @@ var game = function ()
   var SPRITE_PLAYER = 1;
   var SPRITE_BULLET = 2;
   var SPRITE_ENEMY = 3;
-  var SPRITE_OBJECT = 5;
+  var SPRITE_OBJECT = 4;
   var SPRITE_BULLET_ENEMY=9;
   var SPRITE_DOOR=17;
   var SPRITE_FLY=32;
@@ -60,12 +60,12 @@ var game = function ()
         if (this.p.x > 257) this.p.x = 1;
         if (this.p.x < 0) this.p.x = 256;
         
-        if (this.p.vy == 0 && this.p.vx == 0 && !this.p.ignoreControls)
+        /*if (this.p.vy == 0 && this.p.vx == 0 && !this.p.ignoreControls)
         {
           this.play("stand_" + this.p.direction);
           this.p.jumped = 0;
         }
-        else if (this.p.landed > 0 && !this.p.ignoreControls)
+        else*/ if (this.p.landed > 0 && !this.p.ignoreControls)
         {
           this.play("walk_" + this.p.direction);
           this.p.jumped = 0;
@@ -82,6 +82,10 @@ var game = function ()
           }
           
           this.p.jumped++;
+        }else{
+
+        	this.play("stand_" + this.p.direction);
+          	this.p.jumped = 0;
         }
 
         if (this.p.jumped == 1) {
@@ -271,7 +275,9 @@ var game = function ()
         exp: 100,
         heart: 1,
         vx: 10,
-        damage: 1
+        damage: 1,
+        sensor: true,
+        z:0
       });
 
       this.add("2d, aiBounce, animation");
