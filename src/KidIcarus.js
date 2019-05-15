@@ -1,19 +1,19 @@
 var game = function ()
 {
   var Q = window.Q = Quintus({ audioSupporter: ["mp3"] })
-    .include("Sprites, Scenes, Input, UI, Touch, TMX, Anim, 2D, Audio")
-    .setup({maximize: true})
-    .controls()
-    .touch()
-    .enableSound();
+  .include("Sprites, Scenes, Input, UI, Touch, TMX, Anim, 2D, Audio")
+  .setup({maximize: true})
+  .controls()
+  .touch()
+  .enableSound();
 
   var SPRITE_PLAYER = 1;
   var SPRITE_BULLET = 2;
   var SPRITE_ENEMY = 3;
   var SPRITE_OBJECT = 4;
-  var SPRITE_BULLET_ENEMY=8;
-  var SPRITE_DOOR=32;
-  var SPRITE_FLY=32;
+  var SPRITE_BULLET_ENEMY = 8;
+  var SPRITE_DOOR = 32;
+  var SPRITE_FLY = 32;
   
 
 
@@ -49,7 +49,6 @@ var game = function ()
       Q.input.on("fire", this, "shoot");
       Q.input.on("S", this, "shootUp");
       this.on("dying", this, "die");
-      this.play("stand_right");
     },
 
     step: function (dt)
@@ -80,11 +79,11 @@ var game = function ()
           {
             this.play("jump_down_" + this.p.direction);
           }
-          
           this.p.jumped++;
         }
 
-        if (this.p.jumped == 1) {
+        if (this.p.jumped == 1)
+        {
           Q.audio.play("Salto.mp3", { loop: false });
         }
       }
@@ -97,27 +96,28 @@ var game = function ()
     	if (this.p.alive)
 	    {
         Q.audio.play("Disparo.mp3", { loop: false }); // audio de disparo
-	      var p = this.p;
-	      if (p.direction == "right")
-	      {
-	        this.play("stand_right");
-	        this.stage.insert(new Q.Arrow(
-	        {
-	          x: p.x,
-	          y: p.y + p.h / 8,
-	          vx: 200
-	        }))
-	      }
-	      else
-	      {
-	        this.play("stand_left");
-	        this.stage.insert(new Q.Arrow(
-	        {
-	          x: p.x,
-	          y: p.y + p.h / 8,
-	          vx: -200
-	        }))
-	      }
+        var p = this.p;
+        this.play("stand_" + p.direction);
+        if(p.direction == "right")
+        {
+          this.stage.insert(new Q.Arrow(
+          {
+            x: p.x,
+            y: p.y + p.h / 8,
+            vx: 200,
+            angle: 90
+          }));
+        }
+        else
+        {
+          this.stage.insert(new Q.Arrow(
+          {
+            x: p.x,
+            y: p.y + p.h / 8,
+            vx: -200,
+            angle: -90
+          }));
+        }
   		}
     },
 
@@ -143,14 +143,15 @@ var game = function ()
       {
 	      if (collision.obj.isA("Viperix") || collision.obj.isA("Monoculus") || collision.obj.isA("Funesto") || collision.obj.isA("FunestoM") || collision.obj.isA("Napias") ||collision.obj.isA("Fuego")|| collision.obj.isA("EnemyFire")|| collision.obj.isA("Netora"))
 	      {
+          this.play("damage_" + this.p.direction);
+
           if(this.p.timeDamage == 0)
           {
 	       	this.p.live -= collision.obj.p.damage;
-            Q.state.set("lives", this.p.live);
-            this.p.timeDamage++;
-            
+          Q.state.set("lives", this.p.live);
+          this.p.timeDamage++;
           }
-          this.play("damage_" + this.p.direction); 
+
           if (this.p.live <= 0)
           {
             this.p.sensor = false;
@@ -164,8 +165,22 @@ var game = function ()
 
     die: function ()
     {
-      this.destroy(); // elimina el personaje
-      Q.stageScene("endGame", 1, { label: "You Died" });
+      this.add("tween");
+      this.p.sensor = true;
+      this.p.collisionMask = SPRITE_FLY;
+      this.del('2d, platformerControls'); // quito los controles
+      this.animate(
+      {
+        y: this.p.y + 250,
+        angle: 360
+      }, 0.7, Q.Easing.Linear, 
+      {
+        callback: function()
+        {
+          this.destroy(); // elimina el personaje
+          Q.stageScene("endGame", 1, { label: "You Died" }); // escena de muerte
+        }
+      });
     }
   });
   //----------------------------------------------------------------------//
@@ -195,8 +210,9 @@ var game = function ()
     {
       this._super(p,
       {
-        sheet: "arrow",
-        sprite: "arrow",
+        sheet: "flecha",
+        sprite: "flecha",
+        scale: 0.5,
         type: SPRITE_BULLET,
         collisionMask: SPRITE_ENEMY,
         sensor: true,
@@ -226,8 +242,9 @@ var game = function ()
     {
       this._super(p,
       {
-        sheet: "arrowUp",
-        sprite: "arrowUp",
+        sheet: "flecha",
+        sprite: "flecha",
+        scale: 0.5,
         type: SPRITE_BULLET,
         collisionMask: SPRITE_ENEMY,
         sensor: true,
@@ -294,11 +311,11 @@ var game = function ()
         this.p.live--;
         if (this.p.live <= 0)
         {
+          Q.audio.play("Muerte_Serpiente.mp3", { loop: false }); // Musica muerte de viperix
         	this.stage.insert(new Q.Corazon({ x: this.p.x, y: this.p.y, sheet: "corazonMini", heart:1}));
          	this.destroy();
         }
       }
-
     },
 
     step: function (dt)
@@ -370,7 +387,8 @@ var game = function ()
         this.p.live--;
         if (this.p.live <= 0)
         {
-        	this.stage.insert(new Q.Corazon({ x: this.p.x, y: this.p.y, sheet: "medioCorazon", heart:5}));
+          //Q.audio.play(".mp3", { loop: false }); // Musica muerte de monoculus 
+          this.stage.insert(new Q.Corazon({ x: this.p.x, y: this.p.y, sheet: "medioCorazon", heart:5}));
          	this.destroy();
         }
       }
@@ -396,7 +414,6 @@ var game = function ()
         {
           this.play("monoculusL");
         }
-
       }
     }
 
@@ -457,63 +474,61 @@ var game = function ()
         this.p.live--;
         if (this.p.live <= 0)
         {
+          //Q.audio.play(".mp3", { loop: false }); // Musica muerte de funesto 
         	this.stage.insert(new Q.Corazon({ x: this.p.x, y: this.p.y, sheet: "corazon", heart:10}));
          	this.destroy();
         }
       }
-
     },
 
-    step: function(dt){
+    step: function(dt)
+    {
+      if(this.p.live > 0)
+      {
+        var pit = Q("Pit");
+        if(pit.items[0])
+        {
+          pit = pit.items[0];
+          
+          if(Math.abs(pit.p.y-this.p.y) <= 16)
+          {
+	          if(pit.p.x - this.p.x > 0) this.p.vx = 60;
 
-      if(this.p.live>0){
+	          if(pit.p.x - this.p.x < 0) this.p.vx = -60;
 
-        var pit=Q("Pit");
-
-        if(pit.items[0]){
-
-	        pit= pit.items[0];
-
-	        if(Math.abs(pit.p.y-this.p.y)<=16){
-
-	          if(pit.p.x-this.p.x>0) this.p.vx=60;
-
-	          if(pit.p.x-this.p.x<0) this.p.vx=-60;
-
-	          if(this.p.vx>0 && !this.p.running){
-
+            if(this.p.vx > 0 && !this.p.running)
+            {
 	            this.play("funestoRunR");
-	            this.p.running=true;
-
+	            this.p.running = true;
 	          } 
-	          if(this.p.vx<0 && !this.p.running){
-
+            if(this.p.vx < 0 && !this.p.running)
+            {
 	            this.play("funestoRunL");
-	            this.p.running=true;
+	            this.p.running = true;
+	          }
+          }
+          else
+          {
+	          if(this.p.running) this.p.vx = this.p.vx/6;
 
-	          } 
+	          if(this.p.vx > 0) this.play("funestoR");
 
-	        }else{
+	          if(this.p.vx < 0) this.play("funestoL");
 
-	          if(this.p.running) this.p.vx= this.p.vx/6;
-
-	          if(this.p.vx>0) this.play("funestoR");
-
-	          if(this.p.vx<0) this.play("funestoL");
-
-	          this.p.running=false;
+	          this.p.running = false;
 	        }
-	        
-    	}
-
-    	if(this.p.xIni>this.p.x){    	
-        	this.p.vy= 10;
-        }else if( this.p.xFin<this.p.x){
-        	this.p.vy= -10;
+        }
+        
+        if(this.p.xIni > this.p.x)
+        {    	
+          this.p.vy= 10;
+        }
+        else if( this.p.xFin<this.p.x)
+        {
+          this.p.vy= -10;
         }
       }
     }
-
   });
 
   //------------------------------------------------------------------------//
@@ -573,6 +588,7 @@ var game = function ()
         this.p.live--;
         if (this.p.live <= 0)
         {
+          //Q.audio.play(".mp3", { loop: false }); // Musica muerte de funestoM
         	this.stage.insert(new Q.Corazon({ x: this.p.x, y: this.p.y, sheet: "corazonMini", heart:1}));
          	this.destroy();
         }
@@ -599,7 +615,6 @@ var game = function ()
         {
           this.play("funestoMR");
         }
-
       }
     }
 
@@ -661,6 +676,7 @@ var game = function ()
         this.p.live--;
         if (this.p.live <= 0)
         {
+          //Q.audio.play(".mp3", { loop: false }); // Musica muerte de napias
         	this.stage.insert(new Q.Corazon({ x: this.p.x, y: this.p.y, sheet: "corazon", heart:10}));
          	this.destroy();
         }
@@ -687,7 +703,6 @@ var game = function ()
         {
           this.play("napiasL");
         }
-
       }
     }
 
@@ -745,6 +760,7 @@ var game = function ()
         this.p.live--;
         if (this.p.live <= 0)
         {
+          //Q.audio.play(".mp3", { loop: false }); // Musica muerte de netora
         	this.stage.insert(new Q.Corazon({ x: this.p.x, y: this.p.y, sheet: "mediocorazon", heart:1}));
          	this.destroy();
         }
@@ -815,29 +831,35 @@ var game = function ()
 
     },
 
-    step: function(dt){
-	    if(this.p.live>0){
-	        var pit=Q("Pit");
-	        if(pit.items[0]){
-		        pit= pit.items[0];
-		        if(Math.abs(pit.p.y-this.p.y)<=32){
-		        	if(this.p.hidden){
-		        		this.p.hidden= false;
-		        		this.p.sensor=true;
-		        		this.play("fuegoR1");
-	        		}
-		        	this.p.time+=1;
-		        	if(this.p.time%150==0){
-			        	if(pit.p.x-this.p.x>0)
-			       			this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: 20}));
-			        	if(pit.p.x-this.p.x<0)
-			        		this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: -20}));
-			        	this.p.time=0;
-			    	}
-		      	}
-	  		}
+    step: function(dt)
+    {
+      if(this.p.live > 0)
+      {
+        var pit = Q("Pit");
+        if(pit.items[0])
+        {
+          pit = pit.items[0];
+          if(Math.abs(pit.p.y-this.p.y) <= 32)
+          {
+            if(this.p.hidden)
+            {
+              this.p.hidden = false;
+              this.p.sensor =true;
+              this.play("fuegoR1");
+            }
+            this.p.time += 1;
+            if(this.p.time % 150 == 0)
+            {
+              if(pit.p.x-this.p.x > 0)
+                this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: 20}));
+              if(pit.p.x-this.p.x < 0)
+                this.stage.insert(new Q.EnemyFire({x: this.p.x, y: this.p.y, vx: -20}));
+              this.p.time = 0;
+            }
+          }
+        }
     	}
-	}
+	  }
 
   });
 
@@ -852,7 +874,7 @@ var game = function ()
 
  //-------------------------------------------------------------------------//
 
- //Disparo enemigo
+ // DISPARO ENEMIGO
 
  Q.MovingSprite.extend("EnemyFire", {
     init: function(p) {
@@ -870,11 +892,14 @@ var game = function ()
       this.add("2d");
     },
 
-    step: function(dt){
-      if(this.p.vx==0){
+    step: function(dt)
+    {
+      if(this.p.vx == 0)
+      {
         this.destroy();
       }
-      if(this.p.x<0 || this.p.x>257){
+      if(this.p.x < 0 || this.p.x > 257)
+      {
         this.destroy();
       }
     }
@@ -882,10 +907,14 @@ var game = function ()
 
  //----------------------------------------------------------------------//
 
- // Puerta
- Q.MovingSprite.extend("Door", {
-    init: function(p) {
-      this._super( p, {
+ // DOOR
+
+ Q.MovingSprite.extend("Door", 
+ {
+    init: function(p) 
+    {
+      this._super( p,
+      {
         sheet: "door",
         sprite: "door",
         type: SPRITE_DOOR,
@@ -897,9 +926,12 @@ var game = function ()
 
       this.add("2d");
       this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
-      if(this.p.option==0){
+      if(this.p.option == 0)
+      {
       	this.p.sheet= "doorAOpen";
-      }else if(this.p.option==1){
+      }
+      else if(this.p.option == 1)
+      {
       	this.p.sheet= "doorBOpen";
       }
 
@@ -907,16 +939,20 @@ var game = function ()
     hit: function(collision){
     	if (collision.obj.isA("Pit") && this.p.live <= 0)
       	{
-        	if(this.p.option==0){
-		    	this.p.sheet= "doorAClose";
-		    }else if(this.p.option==1){
-		    	this.p.sheet= "doorBClose";
-		    }
+          if(this.p.option == 0)
+          {
+		    	this.p.sheet = "doorAClose";
+          }
+          else if(this.p.option == 1)
+          {
+            this.p.sheet = "doorBClose";
+          }
       	}
 
     },
 
-    step: function(dt){
+    step: function(dt)
+    {
     }
   });
 
@@ -945,16 +981,16 @@ var game = function ()
     {
       if (collision.obj.isA("Pit"))
       {
+        Q.audio.play("Corazon.mp3", { loop: false }); // Reproduce la musica de corazon
       	Q.state.inc("score", this.p.heart);
         this.destroy();
       }
-
     }
 
   });
  //------------------------------------------------------------------------//
 
- //DOOR
+ // DOOR
 
  Q.MovingSprite.extend("Door",
   {
@@ -1020,10 +1056,14 @@ var game = function ()
     {
         this._super(
         {
-          label: "HEARTS: 0 | LIVES: 7",
+          label: "HEARTS: 0  |  LIVES: " + barraVida(7),
           color: "white",
-          x: 200,
-          y: 0
+          family: "Consolas",
+          //outlineWidth: 1,
+          //outlineColor: "red",
+          syze: 40,
+          x: 250,
+          y: 25
         });
 
         Q.state.on("change.score", this, "score");
@@ -1031,16 +1071,28 @@ var game = function ()
     },
     score: function (score)
     {
-      this.p.label = "HEARTS: " + score + " | LIVES: " + Q.state.get("lives");
+      this.p.label = "HEARTS: " + score + "  |  LIVES: " + barraVida(Q.state.get("lives"));
     },
 
     lives: function (lives)
     {
-      this.p.label = "HEARTS: " + Q.state.get("score") + " | LIVES: " + lives;
+      this.p.label = "HEARTS: " + Q.state.get("score") + "  |  LIVES: " + barraVida(lives);
     } 
   });
 
+  var barraVida = function(num)
+  {
+    let barra = "[";
+    for(let i = 1; i <= 7; i++)
+    {
+      num >= i ? barra += "|" : barra += " ";
+    }
+    barra += "]";
+    return barra;
+  }
+
   // END GAME
+
   Q.scene("endGame", function(stage)
   {
     Q.audio.stop(); // para toda la musica
@@ -1086,10 +1138,13 @@ var game = function ()
 
   });
 
-  //WIN GAME
-  Q.scene("winGame", function(stage) {
+  // WIN GAME
+
+  Q.scene("winGame", function(stage)
+  {
     const container = stage.insert(
-      new Q.UI.Container({
+      new Q.UI.Container(
+      {
         x: Q.width/2,
         y: Q.height/2,
         fill: "rgba(0,0,0,0.5)"
@@ -1097,7 +1152,8 @@ var game = function ()
     );
 
     const button = container.insert(
-      new Q.UI.Button({
+      new Q.UI.Button(
+      {
         x: 0,
         y: 0,
         fill: "#FFFFFF",
@@ -1107,7 +1163,8 @@ var game = function ()
     );
 
     const label = container.insert(
-      new Q.UI.Text({
+      new Q.UI.Text(
+      {
       	color: "#FFFFFF",
         x: 10,
         y: -10 - button.p.h,
@@ -1115,7 +1172,8 @@ var game = function ()
       })
     );
 
-    button.on("click", function() {
+    button.on("click", function()
+    {
       Q.audio.stop(); // para toda la musica
       Q.clearStages();
       Q.stageScene("level101");
