@@ -88,7 +88,7 @@ var game = function ()
         }
       }
       if(this.p.timeDamage == 10) this.p.timeDamage = 0;
-      if(this.p.timeDamage != 0) this.p.timeDamage++;
+      if(this.p.timeDamage != 0) this.p.timeDamage+=1;
     },
 
     shoot: function ()
@@ -143,13 +143,14 @@ var game = function ()
       {
 	      if (collision.obj.isA("Viperix") || collision.obj.isA("Monoculus") || collision.obj.isA("Funesto") || collision.obj.isA("FunestoM") || collision.obj.isA("Napias") ||collision.obj.isA("Fuego")|| collision.obj.isA("EnemyFire")|| collision.obj.isA("Netora"))
 	      {
-          this.play("damage_" + this.p.direction);
+          
 
           if(this.p.timeDamage == 0)
           {
+          	this.play("damage_" + this.p.direction);
 	       	this.p.live -= collision.obj.p.damage;
-          Q.state.set("lives", this.p.live);
-          this.p.timeDamage++;
+          	Q.state.set("lives", this.p.live);
+          	this.p.timeDamage+=1;
           }
 
           if (this.p.live <= 0)
@@ -1021,7 +1022,7 @@ var game = function ()
       		collision.obj.p.x=200;
       		collision.obj.p.y=3216;
       		this.p.sheet=tipoPuerta+"Close";
-      		this.p.modelo=-1;
+      		this.p.modelo= 100;
       	}else if(this.p.modelo==2){
       		collision.obj.p.x=200;
       		collision.obj.p.y=2528;
@@ -1030,12 +1031,12 @@ var game = function ()
       		collision.obj.p.x=200;
       		collision.obj.p.y=3216;
       		this.p.sheet=tipoPuerta+"Close";
-      		this.p.modelo=-1;
+      		this.p.modelo= 100;
       	}else if(this.p.modelo==4){
       		collision.obj.p.x=200;
       		collision.obj.p.y=2976;
       		this.p.sheet=tipoPuerta+"Close";
-      		this.p.modelo=-1;
+      		this.p.modelo= 100;
       	}else if(this.p.modelo==5){
       		collision.obj.p.x=152;
       		collision.obj.p.y=1104;
