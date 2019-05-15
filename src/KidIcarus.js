@@ -943,7 +943,7 @@ var game = function ()
 
  // CORAZON
 
- Q.Sprite.extend("Corazon",
+ Q.MovingSprite.extend("Corazon",
   {
     init: function (p)
     {
@@ -952,8 +952,7 @@ var game = function ()
         type: SPRITE_OBJECT,
         collisionMask: SPRITE_PLAYER,
         gravity: 0,
-        frame: 1,
-        heart: 5,
+        frame: 0,
         sensor: true
       });
 
