@@ -40,8 +40,7 @@ var game = function ()
         speed: 80,
         jumpSpeed: -280,
         jumps: 0,
-        timeDamage: 0, //tiempo de invulnerabilidad
-        sensor: true
+        timeDamage: 0 //tiempo de invulnerabilidad
       });
 
       this.add("2d, platformerControls, animation");
@@ -273,11 +272,10 @@ var game = function ()
         heart: 1,
         vx: 10,
         damage: 1,
-        sensor: true,
-        z:0
+        sensor: false
       });
 
-      this.add("2d, aiBounce, animation");
+      this.add(" aiBounce, animation");
       this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
       this.on("hit", this, "killed");
     },
@@ -303,6 +301,7 @@ var game = function ()
           this.p.damage = 0;
           this.p.type = SPRITE_OBJECT;
           this.p.collisionMask = SPRITE_PLAYER;
+          this.p.sensor=true;
         }
       }
 
