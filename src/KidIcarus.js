@@ -942,15 +942,13 @@ var game = function ()
  //-----------------------------------------------------------------------//
 
  // CORAZON
- 
+
  Q.Sprite.extend("Corazon",
   {
     init: function (p)
     {
       this._super(p,
       {
-        sprite: "corazon_anim",
-        sheet: "corazon",
         type: SPRITE_FLY,
         collisionMask: SPRITE_PLAYER,
         gravity: 0,
