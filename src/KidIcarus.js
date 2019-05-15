@@ -215,7 +215,7 @@ var game = function ()
         sprite: "flecha",
         scale: 0.5,
         type: SPRITE_BULLET,
-        collisionMask: SPRITE_ENEMY | SPRITE_FLY,
+        collisionMask: SPRITE_ENEMY,
         sort: true,
         gravity: 0
       });
@@ -246,7 +246,7 @@ var game = function ()
         sprite: "flecha",
         scale: 0.5,
         type: SPRITE_BULLET,
-        collisionMask: SPRITE_ENEMY | SPRITE_FLY,
+        collisionMask: SPRITE_ENEMY,
         sort: true,
         gravity: 0
       });
