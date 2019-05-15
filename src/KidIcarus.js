@@ -215,8 +215,7 @@ var game = function ()
         sprite: "flecha",
         scale: 0.5,
         type: SPRITE_BULLET,
-        collisionMask: SPRITE_ENEMY,
-        sensor: true,
+        collisionMask: SPRITE_ENEMY | SPRITE_FLY,
         sort: true,
         gravity: 0
       });
@@ -247,8 +246,7 @@ var game = function ()
         sprite: "flecha",
         scale: 0.5,
         type: SPRITE_BULLET,
-        collisionMask: SPRITE_ENEMY,
-        sensor: true,
+        collisionMask: SPRITE_ENEMY | SPRITE_FLY,
         sort: true,
         gravity: 0
       });
@@ -491,7 +489,7 @@ var game = function ()
         {
           pit = pit.items[0];
           
-          if(Math.abs(pit.p.y-this.p.y) <= 16)
+          if(Math.abs(pit.p.y-this.p.y) <= 8)
           {
 	          if(pit.p.x - this.p.x > 0) this.p.vx = 60;
 
@@ -808,7 +806,7 @@ var game = function ()
         heart: 10,
         hit:2,
         hidden:true,
-        time:0,
+        time:150,
         damage:1,
         sensor: false
       });
@@ -841,7 +839,7 @@ var game = function ()
         if(pit.items[0])
         {
           pit = pit.items[0];
-          if(Math.abs(pit.p.y-this.p.y) <= 32)
+          if(Math.abs(pit.p.y-this.p.y) <= 10)
           {
             if(this.p.hidden)
             {
@@ -883,7 +881,7 @@ var game = function ()
       this._super( p, {
         sheet: "enemyFire",
         sprite: "enemyFire",
-        type: SPRITE_BULLET,
+        type: SPRITE_BULLET_ENEMY,
         collisionMask: SPRITE_PLAYER,
         sensor: true,
         sort:true,
@@ -906,59 +904,6 @@ var game = function ()
       }
     }
   });
-
- //----------------------------------------------------------------------//
-
- // DOOR
-/*
- Q.MovingSprite.extend("Door", 
- {
-    init: function(p) 
-    {
-      this._super( p,
-      {
-        sheet: "door",
-        sprite: "door",
-        type: SPRITE_DOOR,
-        collisionMask: SPRITE_PLAYER,
-        sensor: true,
-        sort:true,
-        gravity: 0
-      });
-
-      this.add("2d");
-      this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
-      if(this.p.option == 0)
-      {
-      	this.p.sheet= "doorAOpen";
-      }
-      else if(this.p.option == 1)
-      {
-      	this.p.sheet= "doorBOpen";
-      }
-
-    },
-    hit: function(collision){
-    	if (collision.obj.isA("Pit") && this.p.live <= 0)
-      	{
-          if(this.p.option == 0)
-          {
-		    	this.p.sheet = "doorAClose";
-          }
-          else if(this.p.option == 1)
-          {
-            this.p.sheet = "doorBClose";
-          }
-      	}
-
-    },
-
-    step: function(dt)
-    {
-    }
-  });
-*/
- //-----------------------------------------------------------------------//
 
  // CORAZON
 
@@ -1024,6 +969,11 @@ var game = function ()
       		collision.obj.p.y=3216;
       		this.p.sheet=this.p.tipoPuerta+"Close";
       		this.p.modelo= 100;
+      		Q.stage.insert(new Q.Napias({ x: 112, y: 3184, yIni: 3104, yFin: 3264, time: 0 }));
+    		Q.stage.insert(new Q.Napias({ x: 112, y: 3184, yIni: 3184, yFin: 3264, time: 0 }));
+    		Q.stage.insert(new Q.Napias({ x: 112, y: 3184, yIni: 3104, yFin: 3264, time: 1 }));
+    		Q.stage.insert(new Q.Napias({ x: 112, y: 3136, yIni: 3152, yFin: 3220, time: 0 }));
+    		Q.stage.insert(new Q.Napias({ x: 112, y: 3136, yIni: 3152, yFin: 3220, time: 1 }));
       	}else if(this.p.modelo==2){
       		collision.obj.p.x=200;
       		collision.obj.p.y=2528;
@@ -1278,7 +1228,7 @@ var game = function ()
     stage.insert(new Q.Napias({ x: 112, y: 3136, yIni: 3152, yFin: 3220, time: 1 }));
 
     stage.insert(new Q.Napias({ x: 112, y: 3998, yIni: 2864, yFin: 3008, time: 0 }));
-    stage.insert(new Q.FunestoM({ x: 112, y: 3184, yIni: 3104, yFin: 3264, time: 0 }));
+    stage.insert(new Q.FunestoM({ x: 112, y: 3184, yIni: 2864, yFin: 3008, time: 0 }));
 
 
 
