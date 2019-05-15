@@ -12,7 +12,7 @@ var game = function ()
   var SPRITE_ENEMY = 3;
   var SPRITE_OBJECT = 4;
   var SPRITE_BULLET_ENEMY = 8;
-  var SPRITE_DOOR = 32;
+  var SPRITE_DOOR = 16;
   var SPRITE_FLY = 32;
   
 
@@ -1019,26 +1019,26 @@ var game = function ()
       	if(this.p.modelo==0){ // La ultima puerta
       		Q.stageScene("winGame", 1, { label: "You Won!" });
       	}else if(this.p.modelo==1){
-      		collision.obj.p.x=208;
+      		collision.obj.p.x=200;
       		collision.obj.p.y=3216;
       		this.p.sheet=tipoPuerta+"Close";
       		this.p.modelo=-1;
       	}else if(this.p.modelo==2){
-      		collision.obj.p.x=208;
+      		collision.obj.p.x=200;
       		collision.obj.p.y=2528;
       		//No la cerramos porque el modelo 1 y el 3 te llevan a la misma habitación
       	}else if(this.p.modelo==3){
-      		collision.obj.p.x=208;
+      		collision.obj.p.x=200;
       		collision.obj.p.y=3216;
       		this.p.sheet=tipoPuerta+"Close";
       		this.p.modelo=-1;
       	}else if(this.p.modelo==4){
-      		collision.obj.p.x=208;
+      		collision.obj.p.x=200;
       		collision.obj.p.y=2976;
       		this.p.sheet=tipoPuerta+"Close";
       		this.p.modelo=-1;
       	}else if(this.p.modelo==5){
-      		collision.obj.p.x=160;
+      		collision.obj.p.x=152;
       		collision.obj.p.y=1104;
       	}
       }
