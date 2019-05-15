@@ -949,7 +949,7 @@ var game = function ()
     {
       this._super(p,
       {
-        type: SPRITE_FLY,
+        type: SPRITE_OBJECT,
         collisionMask: SPRITE_PLAYER,
         gravity: 0,
         frame: 1,
@@ -957,7 +957,7 @@ var game = function ()
         sensor: true
       });
 
-      this.add("2d, aiBounce, animation");
+      this.add("2d");
       this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
     },
 
