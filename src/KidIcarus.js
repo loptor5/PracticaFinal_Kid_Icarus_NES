@@ -274,17 +274,17 @@ var game = function ()
         damage: 1
       });
 
-      this.add("aiBounce, animation");
+      this.add("2d, aiBounce, animation");
       this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
       this.on("hit", this, "killed");
     },
     hit: function (collision)
     {
-      if (collision.obj.isA("Pit") && this.p.live <= 0)
+      /*if (collision.obj.isA("Pit") && this.p.live <= 0)
       {
         Q.state.inc("score", 5);
         this.destroy();
-      }
+      }*/
 
     },
     killed: function (collision)
@@ -294,12 +294,8 @@ var game = function ()
         this.p.live--;
         if (this.p.live <= 0)
         {
-          this.p.sheet = "corazonMini";
-          this.play("viperStop");
-          this.p.vx = 0;
-          this.p.damage = 0;
-          this.p.type = SPRITE_OBJECT;
-          this.p.collisionMask = SPRITE_PLAYER;
+        	this.stage.insert(new Q.Corazon({ x: this.p.x, y: this.p.y, sheet: "corazonMini", heart:5}));
+          this.destroy();
         }
       }
 
@@ -944,6 +940,41 @@ var game = function ()
   });
 
  //-----------------------------------------------------------------------//
+
+ // CORAZON
+ 
+ Q.Sprite.extend("Corazon",
+  {
+    init: function (p)
+    {
+      this._super(p,
+      {
+        sprite: "corazon_anim",
+        sheet: "corazon",
+        type: SPRITE_FLY,
+        collisionMask: SPRITE_PLAYER,
+        gravity: 0,
+        frame: 1,
+        heart: 5,
+        sensor: true
+      });
+
+      this.add("2d, aiBounce, animation");
+      this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
+    },
+
+    hit: function (collision)
+    {
+      if (collision.obj.isA("Pit"))
+      {
+      	Q.state.inc("score", this.p.heart);
+        this.destroy();
+      }
+
+    }
+
+  });
+  //----------------------------------------------------------------------//
 
   // SCORE
 
