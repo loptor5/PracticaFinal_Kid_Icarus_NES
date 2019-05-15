@@ -1021,7 +1021,7 @@ var game = function ()
       	}else if(this.p.modelo==1){
       		collision.obj.p.x=200;
       		collision.obj.p.y=3216;
-      		this.p.sheet=tipoPuerta+"Close";
+      		this.p.sheet=this.p.tipoPuerta+"Close";
       		this.p.modelo= 100;
       	}else if(this.p.modelo==2){
       		collision.obj.p.x=200;
@@ -1030,16 +1030,18 @@ var game = function ()
       	}else if(this.p.modelo==3){
       		collision.obj.p.x=200;
       		collision.obj.p.y=3216;
-      		this.p.sheet=tipoPuerta+"Close";
+      		this.p.sheet=this.p.tipoPuerta+"Close";
       		this.p.modelo= 100;
       	}else if(this.p.modelo==4){
       		collision.obj.p.x=200;
       		collision.obj.p.y=2976;
-      		this.p.sheet=tipoPuerta+"Close";
+      		this.p.sheet=this.p.tipoPuerta+"Close";
       		this.p.modelo= 100;
       	}else if(this.p.modelo==5){
       		collision.obj.p.x=152;
       		collision.obj.p.y=1104;
+      	}else{
+      		//Nada
       	}
       }
 
