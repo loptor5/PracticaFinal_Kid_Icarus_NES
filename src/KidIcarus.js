@@ -11,8 +11,8 @@ var game = function ()
   var SPRITE_BULLET = 2;
   var SPRITE_ENEMY = 3;
   var SPRITE_OBJECT = 4;
-  var SPRITE_BULLET_ENEMY=9;
-  var SPRITE_DOOR=17;
+  var SPRITE_BULLET_ENEMY=8;
+  var SPRITE_DOOR=16;
   var SPRITE_FLY=32;
   
 
@@ -1067,16 +1067,7 @@ var game = function ()
     const player = stage.insert(new Q.Pit());
     stage.add("viewport").follow(player);
     stage.viewport.scale = 2;
-    /*
-    stage.insert(new Q.Viperix({ x: 60, y: 2666 }));
-    stage.insert(new Q.Monoculus({ x: 60, y: 2068, yIni: 2067, yFin: 2164, time: 0 }));
-    stage.insert(new Q.Monoculus({ x: 62, y: 2050, yIni: 2049, yFin: 2146, time: 1 }));
-    stage.insert(new Q.Funesto({ x: 135, y: 1346, xIni: 135, xFin: 180 }));
-    stage.insert(new Q.FunestoM({ x: 135, y: 1046, yIni: 1049, yFin: 1146, time: 0 }));
-    stage.insert(new Q.Napias({ x: 135, y: 1046, yIni: 2500, yFin: 2600, time: 1 }));
-    stage.insert(new Q.Netora({ x: 70, y: 2666 }));
-    stage.insert(new Q.Fuego({ x: 138, y: 2551 }));
-    */
+
    	stage.insert(new Q.Viperix({ x: 96, y: 2592 }));
    	stage.insert(new Q.Viperix({ x: 128, y: 2592 }));
    	stage.insert(new Q.Viperix({ x: 176, y: 2528 }));
@@ -1096,8 +1087,6 @@ var game = function ()
     stage.insert(new Q.Monoculus({ x: 32, y: 1776, yIni: 1775, yFin: 18776, time: 0.75 }));
     stage.insert(new Q.Monoculus({ x: 32, y: 1360, yIni: 1359, yFin: 1460, time: 0 }));
     stage.insert(new Q.Funesto({ x: 157, y: 1346, xIni: 134, xFin: 180 }));
-    //stage.insert(new Q.Napias({ x: 32, y: 1088, yIni: 1087, yFin: 1188, time: 1 }));
-    //stage.insert(new Q.Napias({ x: 32, y: 1056, yIni: 1054, yFin: 1156, time: 0.75 }));
     stage.insert(new Q.Napias({ x: 32, y: 1024, yIni: 1023, yFin: 1124, time: 0.5 }));
     stage.insert(new Q.Napias({ x: 32, y: 992, yIni: 991, yFin: 1092, time: 0.25 }));
     stage.insert(new Q.Funesto({ x: 135, y: 1104, xIni: 95, xFin: 176 }));
