@@ -60,12 +60,12 @@ var game = function ()
         if (this.p.x > 257) this.p.x = 1;
         if (this.p.x < 0) this.p.x = 256;
         
-        if (this.p.vy == 0 && this.p.vx == 0 && !this.p.ignoreControls)
+        /*if (this.p.vy == 0 && this.p.vx == 0 && !this.p.ignoreControls)
         {
           this.play("stand_" + this.p.direction);
           this.p.jumped = 0;
         }
-        else if (this.p.landed > 0 && !this.p.ignoreControls)
+        else*/ if (this.p.landed > 0 && (this.p.vx>0 || this.p.vx<0) && !this.p.ignoreControls)
         {
           this.play("walk_" + this.p.direction);
           this.p.jumped = 0;
