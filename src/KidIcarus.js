@@ -965,8 +965,7 @@ var game = function ()
         type: SPRITE_DOOR,
         collisionMask: SPRITE_PLAYER,
         gravity: 0,
-        frame: 0,
-        sensor: true
+        frame: 0
         //tipoPuerta sera puertaA o puertaB
         //modelo indicará a donde transporta al personaje
       });
