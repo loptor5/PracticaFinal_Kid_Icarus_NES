@@ -1006,7 +1006,7 @@ var game = function ()
         //modelo indicará a donde transporta al personaje
       });
 
-      this.add("2d");
+      this.add("2d, aiBounce");
       this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
     },
 
