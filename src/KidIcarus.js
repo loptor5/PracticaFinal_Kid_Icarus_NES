@@ -7,8 +7,8 @@ var game = function ()
     .touch()
     .enableSound();
 
-  var SPRITE_PLAYER = 0;
-  var SPRITE_BULLET = 1;
+  var SPRITE_BULLET = 0;
+  var SPRITE_PLAYER = 1;
   var SPRITE_ENEMY = 2;
   var SPRITE_OBJECT = 4;
   var SPRITE_BULLET_ENEMY=8;
