@@ -1259,9 +1259,9 @@ var game = function ()
     stage.insert(new Q.Netora({ x: 192, y: 128 }));
 
     stage.insert(new Q.Door({x: 16, y:2752, tipoPuerta: "doorB", sheet: "doorBClose", modelo:-1 }));
-    stage.insert(new Q.Door({x: 224, y:3205, tipoPuerta: "doorB", sheet: "doorBOpen", modelo: 2 }));
+    stage.insert(new Q.Door({x: 224, y:3200, tipoPuerta: "doorB", sheet: "doorBOpen", modelo: 2 }));
     stage.insert(new Q.Door({x: 224, y:2965, tipoPuerta: "doorB", sheet: "doorBOpen", modelo: 5 }));
-    stage.insert(new Q.Door({x: 224, y:2517, tipoPuerta: "doorA", sheet: "doorAOpen", modelo: 1 }));
+    stage.insert(new Q.Door({x: 230, y:2512, tipoPuerta: "doorA", sheet: "doorAOpen", modelo: 1 }));
     stage.insert(new Q.Door({x: 48, y:1317, tipoPuerta: "doorA", sheet: "doorAOpen", modelo: 3 }));
     stage.insert(new Q.Door({x: 176, y:1093, tipoPuerta: "doorA", sheet: "doorAOpen", modelo: 4 }));
     stage.insert(new Q.Door({x: 224, y:117, tipoPuerta: "doorB", sheet: "doorBOpen", modelo: 0 }));
