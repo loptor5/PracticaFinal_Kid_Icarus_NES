@@ -908,7 +908,7 @@ var game = function ()
  //----------------------------------------------------------------------//
 
  // DOOR
-
+/*
  Q.MovingSprite.extend("Door", 
  {
     init: function(p) 
@@ -955,7 +955,7 @@ var game = function ()
     {
     }
   });
-
+*/
  //-----------------------------------------------------------------------//
 
  // CORAZON
@@ -992,7 +992,7 @@ var game = function ()
 
  // DOOR
 
- Q.MovingSprite.extend("Door",
+ Q.Sprite.extend("Door",
   {
     init: function (p)
     {
