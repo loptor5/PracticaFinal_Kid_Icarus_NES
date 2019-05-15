@@ -1200,13 +1200,13 @@ var game = function ()
     stage.insert(new Q.Netora({ x: 80, y: 128 }));
     stage.insert(new Q.Netora({ x: 192, y: 128 }));
 
-    stage.insert(new Q.Door({x: 16, y:2768, tipoPuerta: "doorB", sheet: "doorBClose", modelo:-1 }));
-    stage.insert(new Q.Door({x: 224, y:3216, tipoPuerta: "doorB", sheet: "doorBOpen", modelo: 2 }));
-    stage.insert(new Q.Door({x: 224, y:2976, tipoPuerta: "doorB", sheet: "doorBOpen", modelo: 5 }));
-    stage.insert(new Q.Door({x: 224, y:2528, tipoPuerta: "doorA", sheet: "doorAOpen", modelo: 1 }));
-    stage.insert(new Q.Door({x: 48, y:1328, tipoPuerta: "doorA", sheet: "doorAOpen", modelo: 3 }));
-    stage.insert(new Q.Door({x: 176, y:1104, tipoPuerta: "doorA", sheet: "doorAOpen", modelo: 4 }));
-    stage.insert(new Q.Door({x: 224, y:128, tipoPuerta: "doorB", sheet: "doorBOpen", modelo: 0 }));
+    stage.insert(new Q.Door({x: 16, y:2752, tipoPuerta: "doorB", sheet: "doorBClose", modelo:-1 }));
+    stage.insert(new Q.Door({x: 224, y:3200, tipoPuerta: "doorB", sheet: "doorBOpen", modelo: 2 }));
+    stage.insert(new Q.Door({x: 224, y:2960, tipoPuerta: "doorB", sheet: "doorBOpen", modelo: 5 }));
+    stage.insert(new Q.Door({x: 224, y:2512, tipoPuerta: "doorA", sheet: "doorAOpen", modelo: 1 }));
+    stage.insert(new Q.Door({x: 48, y:1312, tipoPuerta: "doorA", sheet: "doorAOpen", modelo: 3 }));
+    stage.insert(new Q.Door({x: 176, y:1088, tipoPuerta: "doorA", sheet: "doorAOpen", modelo: 4 }));
+    stage.insert(new Q.Door({x: 224, y:112, tipoPuerta: "doorB", sheet: "doorBOpen", modelo: 0 }));
 
 
     
