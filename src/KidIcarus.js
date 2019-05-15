@@ -809,6 +809,7 @@ var game = function ()
         hit:2,
         hidden:true,
         time:0,
+        damage:1,
         sensor: false
       });
 
@@ -1239,7 +1240,7 @@ var game = function ()
    	stage.insert(new Q.Monoculus({ x: 32, y: 2016, yIni: 2015, yFin: 2115, time: 1 }));
     stage.insert(new Q.Monoculus({ x: 32, y: 2000, yIni: 1999, yFin: 2199, time: 1.5 }));
     stage.insert(new Q.Monoculus({ x: 32, y: 1872, yIni: 1871, yFin: 1971, time: 0 }));
-    stage.insert(new Q.Monoculus({ x: 32, y: 1840, yIni: 1939, yFin: 1940, time: 0 }));
+    stage.insert(new Q.Monoculus({ x: 32, y: 1840, yIni: 1939, yFin: 1940, time: 0.2 }));
     stage.insert(new Q.Monoculus({ x: 32, y: 1840, yIni: 1839, yFin: 1940, time: 1 }));
     stage.insert(new Q.Monoculus({ x: 32, y: 1808, yIni: 1807, yFin: 1908, time: 0.25 }));
     stage.insert(new Q.Monoculus({ x: 32, y: 1776, yIni: 1775, yFin: 18776, time: 0.75 }));
@@ -1269,8 +1270,15 @@ var game = function ()
     stage.insert(new Q.Door({x: 240, y:117, tipoPuerta: "doorB", sheet: "doorBOpen", modelo: 0 }));
 
 
-    
 
+    stage.insert(new Q.Napias({ x: 112, y: 3184, yIni: 3104, yFin: 3264, time: 0 }));
+    stage.insert(new Q.Napias({ x: 112, y: 3184, yIni: 3184, yFin: 3264, time: 0 }));
+    stage.insert(new Q.Napias({ x: 112, y: 3184, yIni: 3104, yFin: 3264, time: 1 }));
+    stage.insert(new Q.Napias({ x: 112, y: 3136, yIni: 3152, yFin: 3220, time: 0 }));
+    stage.insert(new Q.Napias({ x: 112, y: 3136, yIni: 3152, yFin: 3220, time: 1 }));
+
+    stage.insert(new Q.Napias({ x: 112, y: 3998, yIni: 2864, yFin: 3008, time: 0 }));
+    stage.insert(new Q.FunestoM({ x: 112, y: 3184, yIni: 3104, yFin: 3264, time: 0 }));
 
 
 
