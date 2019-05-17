@@ -52,6 +52,7 @@ var game = function ()
         jumpSpeed: -280,
         jumped: 0,
         damaged: false,
+        shootedUp: false, // si ha disparado hacia arriba
         timeShooted: 0, // tiempo de disparo
         timeDamaged: 0 // tiempo de invulnerabilidad
       });
@@ -65,6 +66,7 @@ var game = function ()
 
     step: function (dt)
     {
+      //console.log(this.p.frame);
       if (this.p.alive)
       {
         // Si se sale de los limites
@@ -73,16 +75,35 @@ var game = function ()
         
         if(this.p.timeShooted > 0)
         {
-          this.play("lookUp");
           this.p.timeShooted--;
+          
           if(this.p.timeShooted == 5) // en la mitad de tiempo de animacion suelta la flecha
           {
-            this.stage.insert(new Q.ArrowUp(
+            // Dependiendo de la situacion da un valor u otro
+            if(this.p.shootedUp)
             {
-              x: this.p.x,
-              y: this.p.y - this.p.h / 2,
-              vy: -200
-            }));
+              this.p.shootedUp = false;
+
+              this.stage.insert(new Q.ArrowUp(
+                {
+                  x: this.p.x,
+                  y: this.p.y - this.p.h / 2,
+                  vy: vyF = -200,
+                }));
+            }
+            else
+            {
+              let dir;
+              this.p.direction == "right" ? dir = 1 : dir = -1;
+
+              this.stage.insert(new Q.Arrow(
+              {
+                x: this.p.x,
+                y: this.p.y + this.p.h / 10,
+                vx: 200 * dir,
+                angle: 90 * dir
+              }));
+            }
           }
         }
         else if (this.p.timeDamaged > 0)
@@ -125,29 +146,29 @@ var game = function ()
     {
     	if (this.p.alive)
 	    {
+        switch(this.p.frame) 
+        {
+          case 1:
+          case 5: // estatico
+            this.play("shoot_stand_" + this.p.direction);
+            break;
+          case 2:
+          case 3:
+          case 4: // andando
+            this.play("shoot_walk_" + this.p.direction);
+            break;
+          case 6: // saltando abajo
+            this.play("shoot_jump_down_" + this.p.direction);
+            break;
+          case 7: // saltando arriba
+            this.play("shoot_jump_up_" + this.p.direction);
+            break;
+          default:
+            this.play("shoot_stand_" + this.p.direction);
+            console.log(this.p.frame);
+        }
         Q.audio.play("Disparo.mp3", { loop: false }); // audio de disparo
-        var p = this.p;
-        this.play("stand_" + p.direction);
-        if(p.direction == "right")
-        {
-          this.stage.insert(new Q.Arrow(
-          {
-            x: p.x,
-            y: p.y + p.h / 8,
-            vx: 200,
-            angle: 90
-          }));
-        }
-        else
-        {
-          this.stage.insert(new Q.Arrow(
-          {
-            x: p.x,
-            y: p.y + p.h / 8,
-            vx: -200,
-            angle: -90
-          }));
-        }
+        this.p.timeShooted = 10;
   		}
     },
 
@@ -155,9 +176,10 @@ var game = function ()
     {
       if (this.p.alive)
       {
+        this.play("shoot_up");
         Q.audio.play("Disparo.mp3", { loop: false }); // audio de disparo
-	      var p = this.p;
         this.p.timeShooted = 10;
+        this.p.shootedUp = true;
   		}
     },
 
@@ -212,16 +234,24 @@ var game = function ()
   {
     stand_right: { frames: [1], flip: false, loop: true, rate: 1 / 5 },
     stand_left: { frames: [1], flip: "x", loop: true, rate: 1 / 5 },
-    walk_right: { frames: [1, 4, 3, 2], rate: 1 / 20, flip: false, loop: false, next: "stand_right" },
+    walk_right: { frames: [1, 4, 3, 2], rate: 1 / 20, flip: false, loop: false, next: "stand_right" }, // ?cambiar?
     walk_left: { frames: [1, 4, 3, 2], rate: 1 / 20, flip: "x", loop: false, next: "stand_left" },
     jump_up_right: { frames: [7], flip: false, loop: false, rate: 1 / 5 },
     jump_up_left: { frames: [7], flip: "x", loop: false, rate: 1 / 5 },
     jump_down_right: { frames: [6], flip: false, loop: false, rate: 1 / 5 },
     jump_down_left: { frames: [6], flip: "x", loop: false, rate: 1 / 5 },
-    lookUp: { frames: [8, 9], rate: 1 / 10, flip: false, loop: false },
-    death: { frames: [0], flip: false, rate: 1 / 5, loop: false, trigger: "dying" },
-    damage_right: { frames: [5, 1, 5, 1], flip: false, rate: 1 / 15, loop: true },
-    damage_left: { frames: [5, 1, 5, 1], flip: "x", rate: 1 / 15, loop: true }
+    death: { frames: [0], flip: false, loop: false, rate: 1 / 5, trigger: "dying" },
+    damage_right: { frames: [5, 1, 5, 1], flip: false, loop: true, rate: 1 / 15 },
+    damage_left: { frames: [5, 1, 5, 1], flip: "x", loop: true, rate: 1 / 15 },
+    shoot_stand_right: { frames: [1, 10], flip: false, loop: false, rate: 1 / 10 },
+    shoot_stand_left: { frames: [1, 10], flip: "x", loop: false, rate: 1 / 10 },
+    shoot_walk_right: { frames: [3, 2, 11, 12], flip: false, loop: false, rate: 1 / 20 },
+    shoot_walk_left: { frames: [3, 2, 11, 12], flip: "x", loop: false, rate: 1 / 20 },
+    shoot_jump_up_right: { frames: [7, 14], flip: false, loop: false, rate: 1 / 10 },
+    shoot_jump_up_left: { frames: [7, 14], flip: "x", loop: false, rate: 1 / 20 },
+    shoot_jump_down_right: { frames: [6, 13], flip: false, loop: false, rate: 1 / 10 },
+    shoot_jump_down_left: { frames: [6, 13], flip: "x", loop: false, rate: 1 / 10 },
+    shoot_up: { frames: [8, 9], flip: false, loop: false, rate: 1 / 10 }
   });
   //----------------------------------------------------------------------//
 
