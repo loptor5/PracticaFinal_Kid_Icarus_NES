@@ -9,7 +9,7 @@ var game = function ()
 
   var SPRITE_PLAYER = 1;
   var SPRITE_BULLET = 2;
-  var SPRITE_ENEMY = 3;
+  var SPRITE_ENEMY_K = 3;
   var SPRITE_OBJECT = 4;
   var SPRITE_BULLET_ENEMY = 8;
   var SPRITE_DOOR = 16;
@@ -39,7 +39,7 @@ var game = function ()
         sprite: "pit_anim",
         sheet: "pit",
         type: SPRITE_PLAYER,
-        collisionMask: SPRITE_ENEMY | SPRITE_BULLET_ENEMY | SPRITE_FLY,
+        collisionMask: SPRITE_ENEMY_K | SPRITE_BULLET_ENEMY | SPRITE_FLY,
         gravity: 0.5,
         x: 40,
         y: 2763,
@@ -50,8 +50,8 @@ var game = function ()
         direction: "right",
         speed: 80,
         jumpSpeed: -280,
-        jumped: 0,
-        damaged: false,
+        jumped: 0, // numero de saltos
+        damaged: false, // si esta dañado
         shootedUp: false, // si ha disparado hacia arriba
         timeShooted: 0, // tiempo de disparo
         timeDamaged: 0 // tiempo de invulnerabilidad
@@ -66,7 +66,7 @@ var game = function ()
 
     step: function (dt)
     {
-      //console.log(this.p.frame);
+      //console.log(this.p.frame); // frame del sprite actual
       if (this.p.alive)
       {
         // Si se sale de los limites
@@ -79,9 +79,8 @@ var game = function ()
           
           if(this.p.timeShooted == 5) // en la mitad de tiempo de animacion suelta la flecha
           {
-            // Dependiendo de la situacion da un valor u otro
             if(this.p.shootedUp)
-            {
+            { // Disparo Arriba
               this.p.shootedUp = false;
 
               this.stage.insert(new Q.ArrowUp(
@@ -92,7 +91,7 @@ var game = function ()
                 }));
             }
             else
-            {
+            { // Disparo Horizontal
               let dir;
               this.p.direction == "right" ? dir = 1 : dir = -1;
 
@@ -154,8 +153,8 @@ var game = function ()
             break;
           case 2:
           case 3:
-          case 4: // andando
-            this.play("shoot_walk_" + this.p.direction);
+          case 4: // andando (depende del frame que este)
+            this.play("shoot_walk_" + this.p.direction + "_" + this.p.frame);
             break;
           case 6: // saltando abajo
             this.play("shoot_jump_down_" + this.p.direction);
@@ -234,8 +233,8 @@ var game = function ()
   {
     stand_right: { frames: [1], flip: false, loop: true, rate: 1 / 5 },
     stand_left: { frames: [1], flip: "x", loop: true, rate: 1 / 5 },
-    walk_right: { frames: [1, 4, 3, 2], rate: 1 / 20, flip: false, loop: false, next: "stand_right" }, // ?cambiar?
-    walk_left: { frames: [1, 4, 3, 2], rate: 1 / 20, flip: "x", loop: false, next: "stand_left" },
+    walk_right: { frames: [2, 3, 4], rate: 1 / 20, flip: false, loop: false, next: "stand_right" }, // ?cambiar?
+    walk_left: { frames: [2, 3, 4], rate: 1 / 20, flip: "x", loop: false, next: "stand_left" },
     jump_up_right: { frames: [7], flip: false, loop: false, rate: 1 / 5 },
     jump_up_left: { frames: [7], flip: "x", loop: false, rate: 1 / 5 },
     jump_down_right: { frames: [6], flip: false, loop: false, rate: 1 / 5 },
@@ -245,8 +244,12 @@ var game = function ()
     damage_left: { frames: [5, 1, 5, 1], flip: "x", loop: true, rate: 1 / 15 },
     shoot_stand_right: { frames: [1, 10], flip: false, loop: false, rate: 1 / 10 },
     shoot_stand_left: { frames: [1, 10], flip: "x", loop: false, rate: 1 / 10 },
-    shoot_walk_right: { frames: [3, 2, 11, 12], flip: false, loop: false, rate: 1 / 20 },
-    shoot_walk_left: { frames: [3, 2, 11, 12], flip: "x", loop: false, rate: 1 / 20 },
+    shoot_walk_right_2: { frames: [4, 3, 11, 12], flip: false, loop: false, rate: 1 / 20 },
+    shoot_walk_right_3: { frames: [2, 4, 11, 12], flip: false, loop: false, rate: 1 / 20 },
+    shoot_walk_right_4: { frames: [3, 2, 11, 12], flip: false, loop: false, rate: 1 / 20 },
+    shoot_walk_left_2: { frames: [4, 3, 11, 12], flip: "x", loop: false, rate: 1 / 20 },
+    shoot_walk_left_3: { frames: [2, 4, 11, 12], flip: "x", loop: false, rate: 1 / 20 },
+    shoot_walk_left_4: { frames: [3, 2, 11, 12], flip: "x", loop: false, rate: 1 / 20 },
     shoot_jump_up_right: { frames: [7, 14], flip: false, loop: false, rate: 1 / 10 },
     shoot_jump_up_left: { frames: [7, 14], flip: "x", loop: false, rate: 1 / 20 },
     shoot_jump_down_right: { frames: [6, 13], flip: false, loop: false, rate: 1 / 10 },
@@ -267,7 +270,7 @@ var game = function ()
         sprite: "flecha",
         scale: 0.5,
         type: SPRITE_BULLET,
-        collisionMask: SPRITE_ENEMY,
+        collisionMask: SPRITE_ENEMY_K,
         sort: true,
         gravity: 0,
         sensor: true
@@ -299,7 +302,7 @@ var game = function ()
         sprite: "flecha",
         scale: 0.5,
         type: SPRITE_BULLET,
-        collisionMask: SPRITE_ENEMY,
+        collisionMask: SPRITE_ENEMY_K,
         sort: true,
         gravity: 0,
         sensor:true
@@ -333,7 +336,7 @@ var game = function ()
       {
         sprite: "viperix_anim",
         sheet: "viperix1",
-        type: SPRITE_ENEMY,
+        type: SPRITE_ENEMY_K,
         collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
         gravity: 0.65,
         frame: 1,
@@ -477,7 +480,7 @@ var game = function ()
       {
         sprite: "funesto_anim",
         sheet: "funesto",
-        type: SPRITE_ENEMY,
+        type: SPRITE_ENEMY_K,
         collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
         gravity: 0.65,
         frame: 1,
@@ -741,7 +744,7 @@ var game = function ()
       {
         sprite: "netora_anim",
         sheet: "netora",
-        type: SPRITE_ENEMY,
+        type: SPRITE_ENEMY_K,
         collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
         gravity: 0.65,
         frame: 1,
@@ -803,7 +806,7 @@ var game = function ()
       this._super(p, {
         sprite: "fuego_anim",
         sheet: "fuego",
-        type: SPRITE_ENEMY,
+        type: SPRITE_ENEMY_K,
         collisionMask: SPRITE_BULLET | SPRITE_PLAYER,
         gravity: 0.65,
         frame: 1,
