@@ -98,7 +98,7 @@ var game = function ()
 
               this.stage.insert(new Q.Arrow(
               {
-                x: this.p.x,
+                x: this.p.x + 2 * dir,
                 y: this.p.y + this.p.h / 10,
                 vx: 200 * dir,
                 angle: 90 * dir
