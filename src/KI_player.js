@@ -122,7 +122,13 @@ function loadPlayer(Q) {
                     if (this.p.jumped == 1) {
                         this.p.vy < 0 ? Q.audio.play("Salto.mp3", { loop: false }) : null; // si salta hacia "arriba" (solo el primer salto)
                     }
+                }else{
+                    this.p.alive = false;
+                    this.p.sensor = false;
+                    this.p.gravity = 0;
+                    this.play("death");
                 }
+
             },
 
             shoot: function () {
