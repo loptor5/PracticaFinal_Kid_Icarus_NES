@@ -179,7 +179,7 @@ function loadScenes(Q)
 
         for(var i=0; i< 4; i++){
             for(var j=0; j<4; j++){
-                stage.insert(new Q.Monoculus({ x: xIniEnemy, y: yIniEnemy, yIni:yIniEnemy+1, yFin:yIniEnemy+100, time:0.5*j }));
+                stage.insert(new Q.Monoculus({ x: xIniEnemy, y: yIniEnemy, yIni:yIniEnemy+1, yFin:yIniEnemy+100, time:0.25*j }));
             }
             yIniEnemy-=150;
         }
