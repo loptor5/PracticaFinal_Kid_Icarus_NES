@@ -172,9 +172,9 @@ function loadScenes(Q)
         var xIniViperix= 96;
         for(var i=0; i< 4; i++){
             for(var j=0; j<4; j++){
-                stage.insert(new Q.Viperix({ x: xIniViperix+j*16, y: yIniViperix }));
+                stage.insert(new Q.Viperix({ x: xIniViperix+j*24, y: yIniViperix }));
             }
-            yIniViperix-=100;
+            yIniViperix-=300;
         }
         /*
         stage.insert(new Q.Viperix({ x: 96, y: 2592 }));
