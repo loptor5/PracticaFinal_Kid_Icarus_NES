@@ -170,14 +170,15 @@ function loadScenes(Q)
 
         var yIniEnemy= 2592;
         var xIniEnemy= 96;
-        for(var i=0; i< 4; i++){
+        for(var i=0; i< 3; i++){
             for(var j=0; j<4; j++){
                 stage.insert(new Q.Viperix({ x: xIniEnemy+j*24, y: yIniEnemy }));
             }
             yIniEnemy-=300;
         }
 
-        for(var i=0; i< 4; i++){
+
+        for(var i=0; i< 3; i++){
             for(var j=0; j<4; j++){
                 stage.insert(new Q.Monoculus({ x: xIniEnemy, y: yIniEnemy, yIni:yIniEnemy+1, yFin:yIniEnemy+100, time:0.25*j }));
             }
@@ -186,18 +187,18 @@ function loadScenes(Q)
 
         stage.insert(new Q.Funesto({ x: 157, y: 1346, xIni: 136, xFin: 164 }));
         stage.insert(new Q.Funesto({ x: 135, y: 1104, xIni: 95, xFin: 160 }));
+        stage.insert(new Q.Funesto({ x: 63, y: 544, xIni: 46, xFin: 80 }));
+        stage.insert(new Q.Funesto({ x: 151, y: 480, xIni: 126, xFin: 176 }));
 
         yIniEnemy=864;
 
-        for(var i=0; i< 4; i++){
+        for(var i=0; i< 3; i++){
             for(var j=0; j<4; j++){
-                stage.insert(new Q.FunestoM({ x: xIniEnemy+j*24, y: yIniEnemy, yIni:yIniEnemy+1, yFin:yIniEnemy+100, time:0.5*j }));
+                stage.insert(new Q.FunestoM({ x: xIniEnemy+j*24, y: yIniEnemy, yIni:yIniEnemy+1, yFin:yIniEnemy+100, time:0.25*j }));
             }
-            yIniEnemy-=32;
+            yIniEnemy-=150;
         }
 
-        stage.insert(new Q.Funesto({ x: 63, y: 544, xIni: 46, xFin: 80 }));
-        stage.insert(new Q.Funesto({ x: 151, y: 480, xIni: 126, xFin: 176 }));
         stage.insert(new Q.Fuego({ x: 176, y: 480 }));
         stage.insert(new Q.Fuego({ x: 48, y: 432 }));
         stage.insert(new Q.Fuego({ x: 96, y: 256 }));
