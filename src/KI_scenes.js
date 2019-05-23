@@ -179,9 +179,9 @@ function loadScenes(Q)
 
         for(var i=0; i< 4; i++){
             for(var j=0; j<4; j++){
-                stage.insert(new Q.Monoculus({ x: xIniEnemy+j*24, y: yIniEnemy, yIni:yIniEnemy+1, yFin:yIniEnemy+100, time:0.5*j }));
+                stage.insert(new Q.Monoculus({ x: xIniEnemy, y: yIniEnemy, yIni:yIniEnemy+1, yFin:yIniEnemy+100, time:0.5*j }));
             }
-            yIniEnemy-=32;
+            yIniEnemy-=150;
         }
 
         stage.insert(new Q.Funesto({ x: 157, y: 1346, xIni: 136, xFin: 164 }));
