@@ -477,7 +477,17 @@ function loadEnemies(Q) {
             this.on("hit", this, "killed");
         },
 
-        hit: function (collision) { },
+        hit: function (collision) {
+        	if(this.p.alive){
+        		if(collision.obj.isA("Pit")){
+        			collision.obj.p.live-=this.p.damage;
+        			Q.state.set("lives", collision.obj.p.live);
+        			collision.obj.p.damaged = true;
+                    collision.obj.p.timeDamaged = 30;
+        		}
+        	}
+
+        },
 
         killed: function (collision) {
             if (collision.obj.isA("Arrow") || collision.obj.isA("ArrowUp")) {
@@ -545,7 +555,16 @@ function loadEnemies(Q) {
             this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
         },
 
-        hit: function (collision) { },
+        hit: function (collision) {
+        	if(this.p.alive){
+        		if(collision.obj.isA("Pit")){
+        			collision.obj.p.live-=this.p.damage;
+        			Q.state.set("lives", collision.obj.p.live);
+        			collision.obj.p.damaged = true;
+                    collision.obj.p.timeDamaged = 30;
+        		}
+        	} 
+        },
 
         step: function (dt) {
             if (this.p.vx == 0) {
