@@ -168,41 +168,34 @@ function loadScenes(Q)
         stage.viewport.scale = 2;
 
 
-        var yIniViperix= 2592;
-        var xIniViperix= 96;
+        var yIniEnemy= 2592;
+        var xIniEnemy= 96;
         for(var i=0; i< 4; i++){
             for(var j=0; j<4; j++){
-                stage.insert(new Q.Viperix({ x: xIniViperix+j*24, y: yIniViperix }));
+                stage.insert(new Q.Viperix({ x: xIniEnemy+j*24, y: yIniEnemy }));
             }
-            yIniViperix-=300;
+            yIniEnemy-=300;
         }
-        /*
-        stage.insert(new Q.Viperix({ x: 96, y: 2592 }));
-        stage.insert(new Q.Viperix({ x: 128, y: 2592 }));
-        stage.insert(new Q.Viperix({ x: 176, y: 2528 }));
-        stage.insert(new Q.Viperix({ x: 208, y: 2528 }));
-        stage.insert(new Q.Viperix({ x: 176, y: 2368 }));
-        stage.insert(new Q.Viperix({ x: 192, y: 2336 }));
-        stage.insert(new Q.Viperix({ x: 32, y: 2208 }));
-        stage.insert(new Q.Viperix({ x: 32, y: 2096 }));*/
-        stage.insert(new Q.Monoculus({ x: 32, y: 2048, yIni: 2047, yFin: 2147, time: 0 }));
-        stage.insert(new Q.Monoculus({ x: 32, y: 2032, yIni: 2031, yFin: 2131, time: 0.5 }));
-        stage.insert(new Q.Monoculus({ x: 32, y: 2016, yIni: 2015, yFin: 2115, time: 1 }));
-        stage.insert(new Q.Monoculus({ x: 32, y: 2000, yIni: 1999, yFin: 2199, time: 1.5 }));
-        stage.insert(new Q.Monoculus({ x: 32, y: 1872, yIni: 1871, yFin: 1971, time: 0 }));
-        stage.insert(new Q.Monoculus({ x: 32, y: 1840, yIni: 1939, yFin: 1940, time: 0.2 }));
-        stage.insert(new Q.Monoculus({ x: 32, y: 1840, yIni: 1839, yFin: 1940, time: 1 }));
-        stage.insert(new Q.Monoculus({ x: 32, y: 1808, yIni: 1807, yFin: 1908, time: 0.25 }));
-        stage.insert(new Q.Monoculus({ x: 32, y: 1776, yIni: 1775, yFin: 18776, time: 0.75 }));
-        stage.insert(new Q.Monoculus({ x: 32, y: 1360, yIni: 1359, yFin: 1460, time: 0 }));
+
+        for(var i=0; i< 4; i++){
+            for(var j=0; j<4; j++){
+                stage.insert(new Q.Monoculus({ x: xIniEnemy+j*24, y: yIniEnemy, yIni:yIniEnemy+1, yFin:yIniEnemy+100, time:0.5*t }));
+            }
+            yIniEnemy-=32;
+        }
+
         stage.insert(new Q.Funesto({ x: 157, y: 1346, xIni: 136, xFin: 164 }));
-        stage.insert(new Q.Napias({ x: 32, y: 1024, yIni: 1023, yFin: 1124, time: 0.5 }));
-        stage.insert(new Q.Napias({ x: 32, y: 992, yIni: 991, yFin: 1092, time: 0.25 }));
         stage.insert(new Q.Funesto({ x: 135, y: 1104, xIni: 95, xFin: 160 }));
-        stage.insert(new Q.FunestoM({ x: 112, y: 864, yIni: 863, yFin: 964, time: 0 }));
-        stage.insert(new Q.FunestoM({ x: 112, y: 832, yIni: 831, yFin: 932, time: 0.33 }));
-        stage.insert(new Q.FunestoM({ x: 112, y: 800, yIni: 799, yFin: 900, time: 0.66 }));
-        stage.insert(new Q.FunestoM({ x: 112, y: 768, yIni: 767, yFin: 868, time: 0.99 }));
+
+        yIniEnemy=864;
+
+        for(var i=0; i< 4; i++){
+            for(var j=0; j<4; j++){
+                stage.insert(new Q.FunestoM({ x: xIniEnemy+j*24, y: yIniEnemy, yIni:yIniEnemy+1, yFin:yIniEnemy+100, time:0.5*t }));
+            }
+            yIniEnemy-=32;
+        }
+        
         stage.insert(new Q.Funesto({ x: 63, y: 544, xIni: 46, xFin: 80 }));
         stage.insert(new Q.Funesto({ x: 151, y: 480, xIni: 126, xFin: 176 }));
         stage.insert(new Q.Fuego({ x: 176, y: 480 }));
