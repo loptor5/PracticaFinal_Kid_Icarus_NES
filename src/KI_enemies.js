@@ -469,11 +469,10 @@ function loadEnemies(Q) {
                 hit: 2,
                 hidden: true,
                 time: 150,
-                damage: 1,
-                sensor: false
+                damage: 1
             });
 
-            this.add("2d, aiBounce, animation");
+            this.add("2d, animation");
             this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
             this.on("hit", this, "killed");
         },
