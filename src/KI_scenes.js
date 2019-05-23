@@ -167,6 +167,16 @@ function loadScenes(Q)
         stage.add("viewport").follow(player);
         stage.viewport.scale = 2;
 
+
+        var yIniViperix= 2592;
+        var xIniViperi= 96;
+        for(var i=0; i< 4; i++){
+            for(var j=0; j<4; j++){
+                stage.insert(new Q.Viperix({ x: xIniViperi+j*16, y: yIniViperix }));
+            }
+            yIniViperi+=100;
+        }
+        /*
         stage.insert(new Q.Viperix({ x: 96, y: 2592 }));
         stage.insert(new Q.Viperix({ x: 128, y: 2592 }));
         stage.insert(new Q.Viperix({ x: 176, y: 2528 }));
@@ -174,7 +184,7 @@ function loadScenes(Q)
         stage.insert(new Q.Viperix({ x: 176, y: 2368 }));
         stage.insert(new Q.Viperix({ x: 192, y: 2336 }));
         stage.insert(new Q.Viperix({ x: 32, y: 2208 }));
-        stage.insert(new Q.Viperix({ x: 32, y: 2096 }));
+        stage.insert(new Q.Viperix({ x: 32, y: 2096 }));*/
         stage.insert(new Q.Monoculus({ x: 32, y: 2048, yIni: 2047, yFin: 2147, time: 0 }));
         stage.insert(new Q.Monoculus({ x: 32, y: 2032, yIni: 2031, yFin: 2131, time: 0.5 }));
         stage.insert(new Q.Monoculus({ x: 32, y: 2016, yIni: 2015, yFin: 2115, time: 1 }));
