@@ -529,7 +529,7 @@ function loadEnemies(Q) {
 
     // DISPARO ENEMIGO
 
-    Q.MovingSprite.extend("EnemyFire", {
+    Q.Sprite.extend("EnemyFire", {
         init: function (p) {
             this._super(p, {
                 sheet: "enemyFire",
