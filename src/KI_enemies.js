@@ -519,8 +519,8 @@ function loadEnemies(Q) {
     //------------------------------------------------------------------------//
 
     Q.animations("fuego_anim", {
-        fuegoR1: { frames: [1], flip: false, loop: true, rate: 1, next: "fuegoL1" },
-        fuegoL1: { frames: [1], flip: "x", loop: true, rate: 1, next: "fuegoR2" },
+        fuegoR1: { frames: [1], flip: false, loop: true, rate: 2, next: "fuegoL1" },
+        fuegoL1: { frames: [1], flip: "x", loop: true, rate: 2, next: "fuegoR2" },
         fuegoR2: { frames: [1], flip: false, loop: true, rate: 1 / 10, next: "fuegoL2" },
         fuegoL2: { frames: [1], flip: "x", loop: true, rate: 1 / 10, next: "fuegoR1" }
     });
@@ -537,7 +537,6 @@ function loadEnemies(Q) {
                 type: SPRITE_BULLET_ENEMY,
                 collisionMask: SPRITE_PLAYER,
                 sensor: true,
-                sort: true,
                 gravity: 0,
                 damage: 1
             });
