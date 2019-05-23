@@ -478,9 +478,9 @@ function loadEnemies(Q) {
         },
 
         hit: function (collision) {
-        	if(this.p.live>0){
-        		if(collision.obj.isA("Pit")){
-        			collision.obj.p.live-=this.p.damage;
+        	if(this.p.live > 0) {
+        		if(collision.obj.isA("Pit") && !hidden) {
+        			collision.obj.p.live -= this.p.damage;
         			Q.state.set("lives", collision.obj.p.live);
         			collision.obj.p.damaged = true;
                     collision.obj.p.timeDamaged = 30;
@@ -556,11 +556,16 @@ function loadEnemies(Q) {
         },
 
         hit: function (collision) {
-    		if(collision.obj.isA("Pit")){
-    			collision.obj.p.live-=this.p.damage;
+    		if(collision.obj.isA("Pit")) {
+    			collision.obj.p.live -= this.p.damage;
     			Q.state.set("lives", collision.obj.p.live);
     			collision.obj.p.damaged = true;
                 collision.obj.p.timeDamaged = 30;
+                
+                if (collision.obj.p.live <= 0) {
+                    collision.obj.p.alive = false;
+                    collision.obj.play("death");
+                }
     		}
         },
 

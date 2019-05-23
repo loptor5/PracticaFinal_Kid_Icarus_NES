@@ -213,6 +213,9 @@ function loadScenes(Q)
         stage.insert(new Q.Door({x: 192, y:1093, tipoPuerta: "doorA", sheet: "doorAOpen", modelo: 4 }));
         stage.insert(new Q.Door({x: 240, y:117, tipoPuerta: "doorB", sheet: "doorBOpen", modelo: 0 }));
 
+        stage.insert(new Q.BonusLives({ x: 105, y: 1844, sheet: "copa", bonus: 1 }));
+        stage.insert(new Q.BonusLives({ x: 77, y: 1124, sheet: "frasco", bonus: 6 }));
+
             
         // INICIALIZA SCORE
         Q.state.set({ score: 0, lives: 7 });

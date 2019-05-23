@@ -124,8 +124,6 @@ function loadPlayer(Q) {
                     }
                 }else{
                     this.p.alive = false;
-                    this.p.sensor = false;
-                    this.p.gravity = 0;
                     this.play("death");
                 }
 
@@ -133,7 +131,7 @@ function loadPlayer(Q) {
 
             shoot: function () {
                 if (this.p.alive) {
-                    switch (this.p.frame) {
+                    switch (this.p.frame) { // animaciones de disparo
                         case 1:
                         case 5: // estatico
                             this.play("shoot_stand_" + this.p.direction);
@@ -179,26 +177,19 @@ function loadPlayer(Q) {
 
                         if (this.p.live <= 0) {
                             this.p.alive = false;
-                            this.p.sensor = false;
-                            this.p.gravity = 0;
                             this.play("death");
                         }
                     }
                 }
             },
 
-            bendOver: function () {
-                if (this.p.alive) {
-                    
-                }
-            },
-
             die: function () {
-                this.add("tween");
-                this.p.sensor = true;
+                this.p.gravity = 0;
+                this.p.sensor = false;
                 this.p.collisionMask = SPRITE_FLY;
                 this.del('2d, platformerControls'); // quito los controles
-                Q.stages[0].unfollow();
+                Q.stages[0].unfollow(); // dejo de seguir a Pit
+                this.add("tween");
                 this.animate(
                     {
                         y: this.p.y + 250,

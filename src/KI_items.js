@@ -82,7 +82,8 @@ function loadItems(Q) {
             hit: function (collision) {
                 if (collision.obj.isA("Pit")) {
                     Q.audio.play("Puerta.mp3", { loop: false }); // Musica de puerta
-                    //Según el tipo de puerta te mandará a un lugar a otro
+
+                    // Según el tipo de puerta te mandará a un lugar a otro
                     if (this.p.modelo == 0) // La ultima puerta
                     {
                         collision.obj.destroy();
@@ -102,7 +103,7 @@ function loadItems(Q) {
                     else if (this.p.modelo == 2) {
                         collision.obj.p.x = 200;
                         collision.obj.p.y = 2528;
-                        //No la cerramos porque el modelo 1 y el 3 te llevan a la misma habitación
+                        // No la cerramos porque el modelo 1 y el 3 te llevan a la misma habitación
                     }
                     else if (this.p.modelo == 3) {
                         collision.obj.p.x = 200;
@@ -130,5 +131,39 @@ function loadItems(Q) {
                 }
             }
         });
+    //------------------------------------------------------------------------//
+
+    // BONUS LIVES
+
+    Q.Sprite.extend("BonusLives",
+        {
+            init: function (p) {
+                this._super(p,
+                    {
+                        type: SPRITE_OBJECT,
+                        collisionMask: SPRITE_PLAYER,
+                        gravity: 0,
+                        frame: 0,
+                        tiempo: 0,
+                        sensor: true
+                    });
+
+                this.add("2d");
+                this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
+            },
+
+            hit: function (collision) {
+                if (collision.obj.isA("Pit")) {
+                    //Q.audio.play("BonusLives.mp3", { loop: false }); // Reproduce la musica de corazon
+                    collision.obj.p.live += this.p.bonus;
+                    collision.obj.p.live > 7 ? collision.obj.p.live = 7 : null; // Pit tiene 7 vidas
+        			Q.state.set("lives", collision.obj.p.live);
+                    this.destroy();
+                }
+            },
+
+            step: function (dt) {}
+        });
+
     //------------------------------------------------------------------------//
 }
