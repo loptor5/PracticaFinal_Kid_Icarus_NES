@@ -6,7 +6,7 @@ function loadPlayer(Q) {
     var SPRITE_BULLET = 2; 
     var SPRITE_ENEMY_K = 3; 
     var SPRITE_OBJECT = 4; 
-    var SPRITE_BULLET_ENEMY = 8;  
+    var SPRITE_BULLET_ENEMY = 9;  
     var SPRITE_DOOR = 16;
     var SPRITE_FLY = 32; 
 
@@ -251,7 +251,7 @@ function loadPlayer(Q) {
                         sprite: "flecha",
                         scale: 0.5,
                         type: SPRITE_BULLET,
-                        collisionMask: SPRITE_ENEMY_K,
+                        collisionMask: SPRITE_ENEMY_K | SPRITE_FLY,
                         sort: true,
                         gravity: 0,
                         sensor: true
@@ -279,7 +279,7 @@ function loadPlayer(Q) {
                         sprite: "flecha",
                         scale: 0.5,
                         type: SPRITE_BULLET,
-                        collisionMask: SPRITE_ENEMY_K,
+                        collisionMask: SPRITE_ENEMY_K | SPRITE_FLY,
                         sort: true,
                         gravity: 0,
                         sensor: true

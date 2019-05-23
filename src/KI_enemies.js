@@ -474,6 +474,7 @@ function loadEnemies(Q) {
             });
 
             this.add("2d, aiBounce, animation");
+            this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
             this.on("hit", this, "killed");
         },
 
@@ -542,6 +543,7 @@ function loadEnemies(Q) {
             });
 
             this.add("2d");
+            this.on("bump.left, bump.right, bump.top, bump.bottom", this, "hit");
         },
 
         hit: function (collision) { },
