@@ -49,7 +49,7 @@ function loadItems(Q) {
             },
 
             step: function (dt) {
-                if(this.p.tiempo > 250) {
+                if(this.p.tiempo > 200) {
                     this.destroy();
                 }
                 else {
@@ -154,7 +154,7 @@ function loadItems(Q) {
 
             hit: function (collision) {
                 if (collision.obj.isA("Pit")) {
-                    //Q.audio.play("BonusLives.mp3", { loop: false }); // Reproduce la musica de corazon
+                    Q.audio.play("BonusLives.mp3", { loop: false }); // Reproduce la musica de bonus lives
                     collision.obj.p.live += this.p.bonus;
                     collision.obj.p.live > 7 ? collision.obj.p.live = 7 : null; // Pit tiene 7 vidas
         			Q.state.set("lives", collision.obj.p.live);

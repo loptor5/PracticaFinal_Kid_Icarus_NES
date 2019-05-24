@@ -16,7 +16,7 @@ function loadScenes(Q)
         this._super(
         {
             label: "LIVES: " + barraVida(Q.state.get("lives")) + "\n\nHEARTS: " + Q.state.get("score"),
-            color: "white",
+            color: "#AED6F1",
             family: "PressStart2P",
             align: "left",
             x: 150,
@@ -47,6 +47,7 @@ function loadScenes(Q)
             num >= i ? barra += "|" : barra += " ";
         }
         barra += "]";
+        
         return barra;
     }
 
@@ -62,7 +63,7 @@ function loadScenes(Q)
         {
             x: Q.width/2,
             y: Q.height/2,
-            fill: "rgba(0,0,0,0.5)"
+            fill: "rgba(174, 214, 241, 0.9)"
         }));
 
         const button = container.insert(
@@ -71,7 +72,7 @@ function loadScenes(Q)
             x: 0,
             y: 0,
             color: "#FFFFFF",
-            fill: "#CCCCCC",
+            fill: "#EBF5FB",
             label: "Press 'ENTER' to play again"
             //keyActionName: "fire"
         }));
@@ -80,7 +81,7 @@ function loadScenes(Q)
         new Q.UI.Text(
         {
             family: "PressStart2P",
-            color: "#FFFFFF",
+            color: "black",
             x: 10,
             y: -10 - button.p.h,
             label: stage.options.label
@@ -103,7 +104,7 @@ function loadScenes(Q)
             {
                 x: Q.width/2,
                 y: Q.height/2,
-                fill: "rgba(0,0,0,0.5)"
+                fill: "rgba(174, 214, 241, 0.9)"
             })
         );
 
@@ -112,7 +113,8 @@ function loadScenes(Q)
             {
                 x: 0,
                 y: 0,
-                fill: "#FFFFFF",
+                color: "#FFFFFF",
+                fill: "#EBF5FB",
                 label: "Press 'ENTER' to play again"
                 //keyActionName: "fire"
             })
@@ -122,7 +124,7 @@ function loadScenes(Q)
             new Q.UI.Text(
             {
                 family: "PressStart2P",
-                color: "#FFFFFF",
+                color: "black",
                 x: 10,
                 y: -10 - button.p.h,
                 label: stage.options.label
@@ -130,6 +132,25 @@ function loadScenes(Q)
         );
 
         container.fit(20);
+    });
+
+    // START
+
+    Q.scene("Start", function (stage)
+    {
+        stage.insert(new Q.UI.Button(
+        {
+            asset: "Start.png",
+            x: Q.width / 2,
+            y: Q.height / 2,
+            scaleToFit: true
+        }))
+
+        Q.input.on("confirm", function()
+        {
+            Q.clearStages();
+            Q.stageScene("TitleScreen");
+        });
     });
 
     // TITULO
