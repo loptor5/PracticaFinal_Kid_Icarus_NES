@@ -4,3 +4,5 @@ Adaptación del videojuego "Kid Icarus" de la consola de Nintendo, NES, lanzado 
 Realizado por José María Gómez-Trabadela García y Carlos López de la Torre Ortego.
 
 Enlace donde está alojado https://demonhero.github.io/PracticaFinal_Kid_Icarus_NES/
+
+Gameplay en Youtube: https://www.youtube.com/watch?v=S8zsM9mttlE
